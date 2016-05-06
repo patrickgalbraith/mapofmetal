@@ -1,0 +1,56 @@
+[{
+	"px": 590,
+	"py": 280,
+	"width": 40,
+	"height": 40,
+	"id": "map-overlay__garage-rock",
+	"className": "map-genre-overlay map-genre-overlay__related"
+},
+{
+	"px": 370,
+	"py": 430,
+	"width": 40,
+	"height": 40,
+	"id": "map-overlay__blues-rock",
+	"className": "map-genre-overlay map-genre-overlay__related"
+},
+{
+	"px": 260,
+	"py": 600,
+	"width": 40,
+	"height": 40,
+	"id": "map-overlay__psychedelic-rock",
+	"className": "map-genre-overlay map-genre-overlay__related"
+},
+{
+	"px": 564,
+	"py": 490,
+	"width": 40,
+	"height": 40,
+	"id": "map-overlay__hard-rock",
+	"className": "map-genre-overlay map-genre-overlay__related"
+},
+{
+	"px": 549,
+	"py": 866,
+	"width": 40,
+	"height": 40,
+	"id": "map-overlay__shock-rock",
+	"className": "map-genre-overlay map-genre-overlay__related"
+},
+{
+	"px": 820,
+	"py": 650,
+	"width": 207,
+	"height": 153,
+	"id": "map-overlay__heavy-metal",
+	"className": "map-genre-overlay map-genre-overlay__primary"
+},
+{
+	"px": 1120,
+	"py": 933,
+	"width": 80,
+	"height": 80,
+	"id": "map-overlay__progressive-metal",
+	"className": "map-genre-overlay map-genre-overlay__fusion"
+}]
