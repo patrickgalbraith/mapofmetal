@@ -1,0 +1,22 @@
+html, body, #map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+
+#toolbar {
+  position: fixed;
+  z-index: 99;
+}
+
+.map-genre-overlay {
+  border: 1px red solid;
+}
+.map-genre-overlay__related {
+  border-color: green;
+}
+.map-genre-overlay__fusion {
+  border-color: blue;
+}
