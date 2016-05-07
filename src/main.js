@@ -3,18 +3,22 @@ import LogMonitor from 'redux-devtools-log-monitor'
 import DockMonitor from 'redux-devtools-dock-monitor'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import * as reducers from './reducers'
-import { App, Home, Foo, Bar } from './components'
+import rootReducer from './reducers'
+import App from './containers/App'
 
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-})
+import genreOverlays from '!json!../data/genre-overlays.json'
+
+const initialState = {
+  map: {
+    overlays: genreOverlays
+  }
+}
+
+const reducer = rootReducer
 
 const DevTools = createDevTools(
   <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
@@ -24,12 +28,11 @@ const DevTools = createDevTools(
 
 const store = createStore(
   reducer,
+  initialState,
   DevTools.instrument()
 )
 
-const history = syncHistoryWithStore(browserHistory, store)
-
-ReactDOM.render(
+render(
   <Provider store={store}>
     <div>
       <App />

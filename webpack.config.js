@@ -4,7 +4,7 @@ module.exports = {
   devtool: '#source-map',
   entry: {
     app: './src/main.js',
-    vendor: ['jquery', 'openseadragon']
+    vendor: ['openseadragon']
   },
   output: {
     filename: './static/dist/app.bundle.js'
@@ -12,11 +12,17 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.json$/,
+        loader: 'json-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015'],
+          presets: ['es2015', 'react'],
+          plugins: ['transform-object-rest-spread'],
           cacheDirectory: true,
         },
       }
