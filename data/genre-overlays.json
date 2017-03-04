@@ -3,7 +3,7 @@
   "py": 280,
   "width": 40,
   "height": 40,
-  "id": "map-overlay__garage-rock",
+  "id": "map-overlay__garagerock",
   "className": "map-genre-overlay map-genre-overlay__related"
 },
 {
@@ -11,7 +11,7 @@
   "py": 430,
   "width": 40,
   "height": 40,
-  "id": "map-overlay__blues-rock",
+  "id": "map-overlay__bluesrock",
   "className": "map-genre-overlay map-genre-overlay__related"
 },
 {
@@ -19,7 +19,7 @@
   "py": 600,
   "width": 40,
   "height": 40,
-  "id": "map-overlay__psychedelic-rock",
+  "id": "map-overlay__psychedelicrock",
   "className": "map-genre-overlay map-genre-overlay__related"
 },
 {
@@ -27,7 +27,7 @@
   "py": 490,
   "width": 40,
   "height": 40,
-  "id": "map-overlay__hard-rock",
+  "id": "map-overlay__hardrock",
   "className": "map-genre-overlay map-genre-overlay__related"
 },
 {
@@ -35,7 +35,7 @@
   "py": 866,
   "width": 40,
   "height": 40,
-  "id": "map-overlay__shock-rock",
+  "id": "map-overlay__shockrock",
   "className": "map-genre-overlay map-genre-overlay__related"
 },
 {
@@ -43,7 +43,7 @@
   "py": 650,
   "width": 207,
   "height": 153,
-  "id": "map-overlay__heavy-metal",
+  "id": "map-overlay__heavymetal",
   "className": "map-genre-overlay map-genre-overlay__primary"
 },
 {
@@ -51,6 +51,6 @@
   "py": 933,
   "width": 80,
   "height": 80,
-  "id": "map-overlay__progressive-metal",
+  "id": "map-overlay__progressivemetal",
   "className": "map-genre-overlay map-genre-overlay__fusion"
 }]
