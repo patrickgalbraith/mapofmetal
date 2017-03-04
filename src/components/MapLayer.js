@@ -56,8 +56,8 @@ class MapLayer extends Component {
       this.viewer.viewport.applyConstraints(true)
 
       setTimeout(() => {
-        this.viewer.viewport
-      }, 1000)
+        this.viewerElement.classList.add('active')
+      }, 2000)
     })
 
     // Handle click events on genre overlays

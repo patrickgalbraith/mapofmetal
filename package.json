@@ -15,6 +15,7 @@
     "json-loader": "^0.5.4",
     "openseadragon": "^2.1.0",
     "react": "^15.0.2",
+    "react-addons-css-transition-group": "^15.4.2",
     "react-dom": "^15.0.2",
     "react-redux": "^5.0.3",
     "redux": "^3.5.2",

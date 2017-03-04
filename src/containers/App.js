@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import VideoPlayer from '../components/VideoPlayer'
 import TopBar from '../components/TopBar'
@@ -13,6 +14,14 @@ import { selectGenre, fetchGenreInfo, fetchGenreOverlays } from '../actions/Genr
 const MAP_TILE_SOURCE = '/tiles/map.xml'
 
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      entered: false
+    }
+  }
+
   componentDidMount() {
     const { dispatch } = this.props
     dispatch(fetchGenreInfo())
@@ -25,6 +34,7 @@ class App extends Component {
   }
 
   render() {
+    const { entered } = this.state
     const {
       loading,
       overlays,
@@ -34,28 +44,33 @@ class App extends Component {
       genreInfo
     } = this.props
 
-    if (loading) {
-      return (
-        <div className='App'>
-          <LoadingSplash />
-        </div>
-      )
-    }
-
     return (
       <div className='App'>
-        <TopBar />
+        <ReactCSSTransitionGroup
+          transitionName="transition"
+          transitionEnterTimeout={3000}
+          transitionLeaveTimeout={3000}>
+          {
+            !entered
+            ? <LoadingSplash key='loading' loading={loading} onEnter={() => this.setState({entered: true})} />
+            : (
+              <div key='main' className='AppMain'>
+                <TopBar />
 
-        <VideoPlayer current={currentVideo} />
+                <VideoPlayer current={currentVideo} />
 
-        <GenreInfo current={currentGenre}
-                   genres={genreInfo} />
+                <GenreInfo current={currentGenre}
+                           genres={genreInfo} />
 
-        <PlayerControls position={playerPosition} />
+                <PlayerControls position={playerPosition} />
 
-        <MapLayer tileSources={MAP_TILE_SOURCE}
-                  overlays={overlays}
-                  onOverlayClick={(genreId) => this.changeGenre(genreId)} />
+                <MapLayer tileSources={MAP_TILE_SOURCE}
+                          overlays={overlays}
+                          onOverlayClick={(genreId) => this.changeGenre(genreId)} />
+              </div>
+            )
+          }
+        </ReactCSSTransitionGroup>
       </div>
     )
   }
