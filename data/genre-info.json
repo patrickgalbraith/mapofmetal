@@ -51,8 +51,7 @@
       "videoID": "pAZJmOgYdpU"
     }]
   },
-  "id": "alternativemetal",
-    "overlay": {}
+  "id": "alternativemetal"
 },
 {
   "title": "Avant-garde Metal",
@@ -1284,14 +1283,7 @@
       "videoID": "jlbunmCbTBA"
     }]
   },
-  "id": "garagerock",
-    "type": "related",
-    "overlay": {
-        "px": 590,
-        "py": 280,
-        "width": 40,
-        "height": 40
-    }
+  "id": "garagerock"
 },
 {
   "title": "Glam Metal",
