@@ -1,4 +1,7 @@
-html, body, .map-layer {
+html,
+body,
+.MapLayer,
+.LoadingSplash {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -6,17 +9,39 @@ html, body, .map-layer {
   background: black;
 }
 
-#toolbar {
-  position: fixed;
-  z-index: 99;
+// Debug colours
+body.env-development {
+  .map-genre-overlay {
+    border: 1px red solid;
+
+    &__related {
+      border-color: green;
+    }
+
+    &__fusion {
+      border-color: blue;
+    }
+  }
 }
 
-.map-genre-overlay {
-  border: 1px red solid;
+.MapLayer {
+  // Vignette
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.95) 100%);
+    pointer-events: none;
+  }
 }
-.map-genre-overlay__related {
-  border-color: green;
-}
-.map-genre-overlay__fusion {
-  border-color: blue;
+
+.LoadingSplash {
+  // TEMP
+  color: white;
+  text-align: center;
+  font-size: 50px;
 }

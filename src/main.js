@@ -1,42 +1,32 @@
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
-
 import React from 'react'
 import { render } from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
+import configureStore from './store/configureStore'
 import rootReducer from './reducers'
 import App from './containers/App'
+import DevTools from './containers/DevTools'
 
-import genreOverlays from '!json!../data/genre-overlays.json'
+import { ENV } from './constants'
 
 const initialState = {
   map: {
-    overlays: genreOverlays
-  }
+    overlays: []
+  },
+  genres: []
 }
 
-const reducer = rootReducer
+// Add css class for environment to enable development styles
+document.body.classList.add(`env-${process.env.NODE_ENV}`)
 
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
-    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-  </DockMonitor>
-)
-
-const store = createStore(
-  reducer,
-  initialState,
-  DevTools.instrument()
-)
+const store = configureStore(initialState)
 
 render(
   <Provider store={store}>
     <div>
       <App />
-      <DevTools />
+      { ENV === 'development' ? <DevTools /> : null }
     </div>
   </Provider>,
   document.getElementById('react-root')
