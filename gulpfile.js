@@ -18,7 +18,7 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('sass', ['clean'], function(cb) {
+gulp.task('sass', function(cb) {
   return gulp.src(sassPath)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
@@ -26,9 +26,7 @@ gulp.task('sass', ['clean'], function(cb) {
     .pipe(gulp.dest(distPath));
 });
 
-gulp.task('webpack', ['clean'], function(cb) {
-  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin())
-
+gulp.task('webpack', function(cb) {
   webpack(webpackConfig, function(err, stats) {
     if(err) gutil.log(err.toString());
     gutil.log(stats.toString());
@@ -36,7 +34,7 @@ gulp.task('webpack', ['clean'], function(cb) {
   });
 });
 
-gulp.task('watch', ['clean'], function() {
+gulp.task('watch', ['build'], function() {
   IS_WATCHING = true;
 
   gulp.watch(sassPath, ['sass']);
