@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'FaithCollapsing';
+    src: url('faith_collapsing-webfont.woff2') format('woff2'),
+         url('faith_collapsing-webfont.woff') format('woff'),
+         url('faith_collapsing-webfont.ttf') format('truetype'),
+         url('faith_collapsing-webfont.svg#faith_collapsingregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
