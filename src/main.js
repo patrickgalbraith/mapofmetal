@@ -10,6 +10,9 @@ import DevTools from './containers/DevTools'
 
 import { ENV } from './constants'
 
+if (ENV === 'development')
+  require('./styles')
+
 const initialState = {
   map: {
     overlays: []

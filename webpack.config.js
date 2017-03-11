@@ -15,20 +15,10 @@ const config = {
   },
   module: {
     loaders: [
-      // {
-      //   test: /\.json$/,
-      //   loader: 'json-loader',
-      //   exclude: /node_modules/,
-      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react'],
-          plugins: ['transform-object-rest-spread'],
-          cacheDirectory: true,
-        },
+        exclude: /node_modules/
       }
     ]
   },
@@ -42,6 +32,9 @@ const config = {
 
 if (environment === 'production') {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin())
+} else {
+  config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
+  config.entry = ['webpack-dev-server/client?http://127.0.0.1:58080', 'webpack/hot/only-dev-server', './src/main.js']
 }
 
 module.exports = config
