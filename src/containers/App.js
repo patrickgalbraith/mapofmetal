@@ -9,9 +9,9 @@ import MapLayer from '../components/MapLayer'
 import LoadingSplash from '../components/LoadingSplash'
 import GenreInfo from './GenreInfo'
 
-import { selectGenre, fetchGenreInfo, fetchGenreOverlays } from '../actions/Genre'
+import { MAP_TILE_SOURCE } from '../constants'
 
-const MAP_TILE_SOURCE = '/tiles/map.xml'
+import { selectGenre, fetchGenreInfo, fetchGenreOverlays } from '../actions/Genre'
 
 class App extends Component {
   constructor() {

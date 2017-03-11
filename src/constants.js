@@ -2,6 +2,8 @@ export const ENV = process.env.NODE_ENV
 
 export const POSTER_LINK = 'http://www.zazzle.com/mapofmetal?rf=238327027484104866'
 
+export const MAP_TILE_SOURCE = '/tiles/map.xml'
+
 export const PLAYER_READY  = 'PLAYER_READY'
 export const PLAYER_PLAY   = 'PLAYER_PLAY'
 export const PLAYER_PAUSE  = 'PLAYER_PAUSE'
