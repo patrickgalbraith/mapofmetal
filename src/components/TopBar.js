@@ -8,10 +8,14 @@ export default class TopBar extends Component {
   }
 
   render() {
+    const { changeMapCenter } = this.props
+
     const menuItems = [
       {
         title: 'legend',
-        onClick: () => {}
+        onClick: () => {
+          changeMapCenter(['right', 'top'])
+        }
       },
       {
         title: 'share/follow',

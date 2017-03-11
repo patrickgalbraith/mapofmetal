@@ -5,7 +5,7 @@
   padding: 0 18px;
   margin: 0;
   top: 10px;
-  right: 10px;
+  right: 0;
   list-style-type: none;
 
   &-item {
@@ -13,8 +13,8 @@
     color: white;
 
     button {
-      padding: 10px 14px;
-      font-size: 11px;
+      padding: 10px 12px;
+      font-size: 12px;
     }
   }
 }

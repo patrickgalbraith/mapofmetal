@@ -8,9 +8,13 @@ import PlayerControls from '../components/PlayerControls'
 import MapLayer from '../components/MapLayer'
 import LoadingSplash from '../components/LoadingSplash'
 import GenreInfo from './GenreInfo'
+import AboutModal from '../components/modals/About'
+import SettingsModal from '../components/modals/Settings'
+import ShareModal from '../components/modals/Share'
 
 import { MAP_TILE_SOURCE } from '../constants'
 
+import { changeMapCenter } from '../actions/Map'
 import { selectGenre, fetchGenreInfo, fetchGenreOverlays } from '../actions/Genre'
 
 class App extends Component {
@@ -23,14 +27,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    dispatch(fetchGenreInfo())
-    dispatch(fetchGenreOverlays())
+    const { fetchGenreInfo, fetchGenreOverlays } = this.props
+    fetchGenreInfo()
+    fetchGenreOverlays()
   }
 
   changeGenre(genreId) {
-    const { dispatch } = this.props
-    dispatch(selectGenre(genreId))
+    const { selectGenre } = this.props
+    selectGenre(genreId)
   }
 
   render() {
@@ -41,8 +45,12 @@ class App extends Component {
       currentGenre,
       currentVideo,
       playerPosition,
-      genreInfo
+      genreInfo,
+      mapCenter,
+      changeMapCenter
     } = this.props
+
+    let Modal = SettingsModal
 
     return (
       <div className='App'>
@@ -55,7 +63,7 @@ class App extends Component {
             ? <LoadingSplash key='loading' loading={loading} onEnter={() => this.setState({entered: true})} />
             : (
               <div key='main' className='AppMain'>
-                <TopBar />
+                <TopBar changeMapCenter={changeMapCenter} />
 
                 <VideoPlayer current={currentVideo} />
 
@@ -64,9 +72,19 @@ class App extends Component {
 
                 <PlayerControls position={playerPosition} />
 
+                { Modal ?
+                  <ReactCSSTransitionGroup
+                    transitionName="transition"
+                    transitionEnterTimeout={1000}
+                    transitionLeaveTimeout={1000}>
+                    <Modal />
+                  </ReactCSSTransitionGroup>
+                : null }
+
                 <MapLayer tileSources={MAP_TILE_SOURCE}
                           overlays={overlays}
-                          onOverlayClick={(genreId) => this.changeGenre(genreId)} />
+                          onOverlayClick={(genreId) => this.changeGenre(genreId)}
+                          centerPosition={mapCenter} />
               </div>
             )
           }
@@ -80,8 +98,23 @@ const mapStateToProps = (state, ownProps) => {
   return {
     overlays: state.map.overlays,
     currentGenre: state.selectedGenre,
-    loading: state.genres.length <= 0 || state.map.overlays.length <= 0
+    loading: state.genres.length <= 0 || state.map.overlays.length <= 0,
+    mapCenter: state.map.center,
+    dispatch: state.dispatch
   }
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchGenreInfo:     ()       => dispatch(fetchGenreInfo()),
+    fetchGenreOverlays: ()       => dispatch(fetchGenreOverlays()),
+    selectGenre:        (id)     => dispatch(selectGenre(id)),
+    changeMapCenter:    (center) => dispatch(changeMapCenter(center))
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

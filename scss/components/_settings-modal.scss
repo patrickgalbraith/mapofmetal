@@ -1,0 +1,50 @@
+.ModalWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.SettingsModal {
+  background: black;
+  z-index: $zindex-xl;
+  padding: 15px 20px;
+  max-width: 420px;
+  color: white;
+
+  &-title {
+    font-size: 54px;
+    font-family: $font-faithcollapsing;
+    margin: 0 0 10px 0;
+  }
+
+  &-settings {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &-title,
+    &-value {
+      font-size: 20px;
+    }
+
+    &-description {
+      color: #868585;
+    }
+  }
+
+  &-footer {
+    margin-top: 50px;
+  }
+
+  &-close {
+    font-size: 20px;
+    border-radius: 6px;
+    border: 2px solid white;
+    padding: 2px 20px;
+  }
+}
