@@ -1,0 +1,20 @@
+.TopBar {
+  background: black;
+  position: absolute;
+  z-index: $zindex-m;
+  padding: 0 18px;
+  margin: 0;
+  top: 10px;
+  right: 10px;
+  list-style-type: none;
+
+  &-item {
+    display: inline-block;
+    color: white;
+
+    button {
+      padding: 10px 14px;
+      font-size: 11px;
+    }
+  }
+}
