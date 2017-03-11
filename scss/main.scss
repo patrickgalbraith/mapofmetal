@@ -2,6 +2,16 @@ $font-sans-serif: 'Arial', sans-serif;
 $font-chineserocks: 'ChineseRocks', sans-serif;
 $font-faithcollapsing: 'FaithCollapsing', sans-serif;
 
+$image-path: '/static/img/';
+
+$zindex-xxs: 100;
+$zindex-xs:  200;
+$zindex-s:   350;
+$zindex-m:   500;
+$zindex-l:   750;
+$zindex-xl:  1000;
+$zindex-xxl: 10000;
+
 html,
 body {
   width: 100%;
@@ -10,6 +20,7 @@ body {
   padding: 0;
   background: black;
   box-sizing: border-box;
+  font-family: $font-sans-serif;
 
   * {
     box-sizing: inherit;
@@ -18,6 +29,13 @@ body {
 
 a {
   color: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 // Debug colours
@@ -35,146 +53,6 @@ body.env-development {
   }
 }
 
-.App {
-  .transition-enter {
-    opacity: 0;
-
-    &-active {
-      opacity: 1;
-      transition: opacity 1s 2s;
-    }
-  }
-
-  .transition-leave {
-    opacity: 1;
-
-    &-active {
-      opacity: 0;
-      transition: opacity 1s;
-    }
-  }
-}
-
-.MapLayer {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: black;
-  opacity: 0;
-  transition: opacity 1s;
-
-  // Vignette
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: 100;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,0.95) 100%);
-    pointer-events: none;
-  }
-
-  &.active {
-    opacity: 1;
-  }
-}
-
-.LoadingSplash {
-  text-align: center;
-  position: absolute;
-  background: black;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
-
-  span {
-    cursor: default;
-  }
-
-  &-logo {
-    background-image: url('/static/img/logo.jpg');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-  }
-
-  &-notice,
-  &-loading,
-  &-enter {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    color: white;
-    text-align: center;
-  }
-
-  &-notice {
-    top: 66%;
-    font-family: $font-sans-serif;
-    font-size: 11px;
-    color: #a6a5a5;
-    cursor: default;
-    text-shadow: 0 0 4px black;
-    padding: 0 20px;
-
-    a {
-      text-decoration: underline;
-    }
-
-    @media all and (max-height: 850px) {
-      top: 80%;
-    }
-
-    @media all and (max-width: 920px) {
-      top: auto;
-      bottom: 40px;
-    }
-  }
-
-  &-loading,
-  &-enter {
-    top: 70%;
-    font-family: $font-chineserocks;
-    font-size: 28px;
-
-    &.transition-enter {
-      opacity: 0;
-
-      &-active {
-        opacity: 1;
-        transition: opacity 1s 1s;
-      }
-    }
-
-    &.transition-leave {
-      &-active {
-        opacity: 0;
-        transition: opacity 1s;
-      }
-    }
-  }
-
-  &-enter {
-    font-size: 34px;
-
-    a {
-      cursor: pointer;
-
-      @media all and (max-width: 920px) {
-        top: auto;
-        bottom: 40px;
-        border: 2px solid rgb(70, 26, 104);
-        background: rgba(0, 0, 0, 0.5);
-        padding: 10px 20px;
-      }
-    }
-  }
-}
+@import 'components/app';
+@import 'components/map-layer';
+@import 'components/loading-splash';
