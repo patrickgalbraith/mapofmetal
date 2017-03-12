@@ -1,0 +1,89 @@
+.AboutModal {
+  padding: 20px 52px;
+  width: 460px;
+  max-width: 95%;
+  color: #999999;
+
+  .Modal {
+    &-title {
+      text-align: center;
+      margin: 0 0 25px 0;
+      color: white;
+    }
+
+    &-footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    border-bottom: 1px solid rgba(153, 153, 153, 0.6);
+    transition: border 0.3s, color 0.3s;
+
+    &:hover {
+      color: white;
+      border-bottom-color: rgba(153, 153, 153, 1.0);
+    }
+  }
+
+  .credit {
+    font-size: 22px;
+    color: inherit;
+
+    strong {
+      color: white;
+    }
+
+    &.nick {
+      font-size: 19px;
+    }
+  }
+
+  .testers,
+  .resources {
+    font-size: 14px;
+
+    p {
+      margin-bottom: 0.5em;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    li {
+      font-size: 16px;
+      color: white;
+      flex: 0 1 50%;
+    }
+  }
+
+  .special-thanks {
+    margin: 2em 0;
+    text-align: center;
+    font-size: 19px;
+    color: white;
+  }
+
+  .feedback {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 0.2em;
+
+    a {
+      color: white;
+    }
+  }
+
+  .youtube-notice {
+    font-size: 14px;
+    text-align: center;
+    margin-top: 0;
+  }
+}

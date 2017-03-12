@@ -14,7 +14,7 @@ import ShareModal from '../components/modals/Share'
 
 import { MAP_TILE_SOURCE } from '../constants'
 
-import { changeMapCenter } from '../actions/Map'
+import { changeMapCenter, dragStart, dragEnd } from '../actions/Map'
 import { selectGenre, fetchGenreInfo, fetchGenreOverlays } from '../actions/Genre'
 
 class App extends Component {
@@ -22,7 +22,8 @@ class App extends Component {
     super()
 
     this.state = {
-      entered: false
+      entered: false,
+      currentModal: null
     }
   }
 
@@ -37,8 +38,41 @@ class App extends Component {
     selectGenre(genreId)
   }
 
+  openModal(type) {
+    let currentModal = null
+
+    switch(type) {
+      case 'About':
+        currentModal = {
+          key: type,
+          component: AboutModal
+        }
+        break
+      case 'Settings':
+        currentModal = {
+          key: type,
+          component: SettingsModal
+        }
+        break
+      case 'Share':
+        currentModal = {
+          key: type,
+          component: ShareModal
+        }
+        break
+    }
+
+    this.setState({ currentModal })
+  }
+
+  closeModal() {
+    this.setState({
+      currentModal: null
+    })
+  }
+
   render() {
-    const { entered } = this.state
+    const { entered, currentModal } = this.state
     const {
       loading,
       overlays,
@@ -50,7 +84,7 @@ class App extends Component {
       changeMapCenter
     } = this.props
 
-    let Modal = SettingsModal
+    let Modal = currentModal ? currentModal.component : null
 
     return (
       <div className='App'>
@@ -63,7 +97,8 @@ class App extends Component {
             ? <LoadingSplash key='loading' loading={loading} onEnter={() => this.setState({entered: true})} />
             : (
               <div key='main' className='AppMain'>
-                <TopBar changeMapCenter={changeMapCenter} />
+                <TopBar changeMapCenter={changeMapCenter}
+                        openModal={this.openModal.bind(this)} />
 
                 <VideoPlayer current={currentVideo} />
 
@@ -72,19 +107,19 @@ class App extends Component {
 
                 <PlayerControls position={playerPosition} />
 
-                { Modal ?
-                  <ReactCSSTransitionGroup
-                    transitionName="transition"
-                    transitionEnterTimeout={1000}
-                    transitionLeaveTimeout={1000}>
-                    <Modal />
-                  </ReactCSSTransitionGroup>
-                : null }
+                <ReactCSSTransitionGroup
+                  transitionName="transition"
+                  transitionEnterTimeout={500}
+                  transitionLeaveTimeout={500}>
+                  { Modal ?
+                    <Modal key={currentModal.key} close={() => this.closeModal()} />
+                  : null }
+                </ReactCSSTransitionGroup>
 
                 <MapLayer tileSources={MAP_TILE_SOURCE}
                           overlays={overlays}
+                          centerPosition={mapCenter}
                           onOverlayClick={(genreId) => this.changeGenre(genreId)}
-                          centerPosition={mapCenter} />
               </div>
             )
           }

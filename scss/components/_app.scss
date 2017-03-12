@@ -1,5 +1,5 @@
 .App {
-  .transition-enter {
+  > span > .transition-enter {
     opacity: 0;
 
     &-active {
@@ -8,7 +8,7 @@
     }
   }
 
-  .transition-leave {
+  > span > .transition-leave {
     opacity: 1;
 
     &-active {

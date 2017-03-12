@@ -8,18 +8,16 @@ export default class TopBar extends Component {
   }
 
   render() {
-    const { changeMapCenter } = this.props
+    const { changeMapCenter, openModal } = this.props
 
     const menuItems = [
       {
         title: 'legend',
-        onClick: () => {
-          changeMapCenter(['right', 'top'])
-        }
+        onClick: () => changeMapCenter(['right', 'top'])
       },
       {
         title: 'share/follow',
-        onClick: () => {}
+        onClick: () => openModal('Share')
       },
       {
         title: 'fullscreen',
@@ -27,15 +25,15 @@ export default class TopBar extends Component {
       },
       {
         title: 'settings',
-        onClick: () => {}
+        onClick: () => openModal('Settings')
       },
       {
         title: 'buy poster',
-        onClick: () => { this.openUrl(POSTER_LINK) }
+        onClick: () => this.openUrl(POSTER_LINK)
       },
       {
         title: 'about',
-        onClick: () => {}
+        onClick: () => openModal('About')
       }
     ]
 

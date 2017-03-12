@@ -1,50 +1,54 @@
-.ModalWrapper {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
 .SettingsModal {
-  background: black;
-  z-index: $zindex-xl;
-  padding: 15px 20px;
-  max-width: 420px;
-  color: white;
+  padding: 15px 20px 20px 20px;
+  width: 420px;
+  max-width: 95%;
 
-  &-title {
-    font-size: 54px;
-    font-family: $font-faithcollapsing;
-    margin: 0 0 10px 0;
-  }
-
-  &-settings {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-    &-title,
-    &-value {
-      font-size: 20px;
+  .Modal {
+    &-title {
+      margin: 0 0 10px 0;
     }
 
-    &-description {
-      color: #868585;
+    &-settings {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      > li {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      &-title,
+      &-value,
+      &-description {
+        flex: 0 1 auto;
+        cursor: default;
+      }
+
+      &-title {
+        flex-grow: 1;
+      }
+
+      &-value {
+        cursor: pointer;
+      }
+
+      &-title,
+      &-value {
+        font-size: 20px;
+      }
+
+      &-description {
+        color: #868585;
+        font-size: 16px;
+        flex-basis: 100%;
+        padding: 10px;
+      }
     }
-  }
 
-  &-footer {
-    margin-top: 50px;
-  }
-
-  &-close {
-    font-size: 20px;
-    border-radius: 6px;
-    border: 2px solid white;
-    padding: 2px 20px;
+    &-footer {
+      margin-top: 50px;
+      text-align: right;
+    }
   }
 }

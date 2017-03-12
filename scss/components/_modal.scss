@@ -1,0 +1,77 @@
+.ModalWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  &:after {
+    content: '';
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-l;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+
+  // Transitions
+  &.transition-enter {
+    &:after,
+    .Modal { opacity: 0; }
+
+    &-active {
+      &:after,
+      .Modal { opacity: 1; }
+    }
+  }
+
+  &.transition-leave {
+    &-active {
+      &:after,
+      > div { opacity: 0; }
+    }
+  }
+}
+
+// Modal base styles
+.Modal {
+  transition: opacity 0.5s;
+  background: black;
+  z-index: $zindex-xl;
+  color: white;
+  font-family: $font-flamacondensed;
+
+  &-title {
+    font-size: 54px;
+    font-family: $font-faithcollapsing;
+    cursor: default;
+  }
+
+  &-close {
+    font-family: inherit;
+    font-size: 20px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 2px 20px;
+    transition: border 0.3s, background 0.2s, color 0.2s;
+    outline: none;
+    color: white;
+
+    &:hover,
+    &:focus {
+      border-color: rgba(255,255,255,1);
+    }
+
+    &:active {
+      background: white;
+      color: black;
+    }
+  }
+}

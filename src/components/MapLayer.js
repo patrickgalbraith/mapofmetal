@@ -9,10 +9,6 @@ class MapLayer extends Component {
     return <div className='MapLayerPlaceholder' />
   }
 
-  shouldComponentUpdate() {
-    return false
-  }
-
   parsePosition(position) {
     if (position[0] === 'left')
       position[0] = 0
@@ -25,6 +21,10 @@ class MapLayer extends Component {
       position[1] = IMAGE_HEIGHT
 
     return position
+  }
+
+  shouldComponentUpdate() {
+    return false
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +43,14 @@ class MapLayer extends Component {
   }
 
   componentDidMount() {
-    const { onOverlayClick, tileSources, overlays, centerPosition } = this.props
+    const {
+      overlays,
+      tileSources,
+      centerPosition,
+      onDragStart,
+      onDragEnd,
+      onOverlayClick
+    } = this.props
 
     this.viewerElement = document.createElement('div')
     this.viewerElement.className = 'MapLayer'
@@ -98,6 +105,20 @@ class MapLayer extends Component {
       }, 2000)
     })
 
+    this.viewer.addHandler('animation-start', (e) => {
+      if(!this.dragging) {
+        this.dragging = true
+        onDragStart()
+      }
+    })
+
+    this.viewer.addHandler('animation-finish', (e) => {
+      if(this.dragging) {
+        this.dragging = false
+        onDragEnd()
+      }
+    })
+
     // Handle click events on genre overlays
     const convertOverlayIdToGenreId = (overlayId) => overlayId.replace('map-overlay__', '')
 
@@ -111,14 +132,17 @@ class MapLayer extends Component {
   componentWillUnmount() {
     this.viewer.destroy()
     document.body.removeChild(this.viewerElement)
+    // @todo remove genre overlay event listener
   }
 }
 
 MapLayer.propTypes = {
+  tileSources:    PropTypes.string.isRequired,
+  overlays:       PropTypes.array.isRequired,
+  centerPosition: PropTypes.array,
   onOverlayClick: PropTypes.func.isRequired,
-  tileSources: PropTypes.string.isRequired,
-  overlays: PropTypes.array.isRequired,
-  centerPosition: PropTypes.array
+  onDragStart:    PropTypes.func.isRequired,
+  onDragEnd:      PropTypes.func.isRequired
 }
 
 export default MapLayer
