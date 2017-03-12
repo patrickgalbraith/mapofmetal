@@ -1,8 +1,10 @@
-$font-sans-serif: 'Arial', sans-serif;
-$font-chineserocks: 'ChineseRocks', sans-serif;
-$font-faithcollapsing: 'FaithCollapsing', sans-serif;
+$font-sans-serif:      Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$font-chineserocks:    'ChineseRocks', Georgia, Times, "Times New Roman", serif;
+$font-faithcollapsing: 'FaithCollapsing', Impact, Haettenschweiler, 'Arial Black', sans-serif;
+$font-flamacondensed:  'FlamaCondensed', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 $image-path: '/static/img/';
+$font-path:  '/static/font/';
 
 $zindex-xxs: 100;
 $zindex-xs:  200;
@@ -52,6 +54,8 @@ body.env-development {
     }
   }
 }
+
+@import 'fonts';
 
 @import 'components/app';
 @import 'components/map-layer';
