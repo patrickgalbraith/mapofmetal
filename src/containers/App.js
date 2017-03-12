@@ -81,7 +81,10 @@ class App extends Component {
       playerPosition,
       genreInfo,
       mapCenter,
-      changeMapCenter
+      mapDragging,
+      changeMapCenter,
+      dragStart,
+      dragEnd
     } = this.props
 
     let Modal = currentModal ? currentModal.component : null
@@ -120,6 +123,8 @@ class App extends Component {
                           overlays={overlays}
                           centerPosition={mapCenter}
                           onOverlayClick={(genreId) => this.changeGenre(genreId)}
+                          onDragStart={() => dragStart()}
+                          onDragEnd={() => dragEnd()} />
               </div>
             )
           }
@@ -131,11 +136,11 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    overlays: state.map.overlays,
+    overlays:     state.map.overlays,
     currentGenre: state.selectedGenre,
-    loading: state.genres.length <= 0 || state.map.overlays.length <= 0,
-    mapCenter: state.map.center,
-    dispatch: state.dispatch
+    loading:      state.genres.length <= 0 || state.map.overlays.length <= 0,
+    mapCenter:    state.map.center,
+    mapDragging:  state.map.dragging
   }
 }
 
@@ -144,7 +149,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchGenreInfo:     ()       => dispatch(fetchGenreInfo()),
     fetchGenreOverlays: ()       => dispatch(fetchGenreOverlays()),
     selectGenre:        (id)     => dispatch(selectGenre(id)),
-    changeMapCenter:    (center) => dispatch(changeMapCenter(center))
+    changeMapCenter:    (center) => dispatch(changeMapCenter(center)),
+    dragStart:          ()       => dispatch(dragStart()),
+    dragEnd:            ()       => dispatch(dragEnd())
   }
 }
 

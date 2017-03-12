@@ -1,5 +1,7 @@
 import {
   MAP_MOVE,
+  MAP_DRAG_START,
+  MAP_DRAG_END,
   GENRE_OVERLAYS_REQUEST,
   GENRE_OVERLAYS_SUCCESS,
   GENRE_OVERLAYS_FAILURE
@@ -7,7 +9,8 @@ import {
 
 const initialState = {
   overlays: [],
-  center: null
+  center:   null,
+  dragging: false
 }
 
 export default function map(state = initialState, action) {
@@ -24,6 +27,18 @@ export default function map(state = initialState, action) {
   if (action.type === MAP_MOVE) {
     return Object.assign({}, state, {
       center: action.mapCenter
+    })
+  }
+
+  if (action.type === MAP_DRAG_START) {
+    return Object.assign({}, state, {
+      dragging: true
+    })
+  }
+
+  if (action.type === MAP_DRAG_END) {
+    return Object.assign({}, state, {
+      dragging: false
     })
   }
 
