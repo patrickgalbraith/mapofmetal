@@ -23,6 +23,7 @@ body {
   background: black;
   box-sizing: border-box;
   font-family: $font-sans-serif;
+  -webkit-font-smoothing: antialiased;
 
   * {
     box-sizing: inherit;
