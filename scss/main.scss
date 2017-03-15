@@ -30,6 +30,36 @@ body {
   }
 }
 
+// Webkit scrollbars
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color:rgb(255, 255, 255);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color:rgb(196, 196, 196);
+}
+
+::-webkit-scrollbar-track{
+  background-color:rgb(63, 61, 60);
+}
+
+// Internet explorer scrollbars
+body {
+  scrollbar-arrow-color: #FFFFFF;
+  scrollbar-base-color: #FFFFFF;
+  scrollbar-track-color: #3f3d3c;
+  scrollbar-face-color: #FFFFFF;
+  scrollbar-highlight-color: #FFFFFF;
+  scrollbar-3dlight-color: #FFFFFF;
+  scrollbar-darkshadow-color: #FFFFFF;
+  scrollbar-shadow-color: #FFFFFF;
+}
+
 a {
   color: inherit;
 }
