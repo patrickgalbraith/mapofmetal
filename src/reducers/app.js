@@ -1,7 +1,11 @@
 import { GENRE_SELECTED } from '../constants'
 
 const initialState = {
-  selectedGenre: 'heavymetal'
+  selectedGenre: 'heavymetal',
+  nowPlaying: {
+    genre:   'heavymetal',
+    trackNo: 0
+  }
 }
 
 export default function map(state = initialState, action) {

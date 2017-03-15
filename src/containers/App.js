@@ -7,7 +7,8 @@ import TopBar from '../components/TopBar'
 import PlayerControls from '../components/PlayerControls'
 import MapLayer from '../components/MapLayer'
 import LoadingSplash from '../components/LoadingSplash'
-import GenreInfo from './GenreInfo'
+import GenreInfo from '../components/GenreInfo'
+import TrackList from '../components/TrackList'
 import AboutModal from '../components/modals/About'
 import SettingsModal from '../components/modals/Settings'
 import ShareModal from '../components/modals/Share'
@@ -77,9 +78,9 @@ class App extends Component {
       loading,
       overlays,
       currentGenre,
+      currentTrackList,
       currentVideo,
       playerPosition,
-      genreInfo,
       mapCenter,
       mapDragging,
       changeMapCenter,
@@ -99,14 +100,15 @@ class App extends Component {
             !entered
             ? <LoadingSplash key='loading' loading={loading} onEnter={() => this.setState({entered: true})} />
             : (
-              <div key='main' className='AppMain'>
+              <div key='main' className={['AppMain', (mapDragging ? 'is-dragging' : '')].join(' ')}>
                 <TopBar changeMapCenter={changeMapCenter}
                         openModal={this.openModal.bind(this)} />
 
                 <VideoPlayer current={currentVideo} />
 
-                <GenreInfo current={currentGenre}
-                           genres={genreInfo} />
+                <GenreInfo current={currentGenre} playing={currentTrackList.genre} onNowPlayingClick={() => {}} />
+
+                <TrackList current={currentGenre} playing={currentTrackList} />
 
                 <PlayerControls position={playerPosition} />
 
@@ -136,11 +138,16 @@ class App extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    overlays:     state.map.overlays,
-    currentGenre: state.selectedGenre,
-    loading:      state.genres.length <= 0 || state.map.overlays.length <= 0,
-    mapCenter:    state.map.center,
-    mapDragging:  state.map.dragging
+    overlays:         state.map.overlays,
+    currentGenre:     state.genres.find(g => g.id === state.app.selectedGenre),
+    currentTrackList: {
+      genre:   state.genres.find(g => g.id === state.app.nowPlaying.genre),
+      trackNo: state.app.nowPlaying.trackNo
+    },
+    currentVideo:     {  },
+    loading:          state.genres.length <= 0 || state.map.overlays.length <= 0,
+    mapCenter:        state.map.center,
+    mapDragging:      state.map.dragging
   }
 }
 
@@ -154,7 +161,6 @@ const mapDispatchToProps = (dispatch) => {
     dragEnd:            ()       => dispatch(dragEnd())
   }
 }
-
 
 export default connect(
   mapStateToProps,
