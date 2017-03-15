@@ -67,11 +67,47 @@
                                     ============
 
               FOLLOW @ https://github.com/patrickgalbraith/mapofmetal -->
+
+    <!-- Google analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-30334830-1']);
+      _gaq.push(['_setDomainName', 'mapofmetal.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body>
     <div id="react-root"></div>
 
+    <noscript>
+      <img src="static/img/logo-sml.jpg" />
+      <h1>MAP OF METAL</h1>
+      <p style="font-size:80%">An interactive overview of Metal history and the influential bands that helped shaped the genres we know today.</p>
+      <br />
+      <p><strong>To continue you need to <a href="http://www.enable-javascript.com" target="_blank" rel="nofollow external noopener">enable JavaScript</a>.</strong></p>
+      <br />
+      <p style="font-size:80%">Created by Patrick Galbraith (<a href="http://pjgalbraith.com" target="_blank">Website</a>)</p>
+    </noscript>
+
     <script src="static/dist/vendor.bundle.js"></script>
     <script src="static/dist/app.bundle.js"></script>
+
+    <!-- Browser update notification -->
+    <script>
+      var $buoop = {vs:{i:11,f:-6,o:-6,s:8,c:-6},api:4};
+      function $buo_f(){
+       var e = document.createElement("script");
+       e.src = "//browser-update.org/update.min.js";
+       document.body.appendChild(e);
+      };
+      try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+      catch(e){window.attachEvent("onload", $buo_f)}
+    </script>
   </body>
 </html>
