@@ -34,10 +34,11 @@ export default class About extends Component {
           <div className='resources'>
             <p>this site would not be possible without the following resources</p>
             <ul>
-              <li><a href='' {...external}>YOUTUBE.COM</a></li>
-              <li><a href='' {...external}>ENCYLOPEDIA METALLUM</a></li>
-              <li><a href='' {...external}>WIKIPEDIA</a></li>
-              <li><a href='' {...external}>METAL A HEADBANGERS JOURNEY</a></li>
+              <li><a href='https://youtube.com' {...external}>YOUTUBE.COM</a></li>
+              <li><a href='http://www.metal-archives.com/' {...external}>ENCYLOPEDIA METALLUM</a></li>
+              <li><a href='https://wikipedia.org' {...external}>WIKIPEDIA</a></li>
+              <li><a href='http://www.bangerfilms.com/films/metal-a-headbangers-journey/' {...external}>METAL A HEADBANGERS JOURNEY</a></li>
+              <li><a href='https://www.reddit.com/r/InternetIsBeautiful/' {...external}>/R/INTERNETISBEAUTIFUL</a></li>
             </ul>
           </div>
 
