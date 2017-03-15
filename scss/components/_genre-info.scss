@@ -1,0 +1,33 @@
+.GenreInfo {
+  background: black;
+  position: absolute;
+  z-index: $zindex-m;
+  width: 508px;
+  height: 223px;
+  color: white;
+  padding: 8px 8px;
+  left: 0;
+  bottom: 22px;
+
+  &-content {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+    padding-right: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &-title {
+    font-size: 52px;
+    font-family: $font-faithcollapsing;
+    margin: 10px 0;
+  }
+
+  &-description {
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-family: $font-sans-serif;
+    line-height: 2;
+  }
+}
