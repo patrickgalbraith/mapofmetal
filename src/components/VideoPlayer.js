@@ -112,13 +112,16 @@ class VideoPlayer extends Component {
       playerState: nextPlayerState
     } = nextProps
 
+    // Initialize when API is ready
     if (nextPlayerState.apiReady !== playerState.apiReady) {
       this.initializePlayer()
     }
 
+    // Everything after this requires the player to be ready
     if (!this.player || !nextPlayerState.playerReady)
       return
 
+    // Video changed
     if (
       nextPlayerState.videoId &&
       nextPlayerState.videoId !== this.getCurrentVideoId()
@@ -126,10 +129,12 @@ class VideoPlayer extends Component {
       this.player.loadVideoById(nextPlayerState.videoId)
     }
 
+    // Volume changed
     if (nextPlayerState.volume !== this.player.getVolume()) {
       this.player.setVolume(nextPlayerState.volume)
     }
 
+    // Play/pause
     if (nextPlayerState.state !== this.player.getPlayerState()) {
       if (nextPlayerState.state === PLAYER_STATE_PAUSED) {
         this.player.pauseVideo()
@@ -138,6 +143,7 @@ class VideoPlayer extends Component {
       }
     }
 
+    // When video finishes play next track
     if (
       nextPlayerState.state !== playerState.state &&
       nextPlayerState.state === PLAYER_STATE_ENDED
@@ -145,11 +151,11 @@ class VideoPlayer extends Component {
       this.props.nextTrack()
     }
 
-    if (nowPlaying.genre.id !== nextNowPlaying.genre.id) {
-      this.props.loadVideo(this.getNextVideo(nextProps))
-    }
-
-    if (nowPlaying.trackNo !== nextNowPlaying.trackNo) {
+    // Track/genre changed
+    if (
+      nowPlaying.genre.id !== nextNowPlaying.genre.id ||
+      nowPlaying.trackNo !== nextNowPlaying.trackNo
+    ) {
       this.props.loadVideo(this.getNextVideo(nextProps))
     }
   }
