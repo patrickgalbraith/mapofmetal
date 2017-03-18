@@ -2,7 +2,8 @@ import {
   PLAYER_PLAY, PLAYER_PAUSE, PLAYER_STOP,
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
   PLAYER_READY, PLAYER_API_READY,
-  PLAYER_STATE_CHANGE, PLAYER_ERROR
+  PLAYER_STATE_CHANGE, PLAYER_ERROR,
+  PLAYER_TIME_CHANGE
 } from '../constants'
 
 export function apiReady() {
@@ -11,9 +12,11 @@ export function apiReady() {
   }
 }
 
-export function ready() {
+export function ready(videoId, volume) {
   return {
-    type: PLAYER_READY
+    type: PLAYER_READY,
+    videoId,
+    volume
   }
 }
 
@@ -42,10 +45,10 @@ export function seek(seconds) {
   }
 }
 
-export function load(video) {
+export function load(videoId) {
   return {
     type: PLAYER_LOAD,
-    video
+    videoId
   }
 }
 
@@ -63,9 +66,16 @@ export function error(errorCode) {
   }
 }
 
-export function stateChange(newPlayerState) {
+export function stateChange(playerState) {
   return {
     type: PLAYER_STATE_CHANGE,
-    newPlayerState
+    playerState
+  }
+}
+
+export function timeChange(elapsedSeconds) {
+  return {
+    type: PLAYER_TIME_CHANGE,
+    elapsedSeconds
   }
 }

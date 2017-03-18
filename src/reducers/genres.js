@@ -6,7 +6,7 @@ import {
 
 const initialState = []
 
-export default function map(state = initialState, action) {
+export default function genres(state = initialState, action) {
   if (action.type === GENRE_INFO_SUCCESS) {
     return action.genreInfo
   }

@@ -14,6 +14,7 @@ export const PLAYER_LOAD         = 'PLAYER_LOAD'
 export const PLAYER_VOLUME       = 'PLAYER_VOLUME'
 export const PLAYER_ERROR        = 'PLAYER_ERROR'
 export const PLAYER_STATE_CHANGE = 'PLAYER_STATE_CHANGE'
+export const PLAYER_TIME_CHANGE  = 'PLAYER_TIME_CHANGE'
 
 export const PLAYER_STATE_UNSTARTED = -1
 export const PLAYER_STATE_ENDED     = 0
@@ -29,6 +30,9 @@ export const PLAYER_QUALITY = {
   large:   'large',
   xlarge:  'hd720'
 }
+
+export const TRACKLIST_SKIP = 'TRACKLIST_SKIP'
+export const TRACKLIST_NEXT = 'TRACKLIST_NEXT'
 
 export const GENRE_SELECTED         = 'GENRE_SELECTED'
 export const GENRE_INFO_REQUEST     = 'GENRE_INFO_REQUEST'
