@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 export default class TrackList extends Component {
   render() {
-    const { current, playing } = this.props
+    const { current, playing, onTrackClick } = this.props
 
     const getTrackLabel = (track) =>
       `${track.title} - ${track.artist} (${track.year})`
@@ -17,7 +17,8 @@ export default class TrackList extends Component {
             { current.tracklist.map((track, idx) => (
               <li key={idx}
                   title={getTrackLabel(track)}
-                  className={isPlaying(track, idx) ? 'is-playing' : ''}>
+                  className={isPlaying(track, idx) ? 'is-playing' : ''}
+                  onClick={() => onTrackClick(idx)}>
                 { getTrackLabel(track) }
               </li>
             )) }

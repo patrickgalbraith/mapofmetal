@@ -15,6 +15,7 @@ import ShareModal from '../components/modals/Share'
 
 import { MAP_TILE_SOURCE } from '../constants'
 
+import { skipToTrack } from '../actions/TrackList'
 import { changeMapCenter, dragStart, dragEnd } from '../actions/Map'
 import { selectGenre, fetchGenreInfo, fetchGenreOverlays } from '../actions/Genre'
 
@@ -72,6 +73,10 @@ class App extends Component {
     })
   }
 
+  changeTrack(trackNo) {
+    this.props.skipToTrack(this.props.currentGenre.id, trackNo)
+  }
+
   render() {
     const { entered, currentModal } = this.state
     const {
@@ -108,7 +113,7 @@ class App extends Component {
 
                 <GenreInfo current={currentGenre} playing={currentTrackList.genre} onNowPlayingClick={() => {}} />
 
-                <TrackList current={currentGenre} playing={currentTrackList} />
+                <TrackList current={currentGenre} playing={currentTrackList} onTrackClick={(trackNo) => this.changeTrack(trackNo)} />
 
                 <PlayerControls position={playerPosition} />
 
@@ -153,12 +158,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchGenreInfo:     ()       => dispatch(fetchGenreInfo()),
-    fetchGenreOverlays: ()       => dispatch(fetchGenreOverlays()),
-    selectGenre:        (id)     => dispatch(selectGenre(id)),
-    changeMapCenter:    (center) => dispatch(changeMapCenter(center)),
-    dragStart:          ()       => dispatch(dragStart()),
-    dragEnd:            ()       => dispatch(dragEnd())
+    fetchGenreInfo:     ()     => dispatch(fetchGenreInfo()),
+    fetchGenreOverlays: ()     => dispatch(fetchGenreOverlays()),
+    selectGenre:        (i)    => dispatch(selectGenre(i)),
+    changeMapCenter:    (c)    => dispatch(changeMapCenter(c)),
+    dragStart:          ()     => dispatch(dragStart()),
+    dragEnd:            ()     => dispatch(dragEnd()),
+    skipToTrack:        (g, t) => dispatch(skipToTrack(g, t))
   }
 }
 
