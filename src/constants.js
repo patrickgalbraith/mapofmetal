@@ -4,17 +4,18 @@ export const POSTER_LINK = 'http://www.zazzle.com/mapofmetal?rf=2383270274841048
 
 export const MAP_TILE_SOURCE = '/tiles/map.xml'
 
-export const PLAYER_READY        = 'PLAYER_READY'
-export const PLAYER_API_READY    = 'PLAYER_API_READY'
-export const PLAYER_PLAY         = 'PLAYER_PLAY'
-export const PLAYER_PAUSE        = 'PLAYER_PAUSE'
-export const PLAYER_STOP         = 'PLAYER_STOP'
-export const PLAYER_SEEK         = 'PLAYER_SEEK'
-export const PLAYER_LOAD         = 'PLAYER_LOAD'
-export const PLAYER_VOLUME       = 'PLAYER_VOLUME'
-export const PLAYER_ERROR        = 'PLAYER_ERROR'
-export const PLAYER_STATE_CHANGE = 'PLAYER_STATE_CHANGE'
-export const PLAYER_TIME_CHANGE  = 'PLAYER_TIME_CHANGE'
+export const PLAYER_READY           = 'PLAYER_READY'
+export const PLAYER_API_READY       = 'PLAYER_API_READY'
+export const PLAYER_PLAY            = 'PLAYER_PLAY'
+export const PLAYER_PAUSE           = 'PLAYER_PAUSE'
+export const PLAYER_STOP            = 'PLAYER_STOP'
+export const PLAYER_SEEK            = 'PLAYER_SEEK'
+export const PLAYER_LOAD            = 'PLAYER_LOAD'
+export const PLAYER_VOLUME          = 'PLAYER_VOLUME'
+export const PLAYER_ERROR           = 'PLAYER_ERROR'
+export const PLAYER_STATE_CHANGE    = 'PLAYER_STATE_CHANGE'
+export const PLAYER_TIME_CHANGE     = 'PLAYER_TIME_CHANGE'
+export const PLAYER_DURATION_CHANGE = 'PLAYER_DURATION_CHANGE'
 
 export const PLAYER_STATE_UNSTARTED = -1
 export const PLAYER_STATE_ENDED     = 0
@@ -31,8 +32,10 @@ export const PLAYER_QUALITY = {
   xlarge:  'hd720'
 }
 
-export const TRACKLIST_SKIP = 'TRACKLIST_SKIP'
-export const TRACKLIST_NEXT = 'TRACKLIST_NEXT'
+export const TRACKLIST_SKIP             = 'TRACKLIST_SKIP'
+export const TRACKLIST_NEXT             = 'TRACKLIST_NEXT'
+export const TRACKLIST_EXHAUSTED        = 'TRACKLIST_EXHAUSTED'
+export const TRACKLIST_VIDEOS_EXHAUSTED = 'TRACKLIST_VIDEO_EXHAUSTED'
 
 export const GENRE_SELECTED         = 'GENRE_SELECTED'
 export const GENRE_INFO_REQUEST     = 'GENRE_INFO_REQUEST'

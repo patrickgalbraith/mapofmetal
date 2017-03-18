@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { persistState } from 'redux-devtools'
 import thunk from 'redux-thunk'
+import player from '../middleware/player'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
 
 const enhancer = compose(
-  applyMiddleware(thunk),
+  applyMiddleware(thunk, player),
   DevTools.instrument(),
   persistState(
     window.location.href.match(

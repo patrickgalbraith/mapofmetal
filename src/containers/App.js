@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import VideoPlayer from '../components/VideoPlayer'
+import VideoPlayer from './VideoPlayer'
 import TopBar from '../components/TopBar'
 import PlayerControls from '../components/PlayerControls'
 import MapLayer from '../components/MapLayer'
@@ -84,7 +84,6 @@ class App extends Component {
       overlays,
       currentGenre,
       currentTrackList,
-      currentVideo,
       playerPosition,
       mapCenter,
       mapDragging,
@@ -109,9 +108,9 @@ class App extends Component {
                 <TopBar changeMapCenter={changeMapCenter}
                         openModal={this.openModal.bind(this)} />
 
-                <VideoPlayer current={currentVideo} />
+                <VideoPlayer onPlaybackTime={(s) => { /* @todo */ }} />
 
-                <GenreInfo current={currentGenre} playing={currentTrackList.genre} onNowPlayingClick={() => {}} />
+                <GenreInfo current={currentGenre} playing={currentTrackList.genre} onNowPlayingClick={() => { /* @todo */ }} />
 
                 <TrackList current={currentGenre} playing={currentTrackList} onTrackClick={(trackNo) => this.changeTrack(trackNo)} />
 
@@ -149,7 +148,6 @@ const mapStateToProps = (state, ownProps) => {
       genre:   state.genres.find(g => g.id === state.app.nowPlaying.genre),
       trackNo: state.app.nowPlaying.trackNo
     },
-    currentVideo:     {  },
     loading:          state.genres.length <= 0 || state.map.overlays.length <= 0,
     mapCenter:        state.map.center,
     mapDragging:      state.map.dragging

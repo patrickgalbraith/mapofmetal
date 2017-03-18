@@ -3,7 +3,7 @@ import {
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
   PLAYER_READY, PLAYER_API_READY,
   PLAYER_STATE_CHANGE, PLAYER_ERROR,
-  PLAYER_TIME_CHANGE
+  PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE
 } from '../constants'
 
 export function apiReady() {
@@ -77,5 +77,12 @@ export function timeChange(elapsedSeconds) {
   return {
     type: PLAYER_TIME_CHANGE,
     elapsedSeconds
+  }
+}
+
+export function durationChange(duration) {
+  return {
+    type: PLAYER_DURATION_CHANGE,
+    duration
   }
 }

@@ -20,10 +20,6 @@ export default function map(state = initialState, action) {
     })
   }
 
-  if (action.type === GENRE_OVERLAYS_FAILURE) {
-    // @todo
-  }
-
   if (action.type === MAP_MOVE) {
     return Object.assign({}, state, {
       center: action.mapCenter

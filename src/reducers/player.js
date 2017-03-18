@@ -3,7 +3,7 @@ import {
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
   PLAYER_READY, PLAYER_API_READY,
   PLAYER_STATE_CHANGE, PLAYER_QUALITY,
-  PLAYER_TIME_CHANGE,
+  PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE,
 
   PLAYER_STATE_UNSTARTED,
 } from '../constants'
@@ -12,9 +12,9 @@ const initialState = {
   apiReady:    false,
   playerReady: false,
   state:       PLAYER_STATE_UNSTARTED,
-  volume:      50,
+  volume:      null,
   videoId:     null,
-  currentTime: 0,
+  duration:    0,
   quality:     PLAYER_QUALITY.default
 }
 
@@ -57,9 +57,9 @@ export default function player(state = initialState, action) {
     })
   }
 
-  if (action.type === PLAYER_TIME_CHANGE) {
+  if (action.type === PLAYER_DURATION_CHANGE) {
     return Object.assign({}, state, {
-      currentTime: action.elapsedSeconds
+      duration: action.duration
     })
   }
 

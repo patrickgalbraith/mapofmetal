@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
 
 import {
   PLAYER_STATE_PAUSED,
@@ -7,10 +6,7 @@ import {
   PLAYER_STATE_ENDED
 } from '../constants'
 
-import { nextTrack } from '../actions/TrackList'
-import { ready, apiReady, load, stateChange, timeChange, error } from '../actions/Player'
-
-class VideoPlayer extends Component {
+export default class VideoPlayer extends Component {
   constructor() {
     super()
     window.onYouTubeIframeAPIReady = () => this.props.onApiReady()
@@ -67,8 +63,8 @@ class VideoPlayer extends Component {
 
     this.currentTimer = setInterval(() => {
       if (this.player && this.props.playerState.playerReady)
-        this.props.onPlaybackTime(this.player.getCurrentTime())
-    }, 500)
+        this.props.onPlaybackTime(Math.round(this.player.getCurrentTime()))
+    }, 1000)
   }
 
   initializePlayer() {
@@ -102,7 +98,7 @@ class VideoPlayer extends Component {
       }
     })
 
-    //this.watchCurrentTime()
+    this.watchCurrentTime()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -158,6 +154,11 @@ class VideoPlayer extends Component {
     ) {
       this.props.loadVideo(this.getNextVideo(nextProps))
     }
+
+    // Get duration when playing starts
+    if (nextPlayerState.duration !== Math.round(this.player.getDuration())) {
+      this.props.onDuration(Math.round(this.player.getDuration()))
+    }
   }
 
   componentDidMount() {
@@ -173,30 +174,3 @@ class VideoPlayer extends Component {
     document.body.removeChild(this.playerElement)
   }
 }
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    playerState: state.player,
-    nowPlaying: {
-      genre:   state.genres.find(g => g.id === state.app.nowPlaying.genre),
-      trackNo: state.app.nowPlaying.trackNo
-    }
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onReady:        (v, a)  => dispatch(ready(v, a)),
-    onApiReady:     ()      => dispatch(apiReady()),
-    onStateChange:  (s)     => dispatch(stateChange(s)),
-    onError:        (e)     => dispatch(error(e)),
-    onPlaybackTime: (t)     => dispatch(timeChange(t)),
-    loadVideo:      (v)     => dispatch(load(v)),
-    nextTrack:      ()      => dispatch(nextTrack()),
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(VideoPlayer)
