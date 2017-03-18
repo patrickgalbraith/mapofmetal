@@ -18,7 +18,7 @@ export default class Share extends Component {
     return networks[network]
   }
 
-  render() {``
+  render() {
     const { close } = this.props
     const networks = [
       'facebook', 'twitter', 'pinterest',
@@ -33,7 +33,7 @@ export default class Share extends Component {
 
           <ul className='social'>
             { networks.map(network => (
-              <li className={network}>
+              <li key={network} className={network}>
                 <a key={network} href={this.getShareUrl(network)} target='_blank' rel='nofollow external noopener'></a>
               </li>
             ))}
