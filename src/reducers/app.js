@@ -18,6 +18,8 @@ const initialState = {
 }
 
 export default function app(state = initialState, action) {
+  console.log('action', action.type, action)
+
   if (
     action.type === GENRE_SELECTED &&
     action.newGenre !== state.selectedGenre

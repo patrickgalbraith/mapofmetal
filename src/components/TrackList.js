@@ -17,7 +17,7 @@ export default class TrackList extends Component {
             { current.tracklist.map((track, idx) => (
               <li key={idx}
                   title={getTrackLabel(track)}
-                  className={isPlaying(track, idx) ? 'is-playing' : ''}
+                  className={[isPlaying(track, idx) ? 'is-playing' : '', track._failed ? 'has-failed' : ''].join(' ')}
                   onClick={() => onTrackClick(idx)}>
                 { getTrackLabel(track) }
               </li>

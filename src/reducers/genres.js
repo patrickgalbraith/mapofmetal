@@ -16,7 +16,7 @@ export default function genres(state = initialState, action) {
     return state.map((genre) => {
       if (genre.id === action.genre) {
         return Object.assign({}, genre, {
-          tracklist: genre.tracklist.map((track) => {
+          tracklist: genre.tracklist.map((track, idx) => {
             if (idx != action.trackNo)
               return track
 

@@ -54,7 +54,13 @@ export default class VideoPlayer extends Component {
   }
 
   getCurrentVideoId() {
-    return this.player ? this.player.getVideoData()['video_id'] : ''
+    const videoData = this.player ? this.player.getVideoData() : null
+    return videoData ? videoData['video_id'] : null
+  }
+
+  getDuration() {
+    const duration = this.player ? Math.round(this.player.getDuration()) : 0
+    return duration ? this.player.getDuration() : 0
   }
 
   watchCurrentTime() {
@@ -120,6 +126,7 @@ export default class VideoPlayer extends Component {
     // Video changed
     if (
       nextPlayerState.videoId &&
+      this.getCurrentVideoId() &&
       nextPlayerState.videoId !== this.getCurrentVideoId()
     ) {
       this.player.loadVideoById(nextPlayerState.videoId)
@@ -156,8 +163,8 @@ export default class VideoPlayer extends Component {
     }
 
     // Get duration when playing starts
-    if (nextPlayerState.duration !== Math.round(this.player.getDuration())) {
-      this.props.onDuration(Math.round(this.player.getDuration()))
+    if (nextPlayerState.duration !== this.getDuration()) {
+      this.props.onDuration(this.getDuration())
     }
   }
 

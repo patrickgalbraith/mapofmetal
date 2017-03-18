@@ -36,5 +36,9 @@
     &.is-playing {
       color: #cd8d5b;
     }
+
+    &.has-failed {
+      color: red;
+    }
   }
 }
