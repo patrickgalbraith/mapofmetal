@@ -5,7 +5,8 @@ import {
   PLAYER_STATE_CHANGE, PLAYER_QUALITY,
   PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE,
 
-  PLAYER_STATE_UNSTARTED,
+  PLAYER_STATE_UNSTARTED, PLAYER_STATE_PLAYING,
+  PLAYER_STATE_PAUSED
 } from '../constants'
 
 const initialState = {
@@ -36,6 +37,24 @@ export default function player(state = initialState, action) {
   if (action.type === PLAYER_LOAD) {
     return Object.assign({}, state, {
       videoId: action.videoId
+    })
+  }
+
+  if (
+    action.type === PLAYER_PLAY &&
+    state.state === PLAYER_STATE_PAUSED
+  ) {
+    return Object.assign({}, state, {
+      state: PLAYER_STATE_PLAYING
+    })
+  }
+
+  if (
+    action.type === PLAYER_PAUSE &&
+    state.state === PLAYER_STATE_PLAYING
+  ) {
+    return Object.assign({}, state, {
+      state: PLAYER_STATE_PAUSED
     })
   }
 

@@ -7,7 +7,7 @@
   color: white;
   padding: 8px 8px 8px 12px;
   left: 513px;
-  bottom: 22px;
+  bottom: 20px;
 
   &-content {
     overflow-y: scroll;
@@ -34,11 +34,11 @@
     cursor: pointer;
 
     &.is-playing {
-      color: #cd8d5b;
+      color: #E6BA83;
     }
 
     &.has-failed {
-      color: red;
+      color: #e74c3c;
     }
   }
 }

@@ -1,7 +1,8 @@
-$font-sans-serif:      Arial, 'Helvetica Neue', Helvetica, sans-serif;
-$font-chineserocks:    'ChineseRocks', Georgia, Times, "Times New Roman", serif;
-$font-faithcollapsing: 'FaithCollapsing', Impact, Haettenschweiler, 'Arial Black', sans-serif;
-$font-flamacondensed:  'FlamaCondensed', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$font-sans-serif:         Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$font-chineserocks:       'ChineseRocks', Georgia, Times, "Times New Roman", serif;
+$font-faithcollapsing:    'FaithCollapsing', Impact, Haettenschweiler, 'Arial Black', sans-serif;
+$font-flamacondensed:     'FlamaCondensed', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+$font-flamasemicondensed: 'FlamaSemiCondensed', Arial, 'Helvetica Neue', Helvetica, sans-serif;
 
 $image-path: '/static/img/';
 $font-path:  '/static/font/';
@@ -96,6 +97,7 @@ body.env-development {
 @import 'components/track-list';
 @import 'components/now-playing';
 @import 'components/video-player';
+@import 'components/player-controls';
 
 @import 'components/modal';
 @import 'components/settings-modal';

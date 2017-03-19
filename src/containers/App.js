@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import VideoPlayer from './VideoPlayer'
 import TopBar from '../components/TopBar'
-import PlayerControls from '../components/PlayerControls'
+import PlayerControls from './PlayerControls'
 import MapLayer from '../components/MapLayer'
 import LoadingSplash from '../components/LoadingSplash'
 import GenreInfo from '../components/GenreInfo'
@@ -25,7 +25,8 @@ class App extends Component {
 
     this.state = {
       entered: false,
-      currentModal: null
+      currentModal: null,
+      currentTime: 0
     }
   }
 
@@ -78,13 +79,16 @@ class App extends Component {
   }
 
   render() {
-    const { entered, currentModal } = this.state
+    const {
+      entered,
+      currentModal,
+      currentTime
+    } = this.state
     const {
       loading,
       overlays,
       currentGenre,
       currentTrackList,
-      playerPosition,
       mapCenter,
       mapDragging,
       changeMapCenter,
@@ -108,13 +112,17 @@ class App extends Component {
                 <TopBar changeMapCenter={changeMapCenter}
                         openModal={this.openModal.bind(this)} />
 
-                <VideoPlayer onPlaybackTime={(s) => { /* @todo */ }} />
+                <VideoPlayer onPlaybackTime={(s) => { this.setState({currentTime: s}) }} />
 
-                <GenreInfo current={currentGenre} playing={currentTrackList.genre} onNowPlayingClick={() => { /* @todo */ }} />
+                <GenreInfo current={currentGenre}
+                           playing={currentTrackList.genre}
+                           onNowPlayingClick={() => this.changeGenre(currentTrackList.genre.id) } />
 
-                <TrackList current={currentGenre} playing={currentTrackList} onTrackClick={(trackNo) => this.changeTrack(trackNo)} />
+                <TrackList current={currentGenre}
+                           playing={currentTrackList}
+                           onTrackClick={(trackNo) => this.changeTrack(trackNo)} />
 
-                <PlayerControls position={playerPosition} />
+                <PlayerControls currentTime={currentTime} />
 
                 <ReactCSSTransitionGroup
                   transitionName="transition"
