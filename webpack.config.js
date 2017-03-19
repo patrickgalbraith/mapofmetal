@@ -8,7 +8,7 @@ const config = {
   devtool: '#source-map',
   entry: {
     app: './src/main.js',
-    vendor: ['whatwg-fetch', 'openseadragon', 'react', 'react-dom', 'redux', 'react-redux']
+    vendor: ['babel-polyfill', 'whatwg-fetch', 'openseadragon', 'react', 'react-dom', 'redux', 'react-redux']
   },
   output: {
     filename: './static/dist/app.bundle.js'
