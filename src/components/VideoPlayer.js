@@ -84,13 +84,14 @@ export default class VideoPlayer extends Component {
 
     const initialTrackNo   = nowPlaying.trackNo
     const initialYoutubeId = this.getVideo(nowPlaying.genre.tracklist, initialTrackNo, 0, 'Uq42HUUJFzU')
+    const initialVolume    = (player) => player.isMuted() ? 0 : player.getVolume()
 
     this.player = new YT.Player(this.playerElement.id, {
       width:   '323',
       height:  '242',
       videoId: initialYoutubeId,
       events: {
-        onReady:       ()  => this.props.onReady(initialYoutubeId, this.player.getVolume()),
+        onReady:       ()  => this.props.onReady(initialYoutubeId, initialVolume(this.player)),
         onStateChange: (e) => this.props.onStateChange(e.data),
         onError:       (e) => this.props.onError(e.data)
       },
@@ -135,6 +136,9 @@ export default class VideoPlayer extends Component {
     // Volume changed
     if (nextPlayerState.volume !== this.player.getVolume()) {
       this.player.setVolume(nextPlayerState.volume)
+
+      if (this.player.isMuted())
+        this.player.unMute()
     }
 
     // Play/pause
