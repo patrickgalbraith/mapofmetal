@@ -55,7 +55,7 @@ export function load(videoId) {
 export function volume(volume) {
   return {
     type: PLAYER_VOLUME,
-    volume
+    volume: Math.max(0, Math.min(100, volume))
   }
 }
 
