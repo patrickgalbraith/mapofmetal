@@ -1,0 +1,28 @@
+COPYRIGHTS
+==========
+
+Description: Source code
+Path:        /scss
+             /src
+Url:         http://www.mapofmetal.com/
+Copyright:   2017, Patrick Galbraith
+License:     GPL - see LICENSE.GPL file
+
+Description: Map data files
+Path:        /data
+Url:         http://www.mapofmetal.com/
+Copyright:   2010-2017, Patrick Galbraith
+License:     CC BY-SA - see LICENSE.CCBYSA
+                      - https://creativecommons.org/licenses/by-sa/4.0/
+
+Description: Graphic design, map design and tile images
+Path:        /tiles
+             /static/img
+Url:         http://www.mapofmetal.com/
+Copyright:   2010-2017, Patrick Galbraith
+License:     No license - All rights reserved
+
+Description: Simple Icons
+Path:        /static/icons
+Url:         https://github.com/danleech/simple-icons
+License:     CC0 - see https://github.com/danleech/simple-icons/blob/gh-pages/LICENSE.md

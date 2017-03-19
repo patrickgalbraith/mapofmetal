@@ -1,7 +1,7 @@
 {
   "name": "mapofmetal",
   "version": "1.0.0",
-  "description": "Map Of Metal.com",
+  "description": "MapOfMetal.com",
   "main": "index.js",
   "private": true,
   "scripts": {
