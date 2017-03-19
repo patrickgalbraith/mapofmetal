@@ -9,6 +9,16 @@
 }
 
 @font-face {
+    font-family: 'FlamaSemiCondensed';
+    src: url('#{$font-path}flama_semicondensed/flamasemicondensed-light-webfont.woff2') format('woff2'),
+         url('#{$font-path}flama_semicondensed/flamasemicondensed-light-webfont.woff') format('woff'),
+         url('#{$font-path}flama_semicondensed/flamasemicondensed-light-webfont.ttf') format('truetype'),
+         url('#{$font-path}flama_semicondensed/flamasemicondensed-light-webfont.svg#flama_semicondensedlight') format('svg');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
   font-family: 'FaithCollapsing';
   src: url('#{$font-path}faith_collapsing/faith_collapsing-webfont.woff2') format('woff2'),
        url('#{$font-path}faith_collapsing/faith_collapsing-webfont.woff') format('woff'),
