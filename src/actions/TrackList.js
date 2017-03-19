@@ -7,7 +7,7 @@ import {
 } from '../constants'
 
 const isNextTrackValid = (genreInfo, trackNo) => (
-  trackNo > 0 &&
+  trackNo >= 0 &&
   genreInfo.tracklist.length > trackNo
 )
 
