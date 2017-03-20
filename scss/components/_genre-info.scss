@@ -24,6 +24,17 @@
     margin: 10px 0;
   }
 
+  &-subtitle {
+    font-size: 26px;
+    font-family: $font-faithcollapsing;
+    margin-top: 16px;
+    line-height: 0.6;
+
+    + .GenreInfo-title {
+      margin-top: 0;
+    }
+  }
+
   &-description {
     margin-bottom: 20px;
     font-size: 12px;

@@ -15,6 +15,9 @@ export default class GenreInfo extends Component {
 
         <div className='GenreInfo'>
           <div className='GenreInfo-content'>
+            { current.subtitle ?
+              <div className='GenreInfo-subtitle'>{ current.subtitle }</div>
+            : null }
             <div className='GenreInfo-title'>{ current.title }</div>
             <div className='GenreInfo-description' dangerouslySetInnerHTML={{__html: current.description}} />
           </div>
