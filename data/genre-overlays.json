@@ -1,56 +1,570 @@
-[{
-  "px": 590,
-  "py": 280,
-  "width": 40,
-  "height": 40,
-  "id": "map-overlay__garagerock",
-  "className": "map-genre-overlay map-genre-overlay__related"
-},
-{
-  "px": 370,
-  "py": 430,
-  "width": 40,
-  "height": 40,
-  "id": "map-overlay__bluesrock",
-  "className": "map-genre-overlay map-genre-overlay__related"
-},
-{
-  "px": 260,
-  "py": 600,
-  "width": 40,
-  "height": 40,
-  "id": "map-overlay__psychedelicrock",
-  "className": "map-genre-overlay map-genre-overlay__related"
-},
-{
-  "px": 564,
-  "py": 490,
-  "width": 40,
-  "height": 40,
-  "id": "map-overlay__hardrock",
-  "className": "map-genre-overlay map-genre-overlay__related"
-},
-{
-  "px": 549,
-  "py": 866,
-  "width": 40,
-  "height": 40,
-  "id": "map-overlay__shockrock",
-  "className": "map-genre-overlay map-genre-overlay__related"
-},
-{
-  "px": 820,
-  "py": 650,
-  "width": 207,
-  "height": 153,
-  "id": "map-overlay__heavymetal",
-  "className": "map-genre-overlay map-genre-overlay__primary"
-},
-{
-  "px": 1120,
-  "py": 933,
-  "width": 80,
-  "height": 80,
-  "id": "map-overlay__progressivemetal",
-  "className": "map-genre-overlay map-genre-overlay__fusion"
-}]
+[
+  {
+    "px": 590,
+    "py": 280,
+    "width": 40,
+    "height": 40,
+    "id": "map-overlay__garagerock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 370,
+    "py": 430,
+    "width": 40,
+    "height": 40,
+    "id": "map-overlay__bluesrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 260,
+    "py": 600,
+    "width": 40,
+    "height": 40,
+    "id": "map-overlay__psychedelicrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 564,
+    "py": 490,
+    "width": 40,
+    "height": 40,
+    "id": "map-overlay__hardrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 549,
+    "py": 866,
+    "width": 40,
+    "height": 40,
+    "id": "map-overlay__shockrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 820,
+    "py": 650,
+    "width": 207,
+    "height": 153,
+    "id": "map-overlay__heavymetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 1120,
+    "py": 933,
+    "width": 80,
+    "height": 80,
+    "id": "map-overlay__progressivemetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 1361,
+    "py": 673,
+    "width": 50,
+    "height": 53,
+    "id": "map-overlay__punkrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 1390,
+    "py": 942,
+    "width": 84,
+    "height": 77,
+    "id": "map-overlay__nwobhm",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 810,
+    "py": 1706,
+    "width": 80,
+    "height": 82,
+    "id": "map-overlay__glammetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 1322,
+    "py": 1623,
+    "width": 149,
+    "height": 116,
+    "id": "map-overlay__doommetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 1244,
+    "py": 2175,
+    "width": 47,
+    "height": 52,
+    "id": "map-overlay__gothicrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 1576,
+    "py": 2121,
+    "width": 70,
+    "height": 74,
+    "id": "map-overlay__rapmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 1353,
+    "py": 2703,
+    "width": 79,
+    "height": 72,
+    "id": "map-overlay__visualkei",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 1974,
+    "py": 2165,
+    "width": 54,
+    "height": 60,
+    "id": "map-overlay__grunge",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 2183,
+    "py": 2146,
+    "width": 66,
+    "height": 76,
+    "id": "map-overlay__sludgemetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2148,
+    "py": 2669,
+    "width": 76,
+    "height": 73,
+    "id": "map-overlay__groovemetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2192,
+    "py": 3016,
+    "width": 68,
+    "height": 72,
+    "id": "map-overlay__gothmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2578,
+    "py": 2925,
+    "width": 73,
+    "height": 76,
+    "id": "map-overlay__neuedeutscheharte",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2683,
+    "py": 2694,
+    "width": 72,
+    "height": 74,
+    "id": "map-overlay__numetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2628,
+    "py": 2491,
+    "width": 75,
+    "height": 82,
+    "id": "map-overlay__alternativemetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3115,
+    "py": 2569,
+    "width": 49,
+    "height": 52,
+    "id": "map-overlay__postrock",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 3229,
+    "py": 2942,
+    "width": 71,
+    "height": 77,
+    "id": "map-overlay__nwoahm",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3353,
+    "py": 2802,
+    "width": 67,
+    "height": 73,
+    "id": "map-overlay__postmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2105,
+    "py": 744,
+    "width": 55,
+    "height": 55,
+    "id": "map-overlay__hardcorepunk",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 1787,
+    "py": 1149,
+    "width": 153,
+    "height": 116,
+    "id": "map-overlay__speedmetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 1734,
+    "py": 1438,
+    "width": 76,
+    "height": 86,
+    "id": "map-overlay__neoclassicalmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2048,
+    "py": 1250,
+    "width": 81,
+    "height": 79,
+    "id": "map-overlay__uspm",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 1919,
+    "py": 1641,
+    "width": 81,
+    "height": 79,
+    "id": "map-overlay__avantgardemetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 2257,
+    "py": 1541,
+    "width": 153,
+    "height": 121,
+    "id": "map-overlay__melodicpowermetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 2610,
+    "py": 1253,
+    "width": 144,
+    "height": 112,
+    "id": "map-overlay__thrashmetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 2619,
+    "py": 2195,
+    "width": 69,
+    "height": 73,
+    "id": "map-overlay__stonermetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3081,
+    "py": 2287,
+    "width": 64,
+    "height": 61,
+    "id": "map-overlay__deathdoom",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 2947,
+    "py": 1927,
+    "width": 147,
+    "height": 119,
+    "id": "map-overlay__folkmetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 2601,
+    "py": 769,
+    "width": 154,
+    "height": 118,
+    "id": "map-overlay__firstblackmetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 2849,
+    "py": 1662,
+    "width": 78,
+    "height": 78,
+    "id": "map-overlay__industrialmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2762,
+    "py": 1001,
+    "width": 46,
+    "height": 48,
+    "id": "map-overlay__crustpunk",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 3288,
+    "py": 590,
+    "width": 53,
+    "height": 54,
+    "id": "map-overlay__darkambient",
+    "className": "map-genre-overlay map-genre-overlay__related"
+  },
+  {
+    "px": 3139,
+    "py": 736,
+    "width": 72,
+    "height": 81,
+    "id": "map-overlay__vikingmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 2996,
+    "py": 1173,
+    "width": 74,
+    "height": 75,
+    "id": "map-overlay__grindcore",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3228,
+    "py": 1315,
+    "width": 139,
+    "height": 116,
+    "id": "map-overlay__deathmetal",
+    "className": "map-genre-overlay map-genre-overlay__primary"
+  },
+  {
+    "px": 3361,
+    "py": 1210,
+    "width": 69,
+    "height": 75,
+    "id": "map-overlay__deathgrind",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3484,
+    "py": 953,
+    "width": 79,
+    "height": 72,
+    "id": "map-overlay__norwegianblack",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3526,
+    "py": 1089,
+    "width": 77,
+    "height": 80,
+    "id": "map-overlay__symphonicblackmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3749,
+    "py": 642,
+    "width": 74,
+    "height": 85,
+    "id": "map-overlay__blackambient",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3837,
+    "py": 739,
+    "width": 63,
+    "height": 58,
+    "id": "map-overlay__usblack",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3873,
+    "py": 803,
+    "width": 59,
+    "height": 55,
+    "id": "map-overlay__canadianblackmetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3919,
+    "py": 862,
+    "width": 60,
+    "height": 56,
+    "id": "map-overlay__greekblack",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3930,
+    "py": 1165,
+    "width": 82,
+    "height": 79,
+    "id": "map-overlay__depressiveblack",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3650,
+    "py": 1273,
+    "width": 81,
+    "height": 79,
+    "id": "map-overlay__blackdeath",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3597,
+    "py": 1430,
+    "width": 76,
+    "height": 68,
+    "id": "map-overlay__brutaldeath",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3341,
+    "py": 1495,
+    "width": 76,
+    "height": 69,
+    "id": "map-overlay__swedishdeathmetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3254,
+    "py": 1547,
+    "width": 73,
+    "height": 66,
+    "id": "map-overlay__southamericandeathmetal",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3174,
+    "py": 1658,
+    "width": 70,
+    "height": 63,
+    "id": "map-overlay__deathrash",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 3165,
+    "py": 1757,
+    "width": 72,
+    "height": 76,
+    "id": "map-overlay__crossoverthrash",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 4540,
+    "py": 1061,
+    "width": 67,
+    "height": 71,
+    "id": "map-overlay__unblackmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 4082,
+    "py": 1431,
+    "width": 80,
+    "height": 71,
+    "id": "map-overlay__techdeath",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 4122,
+    "py": 1656,
+    "width": 77,
+    "height": 73,
+    "id": "map-overlay__melodicdeath",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 4573,
+    "py": 1341,
+    "width": 74,
+    "height": 77,
+    "id": "map-overlay__blackenedcrust",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3582,
+    "py": 1731,
+    "width": 67,
+    "height": 71,
+    "id": "map-overlay__metalcore",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3783,
+    "py": 1689,
+    "width": 68,
+    "height": 72,
+    "id": "map-overlay__deathnroll",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 4003,
+    "py": 1922,
+    "width": 77,
+    "height": 72,
+    "id": "map-overlay__mathcore",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 4299,
+    "py": 1960,
+    "width": 72,
+    "height": 74,
+    "id": "map-overlay__deathcore",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 4734,
+    "py": 1506,
+    "width": 74,
+    "height": 79,
+    "id": "map-overlay__djent",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  },
+  {
+    "px": 4608,
+    "py": 1825,
+    "width": 73,
+    "height": 81,
+    "id": "map-overlay__trancemetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3266,
+    "py": 1896,
+    "width": 61,
+    "height": 65,
+    "id": "map-overlay__orientalmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3224,
+    "py": 1963,
+    "width": 61,
+    "height": 63,
+    "id": "map-overlay__celticmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3191,
+    "py": 2030,
+    "width": 57,
+    "height": 59,
+    "id": "map-overlay__medievalmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3607,
+    "py": 2118,
+    "width": 71,
+    "height": 74,
+    "id": "map-overlay__symphonicmetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3689,
+    "py": 2297,
+    "width": 67,
+    "height": 63,
+    "id": "map-overlay__dronemetal",
+    "className": "map-genre-overlay map-genre-overlay__fusion"
+  },
+  {
+    "px": 3707,
+    "py": 2420,
+    "width": 66,
+    "height": 64,
+    "id": "map-overlay__funeraldoom",
+    "className": "map-genre-overlay map-genre-overlay__metal"
+  }
+]
