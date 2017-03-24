@@ -10,7 +10,7 @@ const processFiles = (filenames, progressFn, finishFn) => {
     const filename = filenames[index]
 
     fs.readFile(DATA_DIR + '/genre-info/' + filename, 'utf8', function (err, data) {
-      console.log('Parsing', filename)
+      //console.log('Parsing', filename)
       let genre = JSON.parse(data)
 
       genres.push(genre)
@@ -25,15 +25,24 @@ const processFiles = (filenames, progressFn, finishFn) => {
   next(0)()
 }
 
-fs.readdir(DATA_DIR + '/genre-info/', (err, filenames) => {
-  processFiles(filenames,
-    // Progress Fn
-    (err, next, genre) => {
-      console.log('Added genre', genre.id)
-      next()
-    },
-    // Finish Fn
-    (err, genres) => {
-      fs.writeFile(DATA_DIR + '/genre-info.json', JSON.stringify(genres, null, 2), 'utf8')
-    })
-})
+function run(cb) {
+  fs.readdir(DATA_DIR + '/genre-info/', (err, filenames) => {
+    processFiles(filenames,
+      // Progress Fn
+      (err, next, genre) => {
+        //console.log('Added genre', genre.id)
+        next()
+      },
+      // Finish Fn
+      (err, genres) => {
+        fs.writeFile(DATA_DIR + '/genre-info.json', JSON.stringify(genres, null, 2), 'utf8', cb)
+      })
+  })
+}
+
+// If called directly then run
+if (require.main === module) {
+  run()
+}
+
+module.exports = run

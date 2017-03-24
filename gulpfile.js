@@ -1,16 +1,25 @@
-var gulp          = require('gulp')
-var gutil         = require('gulp-util')
-var sass          = require('gulp-sass')
-var clean         = require('gulp-clean')
-var sourcemaps    = require('gulp-sourcemaps')
-var webpack       = require('webpack')
-var WebpackServer = require('webpack-dev-server')
+const gulp          = require('gulp')
+const gutil         = require('gulp-util')
+const sass          = require('gulp-sass')
+const clean         = require('gulp-clean')
+const rename        = require('gulp-rename')
+const cleanCSS      = require('gulp-clean-css')
+const sourcemaps    = require('gulp-sourcemaps')
+const webpack       = require('webpack')
+const WebpackServer = require('webpack-dev-server')
+const compileGenres = require('./scripts/concat-genre-info')
 
-var webpackConfig = require('./webpack.config.js')
-var sassPath = ['./scss/**/*.scss']
-var distPath = './static/dist'
+const ENV           = process.env.NODE_ENV ? process.env.NODE_ENV.trim() : 'development'
+const PORT          = process.env.PORT || 58080
+const WEBPACK_ENV   = ENV == 'production' ? 'prod' : 'dev'
 
-var IS_WATCHING = false
+console.log('NODE_ENV', ENV)
+
+const webpackConfig = require('./webpack.config.' + WEBPACK_ENV + '.js')
+const sassPath      = ['./scss/**/*.scss']
+const distPath      = './static/dist'
+
+let IS_WATCHING   = false
 
 gulp.task('clean', function() {
   if(IS_WATCHING) return null
@@ -19,7 +28,7 @@ gulp.task('clean', function() {
     .pipe(clean())
 })
 
-gulp.task('sass', function(cb) {
+gulp.task('sass', function() {
   return gulp.src(sassPath)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
@@ -27,10 +36,26 @@ gulp.task('sass', function(cb) {
     .pipe(gulp.dest(distPath))
 })
 
+gulp.task('sass-min', ['sass'], function() {
+  return gulp.src(distPath + '/main.css')
+    .pipe(cleanCSS())
+    .pipe(rename({
+      extname: '.min.css'
+    }))
+    .pipe(gulp.dest(distPath))
+})
+
 gulp.task('webpack', function(cb) {
   webpack(webpackConfig, function(err, stats) {
     if(err) gutil.log(err.toString())
     gutil.log(stats.toString())
+    cb()
+  })
+})
+
+gulp.task('compile-genre-info', function(cb) {
+  compileGenres(function(err) {
+    if(err) gutil.log(err.toString())
     cb()
   })
 })
@@ -45,7 +70,7 @@ gulp.task('watch', ['sass'], function() {
     hot: true
   })
 
-  server.listen(58080)
+  server.listen(PORT)
 })
 
-gulp.task('build', ['webpack', 'sass'])
+gulp.task('build', ['sass', 'sass-min', 'webpack', 'compile-genre-info'])

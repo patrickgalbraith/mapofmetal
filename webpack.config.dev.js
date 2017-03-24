@@ -1,13 +1,14 @@
 const webpack = require('webpack')
 
-const environment = JSON.stringify(process.env.NODE_ENV || 'development')
+const ENV  = JSON.stringify(process.env.NODE_ENV || 'development')
+const PORT = process.env.PORT || 58080
 
-console.log('ENVIRONMENT', environment)
+console.log('WEBPACK_ENV', 'dev')
 
 const config = {
   devtool: '#source-map',
   entry: {
-    app: './src/main.js',
+    app: ['webpack-dev-server/client?http://127.0.0.1:'+PORT, 'webpack/hot/only-dev-server', './src/main.js'],
     vendor: ['babel-polyfill', 'whatwg-fetch', 'openseadragon', 'react', 'react-dom', 'redux', 'react-redux']
   },
   output: {
@@ -23,18 +24,12 @@ const config = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': environment
+      'process.env.NODE_ENV': ENV
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: './static/dist/vendor.bundle.js' })
   ]
-}
-
-if (environment === 'production') {
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin())
-} else {
-  config.plugins.unshift(new webpack.HotModuleReplacementPlugin())
-  config.entry = ['webpack-dev-server/client?http://127.0.0.1:58080', 'webpack/hot/only-dev-server', './src/main.js']
 }
 
 module.exports = config
