@@ -144,7 +144,6 @@ class MapLayer extends Component {
   componentWillUnmount() {
     this.viewer.destroy()
     document.body.removeChild(this.viewerElement)
-    // @todo remove genre overlay event listener
   }
 }
 
