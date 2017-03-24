@@ -1,3 +1,4 @@
 /node_modules
 /static/dist
 /tiles/sources
+/data/genre-info.json
