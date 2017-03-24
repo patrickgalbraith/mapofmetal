@@ -1,0 +1,143 @@
+{
+  "title": "Nu Metal",
+  "description": "Nu metal (also known as nü-metal or aggro-metal) is a subgenre of heavy metal. It is a fusion genre which combines elements of heavy metal with other genres, including grunge and hip hop. The genre gained mainstream success in the late 1990s and early 2000s.\n<br><br>\nThe origin of \"nu metal\" is often adjudicated to the work of producer Ross Robinson, who worked with acts such as Korn, Limp Bizkit, producing their first albums and helping create the sound that defined them. He has even been called \"The Godfather of Nu Metal\".\n<br><br>\nKorn is often acknowledged as a reference for the nu-metal style of music. They released their first self-titled album in 1994, but they did not gain mainstream popularity until years later. The most \"pure\" form of nu-metal is considered to be the one contained in their second studio album, Life is Peachy. Nu metal gained mainstream success through MTV and Ozzy Osbourne's 1995 introduction of Ozzfest, which led the media to talk of a resurgence of heavy metal. Also, the 30th anniversary of Woodstock (Woodstock 99) featured nu metal bands, notably Korn and Limp Bizkit. The Family Values Tour is the most widely recognized tour meant mainly for nu-metal bands.\n<br><br>\nNu metal album sales declined and rotation of nu metal artists on rock radio began to diminish in the early 2000's. Several factors contributed to this, including oversaturation of the market, and a negative stigma associated with the genre.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Nu_metal\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "Korn",
+      "title": "Blind",
+      "year": "1994",
+      "videos": [
+        "KxLAI_Jk4Cs",
+        "SGK00Q7xx-s",
+        "xVPvzX-AeSM",
+        "uyoVO6ppLfs",
+        "5_hIojjA3A4",
+        "XhIZ0roBVzM",
+        "biPFVrZvw0E"
+      ]
+    },
+    {
+      "artist": "Korn",
+      "title": "Ball Tongue",
+      "year": "1994",
+      "videos": [
+        "Lmx-0teTGZo",
+        "kcHSCCE0w8U",
+        "XDaQaFx2FU4",
+        "nPm99kZJMLU",
+        "5D52zBaT-1k",
+        "t0Mbsx345cM",
+        "zpqRmkmjo0g"
+      ]
+    },
+    {
+      "artist": "Korn",
+      "title": "No Place To Hide",
+      "year": "1996",
+      "videos": [
+        "K-9cK95w46k",
+        "LaguxG-8Ekw",
+        "gMUokNX43R8",
+        "rJRhTK2RsBA",
+        "N89Hl6ax8zI",
+        "R2duBeGOS_M"
+      ]
+    },
+    {
+      "artist": "Coal Chamber",
+      "title": "Loco (Live)",
+      "year": "1996",
+      "videos": [
+        "W4rcW3GwMU4",
+        "V-sYWaOrLdI",
+        "-a6h4QCs0Pg",
+        "PT2DBxXZ3Uc",
+        "0PhD69hWQ8E",
+        "5iyVaUGUfL0",
+        "0R2R2tZ57og"
+      ]
+    },
+    {
+      "artist": "Limp Bizkit",
+      "title": "Counterfeit",
+      "year": "1997",
+      "videos": [
+        "GHyV9V-37zc",
+        "xDdGrlylcEU",
+        "ZNKHQ64sz7U",
+        "8MAsVy5Q-_E",
+        "qD8tBIhgk5w",
+        "SRLu2IJlzK4"
+      ]
+    },
+    {
+      "artist": "Disturbed",
+      "title": "Down With The Sickness",
+      "year": "1999",
+      "videos": [
+        "L78yVFeyvRo",
+        "09LTT0xwdfw",
+        "RzxuknbQ5VY",
+        "mSHG1Ypy1UU",
+        "G19UqSnNuO8",
+        "qwx8TGPC3ss"
+      ]
+    },
+    {
+      "artist": "Slipknot",
+      "title": "Wait And Bleed",
+      "year": "1999",
+      "videos": [
+        "0u_IIS5dUeU",
+        "B1zCN0YhW1s",
+        "YPhvqP-eWWM",
+        "l3xaKh6PUZI",
+        "Z5ou8N3U8yg",
+        "O3mtQjc6wkw",
+        "39td6pX30ZI"
+      ]
+    },
+    {
+      "artist": "Slipknot",
+      "title": "Spit It Out",
+      "year": "1999",
+      "videos": [
+        "0cvJynC5Kgw",
+        "ZPUZwriSX4M",
+        "aGRmqVaqRss",
+        "76F9nyNgT80",
+        "iHSQLuzLyMk",
+        "sZM07nXODLA",
+        "4IohbPkRTl8"
+      ]
+    },
+    {
+      "artist": "Static X",
+      "title": "Push It",
+      "year": "1999",
+      "videos": [
+        "2vObp0vBDOY",
+        "Ps0MfBG5-Uo",
+        "kxz4R6XKlv4",
+        "nqiVvOXotyw",
+        "RMEG-_PDFtY",
+        "BD4VwyRVEMU"
+      ]
+    },
+    {
+      "artist": "Mudvayne",
+      "title": "Dig",
+      "year": "2000",
+      "videos": [
+        "vg_VLi79Q9A",
+        "YIqbdnaPcT8",
+        "anbrb2u9GYI",
+        "uhqRMzoyV4g",
+        "G_5UOkUDti8",
+        "hXBmxCJED_M",
+        "r5RiN84MkxA"
+      ]
+    }
+  ],
+  "id": "numetal"
+}

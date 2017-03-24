@@ -1,0 +1,141 @@
+{
+  "title": "Punk Rock",
+  "description": "Punk rock is a rock music genre that developed between 1974 and 1976 in the United States, the United Kingdom, and Australia. Rooted in garage rock and other forms of what is now known as protopunk music, punk rock bands eschewed the perceived excesses of mainstream 1970s rock. They created fast, hard-edged music, typically with short songs, stripped-down instrumentation, and often political, anti-establishment lyrics. Punk embraces a DIY (do it yourself) ethic, with many bands self-producing their recordings and distributing them through informal channels.\n<br><br>\nBy late 1976, bands such as the Ramones, in New York City, and the Sex Pistols and The Clash, in London, were recognized as the vanguard of a new musical movement. The following year saw punk rock spreading around the world, and it became a major cultural phenomenon in the United Kingdom. For the most part, punk took root in local scenes that tended to reject association with the mainstream. An associated punk subculture emerged, expressing youthful rebellion and characterized by distinctive styles of clothing and adornment and a variety of anti-authoritarian ideologies.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Punk_rock\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "Sex Pistols",
+      "title": "Anarchy In The Uk",
+      "year": "1976",
+      "videos": [
+        "JQkActP-isE",
+        "q31WY0Aobro",
+        "qbmWs6Jf5dc",
+        "0TZ_9-rbslo",
+        "Jcnp719aDyk",
+        "Uc89WTEh-jE",
+        "aZHyPsbP_lI"
+      ]
+    },
+    {
+      "artist": "Ramones",
+      "title": "Blitzkrieg Bop",
+      "year": "1976",
+      "videos": [
+        "K56soYl0U1w",
+        "n8ZC5dSmxIk",
+        "iymtpePP8I8",
+        "a96C4QnSPzg",
+        "c1BOsShTyng",
+        "vRRzi2hALEY",
+        "U625wIf9ABw"
+      ]
+    },
+    {
+      "artist": "Sex Pistols",
+      "title": "God Save The Queen",
+      "year": "1977",
+      "videos": [
+        "R8fLOJswWtk",
+        "yqrAPOZxgzU",
+        "dtUH2YSFlVU",
+        "bC4RFY8vtuM",
+        "RvMxqcgBhWQ",
+        "EoXHgBhWbyw"
+      ]
+    },
+    {
+      "artist": "Ramones",
+      "title": "Sheena Is A Punk Rocker",
+      "year": "1977",
+      "videos": [
+        "AsEpDBMsKqA",
+        "vneIVy2BIIw",
+        "snAO0KQpIKk",
+        "zGgfHZ02I2k",
+        "7vNrZcs44QU",
+        "-nlX7P0nhaI",
+        "7xSNhKvIOUc"
+      ]
+    },
+    {
+      "artist": "The Dead Boys",
+      "title": "Sonic Reducer",
+      "year": "1977",
+      "videos": [
+        "mdu3EU6sbng",
+        "30bv915bDtY",
+        "QbVGX4r5gmE",
+        "MWGN-LYN2XE",
+        "uRPcPjsriIU",
+        "BaqH3Z4ygkg"
+      ]
+    },
+    {
+      "artist": "Richard Hell and the Voidoids",
+      "title": "Blank Generation",
+      "year": "1977",
+      "videos": [
+        "TP3x-VdOb44",
+        "JsK8fHPjav0",
+        "UkTs883qImY",
+        "-HMXuL0SShA",
+        "hLlTnvepqQ4",
+        "6__nuTnqYJ0"
+      ]
+    },
+    {
+      "artist": "The Clash",
+      "title": "London's Burning",
+      "year": "1977",
+      "videos": [
+        "TCw9_avTlYs",
+        "EfK-WX2pa8c",
+        "I6XijqjtJoA",
+        "weGEv_BhjNw",
+        "gUaLfvPBtB8",
+        "yzPbNvIzMf0"
+      ]
+    },
+    {
+      "artist": "Buzzcocks",
+      "title": "Ever Fallen In Love (With Some You Shouldn't)",
+      "year": "1978",
+      "videos": [
+        "eYI8qMfjBSo",
+        "WPG6Ak5FASk",
+        "51OB2YoC4sg",
+        "vwYImfBcBXo",
+        "terg_LPT3X0",
+        "wSfDA0rcOqQ",
+        "I1js9kZj-Lk"
+      ]
+    },
+    {
+      "artist": "The Misfits",
+      "title": "Last Caress",
+      "year": "1978",
+      "videos": [
+        "Giebe-uzPFg",
+        "9y2MyMqVD0E",
+        "F39UP1mjAnc",
+        "HWc_gEMV8x4",
+        "3grtcTDMcvY",
+        "QHHDJh_ZEdw"
+      ]
+    },
+    {
+      "artist": "UK Subs",
+      "title": "Telephone Numbers",
+      "year": "1979",
+      "videos": [
+        "dne5S3oi8Kg",
+        "s2eZY6fbiLE",
+        "DTMHYYptUHg",
+        "6roemF1KUyc",
+        "uxpDa-c-4Mc",
+        "cX94XD3lQHc"
+      ]
+    }
+  ],
+  "id": "punkrock"
+}
