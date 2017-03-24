@@ -6,7 +6,7 @@ Path:        /scss
              /src
 Url:         http://www.mapofmetal.com/
 Copyright:   2017, Patrick Galbraith
-License:     GPL - see LICENSE.GPL file
+License:     AGPL - see LICENSE.AGPL file
 
 Description: Map data files
 Path:        /data
