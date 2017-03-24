@@ -14,7 +14,7 @@ export default function LoadingSplash(props = initialProps) {
       <div className='LoadingSplash-logo' />
 
       <div className='LoadingSplash-notice'>
-        help support bandwidth costs! prints now available! <a href={POSTER_LINK} target='_blank'>buy online</a>
+        help support the site! prints now available! <a href={POSTER_LINK} target='_blank'>buy online</a>
       </div>
 
       <ReactCSSTransitionGroup
