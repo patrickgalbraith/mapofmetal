@@ -2,3 +2,4 @@
 /static/dist
 /tiles/sources
 /data/genre-info.json
+*.log
