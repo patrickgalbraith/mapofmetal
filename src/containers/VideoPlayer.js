@@ -16,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
     playerState: state.player,
     nowPlaying: {
       genre:   state.genres.find(g => g.id === state.app.nowPlaying.genre),
-      trackNo: state.app.nowPlaying.trackNo
+      trackNo: state.app.nowPlaying.trackNo,
+      videoNo: state.app.nowPlaying.videoNo
     }
   }
 }

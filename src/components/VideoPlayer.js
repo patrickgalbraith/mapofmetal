@@ -49,8 +49,7 @@ export default class VideoPlayer extends Component {
 
   getNextVideo(props) {
     const { nowPlaying } = props
-    // @todo handle video errors by skipping to next video in list
-    return this.getVideo(nowPlaying.genre.tracklist, nowPlaying.trackNo, 0)
+    return this.getVideo(nowPlaying.genre.tracklist, nowPlaying.trackNo, nowPlaying.videoNo)
   }
 
   getCurrentVideoId() {
@@ -161,7 +160,8 @@ export default class VideoPlayer extends Component {
     // Track/genre changed
     if (
       nowPlaying.genre.id !== nextNowPlaying.genre.id ||
-      nowPlaying.trackNo !== nextNowPlaying.trackNo
+      nowPlaying.trackNo !== nextNowPlaying.trackNo ||
+      nowPlaying.videoNo !== nextNowPlaying.videoNo
     ) {
       this.props.loadVideo(this.getNextVideo(nextProps))
     }
