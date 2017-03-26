@@ -1,0 +1,99 @@
+{
+  "title": "Post Rock",
+  "description": "Post-rock is a subgenre of alternative rock characterized by the use of instruments commonly associated with rock music, but using rhythms, harmonies, melodies, timbres, and chord progressions not traditionally found in rock. Post-rock musicians typically produce instrumental music.\n<br><br>\nDon Caballero and Tortoise were among the more prominent bands described as post-rock in the 1990s, but their styles are very different, despite being instrumental bands centered on guitars and drums. As such, the term has been the subject of backlash from listeners and artists alike. The term \"post-rock\" is believed to have been coined by critic Simon Reynolds in his review of Bark Psychosis' album Hex, published in the March 1994 issue of Mojo magazine. Reynolds expanded upon the idea later in the May 1994 issue of The Wire.\n<br><br>\nHe used the term to describe music \"using rock instrumentation for non-rock purposes, using guitars as facilitators of timbre and textures rather than riffs and power chords\". He further expounded on the term, \"Perhaps the really provocative area for future development lies... in cyborg rock; not the wholehearted embrace of Techno's methodology, but some kind of interface between real time, hands-on playing and the use of digital effects and enhancement.\"\n<br><br>\nReynolds, in a July 2005 entry in his blog, claimed he had used the term \"post-rock\" before using it in Mojo, previously using it in music newspaper Melody Maker. He also said he later found the term to not be of his own creation, saying in his blog, \"although I genuinely believed I was coining the term, I discovered many years later it had been floating around for over a decade.\" The term was used by American journalist James Wolcott in a 1975 article about musician Todd Rundgren, although with a different meaning. It was also used in the Rolling Stone Album Guide to name a style roughly corresponding to \"avant-rock\" or \"out-rock\".\n<br><br>\nAlthough firmly rooted in the indie or underground scene of the 1980s and '90s, post-rock's style often bears little resemblance musically to that of indie rock.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Post-rock\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "Slint",
+      "title": "Good Morning, Captain",
+      "year": "1991",
+      "videos": [
+        "xoH5MPIgM7c",
+        "ocZK5DHzkh4",
+        "96MxID3GK4c",
+        "J87vtrC_JBM",
+        "-AYigmkvHF4",
+        "XBE2EUT34aY",
+        "BVgWDpmN9TI"
+      ]
+    },
+    {
+      "artist": "Stereolab",
+      "title": "Peng! 33",
+      "year": "1992",
+      "videos": [
+        "6993BdVL_0k",
+        "c8J4iVgbBlI",
+        "TkBLKGzWvC0",
+        "rV83elzOyD0",
+        "FL5vIkoeK8c",
+        "rTzGo17Lleg"
+      ]
+    },
+    {
+      "artist": "Bark Psychosis",
+      "title": "Pendulum Man",
+      "year": "1994",
+      "videos": [
+        "GM2ZyJu3_is",
+        "1Bmy6HG8T-U",
+        "TRmY5DZ_PMs",
+        "zPEWMernX7U",
+        "SZ0jR97_0vE",
+        "VSANXRzM7w8"
+      ]
+    },
+    {
+      "artist": "Cul de Sac",
+      "title": "Doldrums",
+      "year": "1996",
+      "videos": [
+        "ntDgkOALI1w",
+        "iLzOL5TUNIs",
+        "GLbpdBVMRag",
+        "EucpeSR-klk",
+        "FK9aMEqT0II",
+        "2tBGaQevgqc"
+      ]
+    },
+    {
+      "artist": "Godspeed You! Black Emperor",
+      "title": "The Sad Mafioso",
+      "year": "1998",
+      "videos": [
+        "HSnABcDg4t8",
+        "BU8tTxs2_78",
+        "V9Ty3YnWN80",
+        "hJ4RyPAvRYM",
+        "OA1KdVxnNmc",
+        "sSJvIlG9bls"
+      ]
+    },
+    {
+      "artist": "Tortoise",
+      "title": "Seneca",
+      "year": "2001",
+      "videos": [
+        "0muak01p6k8",
+        "3X9nvVDBKRg",
+        "kcnmwH_USIs",
+        "ClKqNZOCAzs",
+        "hftbgPSF4gg",
+        "qYpJKaHzSTM"
+      ]
+    },
+    {
+      "artist": "Sigur Ros",
+      "title": "Untitled 8",
+      "year": "2002",
+      "videos": [
+        "HGdAQMFKT-I",
+        "qN4s75Srcos",
+        "XCAQ0MZTJmg",
+        "oZXkahTJ1Gk",
+        "SsHBT628viU",
+        "wxVCQth00AA"
+      ]
+    }
+  ],
+  "id": "postrock"
+}

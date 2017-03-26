@@ -1,0 +1,11 @@
+/node_modules
+/static/dist
+/tiles/sources
+/data/genre-info.json
+*.log
+
+# Data brach
+/src
+/sass
+/scripts
+/tiles

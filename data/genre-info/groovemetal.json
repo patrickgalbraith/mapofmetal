@@ -1,0 +1,100 @@
+{
+  "title": "Groove Metal",
+  "description": "Groove metal is a subgenre of heavy metal. It was often used to describe Pantera and Exhorder. Pantera's Cowboys from Hell album from 1990 was described as \"groundbreaking\" and \"blueprint-defining\" for the groove metal genre. Tommy Victor of Prong claims that the attitude of groove metal came from Bad Brains.\n<br><br>\nGeoffrey Himes of The Washington Post described the music in 1998, as a \"marriage of hard rock with dance music and hip-hop\"; and stated about groove metal: \"This gives the loud, crunchy guitars a black-flavored dance pulse and gives the wailing vocals the punchy rhythms of rap and funk. Other groove metal bands have incorporated thrash metal, hardcore punk and industrial music. Ian Christe credits Sepultura's Chaos A.D. and Pantera for creating the death metal-derived music of groove metal and influencing later groups in the genre during the 1990s.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Groove_metal\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "Pantera",
+      "title": "Cowboys From Hell",
+      "year": "1990",
+      "videos": [
+        "2DfYLar2QGI",
+        "_7EQlfprV9E",
+        "QzHe9NpYbQw",
+        "la1WfEr60yg",
+        "iPk8IStlDw4",
+        "XAFbNIyxIls",
+        "7Ych1FKPSdA"
+      ]
+    },
+    {
+      "artist": "Exhorder",
+      "title": "Exhorder",
+      "year": "1990",
+      "videos": [
+        "fynnN8xmiRY",
+        "c52UPq9WrQc",
+        "u-BSrW72UDg",
+        "EgukizxZ5QM",
+        "5VmDR1a4uWk",
+        "M9wRenuvFlA"
+      ]
+    },
+    {
+      "artist": "Pantera",
+      "title": "This Love",
+      "year": "1992",
+      "videos": [
+        "tymWpEU8wpM",
+        "1fKlgxSKNdU",
+        "TMYLASHeFYo",
+        "T3q1jQTfqxE",
+        "yz0V5sjkRhU",
+        "cJLaJMdqW1M"
+      ]
+    },
+    {
+      "artist": "Exhorder",
+      "title": "The Law",
+      "year": "1992",
+      "videos": [
+        "EgukizxZ5QM",
+        "5VmDR1a4uWk",
+        "M9wRenuvFlA",
+        "i2QGw99vHZs",
+        "IRdaWl6aQ9o",
+        "gZj7VqEqOSs"
+      ]
+    },
+    {
+      "artist": "White Zombie",
+      "title": "Black Sunshine",
+      "year": "1992",
+      "videos": [
+        "HxQap_3Bj6Q",
+        "sqPClltS5k8",
+        "2MfBZZyuTm0",
+        "XxHqst5XFIo",
+        "Rapc37J-6I0",
+        "rvZ17BUme4U"
+      ]
+    },
+    {
+      "artist": "Machine Head",
+      "title": "Ten Ton Hammer",
+      "year": "1997",
+      "videos": [
+        "z1DAO9FANqw",
+        "pjl5AKpsDoU",
+        "k1UG-haPweg",
+        "uWrIdxk0mY8",
+        "ecntjmOyEmY",
+        "_8vHii7E31U"
+      ]
+    },
+    {
+      "artist": "Lamb of God",
+      "title": "Black Label",
+      "year": "2000",
+      "videos": [
+        "8G9Gtqwz3Ik",
+        "nE7eITwCyGk",
+        "TEa9D815HSo",
+        "Nh2vPCRRRNA",
+        "jJ4CzF9Hb1o",
+        "GGqrbe-msoY",
+        "-7RyN6n8-RU"
+      ]
+    }
+  ],
+  "id": "groovemetal"
+}

@@ -1,0 +1,121 @@
+{
+  "title": "Folk Metal",
+  "description": "Folk metal is a sub-genre of heavy metal music that developed in Europe during the 1990s. As the name suggests, the genre is a fusion of heavy metal with traditional folk music. This includes the widespread use of folk instruments and, to a lesser extent, traditional singing styles.\n<br>\nThe earliest exponent of folk metal was the English band Skyclad. Their debut album The Wayward Sons of Mother Earth was released in 1990. It was not until 1994 and 1995 that other early contributors in the genre began to emerge from different regions of Europe as well as in Israel. Among these early groups, the Irish band Cruachan and the German band Subway to Sally each spearheaded a different regional variation that over time became known as Celtic metal and medieval metal respectively. Despite their contributions, folk metal remained little known with few representatives during the 1990s. It was not until the early 2000s when the genre exploded into prominence, particularly in Finland with the efforts of such groups as Finntroll, Ensiferum, Korpiklaani, Turisas, and Moonsorrow.\n<br>\nThe music of folk metal is characterised by its diversity with bands known to perform different styles of both heavy metal music and folk music. A large variety of folk instruments are used in the genre with many bands consequently featuring six or more members in their regular line-ups. A few bands are also known to rely on keyboards to simulate the sound of folk instruments. Lyrics in the genre commonly deal with paganism, nature, fantasy, mythology and history.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Folk_metal\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "Skyclad",
+      "title": "The Widdershins Jig",
+      "year": "1990",
+      "videos": [
+        "OZ2iileann4",
+        "zsbXsOWQ68k",
+        "dXXeuU1IqnM",
+        "5R-ZYb_eMq4",
+        "5SdKjGVn2Cs",
+        "Zk6NQr8l9DE"
+      ]
+    },
+    {
+      "artist": "Skyclad",
+      "title": "Emerald",
+      "year": "1992",
+      "videos": [
+        "r0jk_NTvGRY",
+        "hTSfSqzzsmY",
+        "hyQvPq7o4ko",
+        "t233puyXODQ",
+        "zZ-at9EoOeE",
+        "6fvzWkdSOek"
+      ]
+    },
+    {
+      "artist": "Skyclad",
+      "title": "Cry Of The Land",
+      "year": "1993",
+      "videos": [
+        "nJ-dwZxv-6k",
+        "pb0kTS78fIQ",
+        "INtK8sOHwk8",
+        "Pzwf_I_AsDo",
+        "bJtB4BwpyG8",
+        "7934-G6CXdY",
+        "sbnUoK3-x9U"
+      ]
+    },
+    {
+      "artist": "Moonsorrow",
+      "title": "Sankirihauta",
+      "year": "2001",
+      "videos": "0abnkjw-Mqc"
+    },
+    {
+      "artist": "Arkona",
+      "title": "Rus",
+      "year": "2004",
+      "videos": [
+        "OSRSikWuxXY",
+        "BaP1wDvkA6E",
+        "kWG13LAbRCY",
+        "JfwBB2PkA-w",
+        "jMQU1Tjfwr8",
+        "cfCOpCOVtk4",
+        "w_vstiu_7Nk"
+      ]
+    },
+    {
+      "artist": "Fintroll",
+      "title": "Trollhammeren",
+      "year": "2004",
+      "videos": [
+        "yGywo81G6lk",
+        "mkVwA__Fk9g",
+        "tEzuxkkGyWQ",
+        "d3u86DPd7qc",
+        "DXKwVe1SBTA",
+        "nYwFPaK6UQY",
+        "FN3bKh8fKwQ"
+      ]
+    },
+    {
+      "artist": "Korpiklaani",
+      "title": "Rise",
+      "year": "2006",
+      "videos": [
+        "koYdb-a8EZA",
+        "btsgCgdhZaw",
+        "0XHa5oMpLTQ",
+        "931DIRmBnEc",
+        "9mAwqN24xAM",
+        "E3m4TaNOA_E"
+      ]
+    },
+    {
+      "artist": "Heidevolk",
+      "title": "Saksenland",
+      "year": "2008",
+      "videos": [
+        "55ls_ydHstU",
+        "zVRoV82PDCI",
+        "o4DFViM9KK8",
+        "-xzVsXBdaEA",
+        "jgGzFVvWWQ0",
+        "V1Giv3HcaZg"
+      ]
+    },
+    {
+      "artist": "Arkona",
+      "title": "Yarilo",
+      "year": "2009",
+      "videos": [
+        "P2ikBNcH7F0",
+        "Tt6_65LDZ60",
+        "A7fuuDc2hH0",
+        "1Q0ZAG3FaSE",
+        "JifjqPkrcU0",
+        "7qxgh6Apo4k",
+        "Zl13dNSIwAw"
+      ]
+    }
+  ],
+  "id": "folkmetal"
+}

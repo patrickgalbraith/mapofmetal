@@ -1,0 +1,116 @@
+{
+  "title": "Blues Rock",
+  "description": "Blues rock is a hybrid musical genre that can be characterized by bluesy improvisation, the 12-bar blues, extended boogie jams typically focused on the electric guitar player, and often a heavier, riff-oriented sound and feel to the songs than might be found in traditional Chicago-style blues. Blues rock bands \"borrow[ed] the idea of an instrumental combo and loud amplification from rock & roll\". It is also often played at a fast tempo, again distinguishing it from the blues. The core of the blues rock sound is created by the electric guitar, bass guitar and drum kit, with the electric guitar usually amplified through a tube guitar amplifier, giving it an overdriven character.\n<br><br>\nThe style began to develop in the mid-1960s in England and the United States, as what Piero Scaruffi called, a \"genre of rhythm'n'blues played by white European musicians\". While the early blues-rock bands \"attempted to play long, involved improvisations which were commonplace on jazz records\", by the 1970s, blues rock got heavier and more riff-based. By the \"early '70s, the lines between blues-rock and hard rock were barely visible\", as bands began recording rock-style albums.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Blues_rock\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "The Who",
+      "title": "My Generation",
+      "year": "1965",
+      "videos": [
+        "uswXI4fDYrM",
+        "594WLzzb3JI",
+        "qN5zw04WxCc",
+        "qAuPJ-VsO6E",
+        "R9uvZaLj9To",
+        "TRDMO9Rb0Vg"
+      ]
+    },
+    {
+      "artist": "Rolling Stones",
+      "title": "Satisfaction",
+      "year": "1965",
+      "videos": [
+        "3a7cHPy04s8",
+        "nrIPxlFzDi0",
+        "byn7ZUjz5DY",
+        "KzYWTIHqutA",
+        "poXvMBhjSWk",
+        "1kje9WcWnsk",
+        "WqlKqW0EUKQ"
+      ]
+    },
+    {
+      "artist": "The Yardbirds",
+      "title": "Evil Hearted You",
+      "year": "1965",
+      "videos": [
+        "Y45aHGWoQGs",
+        "3y2ayUzXcec",
+        "BglFvWRKnOw",
+        "mfMnhL6pvUg",
+        "8uTnQVdRHcs",
+        "RcJEs9xuNHA"
+      ]
+    },
+    {
+      "artist": "The Yardbirds",
+      "title": "Shape of Things (Live)",
+      "year": "1966",
+      "videos": [
+        "ZUZg6VHfcLM",
+        "tOc-_GpfF1w",
+        "Jc17DqcA6Qc",
+        "HTO7WVxjz3A",
+        "RV9aHVx2Wv0",
+        "PwTmMKXRKOw",
+        "_g0-ZtRCtHg"
+      ]
+    },
+    {
+      "artist": "Rolling Stones",
+      "title": "Paint it Black",
+      "year": "1966",
+      "videos": [
+        "ONbM2ou94PA",
+        "O4irXQhgMqg",
+        "u6d8eKvegLI",
+        "InRDF_0lfHk",
+        "RYPWxymohWs",
+        "9BcJaUYE5Jw",
+        "1qtu25GlEPQ"
+      ]
+    },
+    {
+      "artist": "The Jeff Beck Group",
+      "title": "Beck's Bolero",
+      "year": "1967",
+      "videos": [
+        "Vuj5toLeyY8",
+        "F1hijzkOrnk",
+        "AlAAledRd_Y",
+        "nmO0OZC6Ifk",
+        "laXXXJ_1dHQ",
+        "j4czI9NMRzM"
+      ]
+    },
+    {
+      "artist": "Cream",
+      "title": "Sunshine of Your Love",
+      "year": "1968",
+      "videos": [
+        "IDZqmF3zS04",
+        "zt51rITH3EA",
+        "HbqQL0J_Vr0",
+        "vyftaay-pFA",
+        "pwDo0JUeKqM",
+        "16h6vLy6n4A",
+        "INfze0mVuWA"
+      ]
+    },
+    {
+      "artist": "Cream",
+      "title": "Crossroads (Live)",
+      "year": "1969",
+      "videos": [
+        "WuHteQvKonA",
+        "PE9HvSdcaL4",
+        "oHO-CKfxvH0",
+        "becWr0vc6cA",
+        "YRSbnhUXhuQ",
+        "jvouiDJSTUE",
+        "yI3dokSeII8"
+      ]
+    }
+  ],
+  "id": "bluesrock"
+}

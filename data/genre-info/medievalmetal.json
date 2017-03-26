@@ -1,0 +1,67 @@
+{
+  "title": "Medieval Metal",
+  "description": "Medieval metal or medieval rock is a subgenre of folk metal that blends hard rock or heavy metal music with medieval folk music. Medieval metal is mostly restricted to Germany where it is known as Mittelalter-Metal or Mittelalter-Rock. The genre emerged from the middle of the 1990s with contributions from Subway to Sally, In Extremo and Schandmaul. The style is characterised by the prominent use of a wide variety of traditional folk and medieval instruments.\n<br><br>\nLike its parent genre, medieval rock features the same typical instruments found in heavy metal music: guitars, bass, drums and vocalist. Bands in the genre are known to supplement their sound with a wide range of folk and traditional instruments. Woodwind instruments like the bagpipes, flutes and shawm, string instruments like the violin, lute, hurdy gurdy, cello, harp and mandolin. Bands in the genre are also known to sing mostly or only in German, including Subway to Sally, Morgenstern and Letzte Instanz.\n<br>\n<a href=\"http://en.wikipedia.org/wiki/Medieval_metal\" target=\"_blank\">(Source)</a>",
+  "tracklist": [
+    {
+      "artist": "Letzte Instanz",
+      "title": "Rapunzel",
+      "year": "1999",
+      "videos": [
+        "zV24MLrP-kI",
+        "xl8w5cZiLGs",
+        "I137M8cCVpc",
+        "3BGH4DKuiEs",
+        "9RHIFZ4992A",
+        "8__zz9xZ_GI"
+      ]
+    },
+    {
+      "artist": "Schandmaul",
+      "title": "Der Letzte Tanz (Eng. The Last Dance)",
+      "year": "2000",
+      "videos": [
+        "R_NB-lI6ewk",
+        "beXW5s3ZCB4",
+        "PBcTy5Bkjs4",
+        "uaNeRW_qeug",
+        "6W2mLyYDc6U",
+        "rabXohC-jDQ",
+        "30lJlrsS8bA"
+      ]
+    },
+    {
+      "artist": "Schattentantz",
+      "title": "Ein Blatt Im Wind (Eng. A Leaf In The Wind)",
+      "year": "2001",
+      "videos": "a8bu_aUxE5g"
+    },
+    {
+      "artist": "Subway to Sally",
+      "title": "Sieben (Eng. Seven)",
+      "year": "2005",
+      "videos": [
+        "OLZ8jYHRdFw",
+        "lXBHpw73ZQQ",
+        "AZ3BrHPpH6Q",
+        "rEDLM_d88To",
+        "HYCpJKmgWTM",
+        "TzfPCCZ2YyY"
+      ]
+    },
+    {
+      "artist": "In Extremo",
+      "title": "Horizont",
+      "year": "2005",
+      "videos": [
+        "ZrtkL0RqAKk",
+        "H1Dq3kmiyeI",
+        "4teFpkKDJWo",
+        "qs0tQKaFVpM",
+        "KmQZfnpJ3bg",
+        "CEDFMTUg2bM",
+        "X-Q6oW4e4tI"
+      ]
+    }
+  ],
+  "id": "medievalmetal"
+}
