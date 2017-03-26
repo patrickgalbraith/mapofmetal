@@ -7,7 +7,6 @@
   top: 10px;
   right: 0;
   list-style-type: none;
-  transition: opacity 0.4s;
 
   &-item {
     display: inline-block;
@@ -35,9 +34,5 @@
         color: white;
       }
     }
-  }
-
-  .is-dragging & {
-    opacity: 0.25;
   }
 }

@@ -82,16 +82,17 @@ class MapPage extends Component {
       currentGenre,
       currentTrackList,
       mapCenter,
-      mapDragging,
+      //mapDragging,
       changeMapCenter,
       dragStart,
       dragEnd
     } = this.props
 
-    let Modal = currentModal ? currentModal.component : null
+    const Modal   = currentModal ? currentModal.component : null
+    const classes = ['MapPage', this.props.className].join(' ')
 
     return (
-      <div className={['MapPage', (mapDragging ? 'is-dragging' : '')].join(' ')}>
+      <div className={classes} key={this.props.key}>
         <TopBar changeMapCenter={changeMapCenter}
                 openModal={this.openModal.bind(this)} />
 
@@ -136,7 +137,7 @@ const mapStateToProps = (state, ownProps) => {
       trackNo: state.app.nowPlaying.trackNo
     },
     mapCenter:        state.map.center,
-    mapDragging:      state.map.dragging
+    //mapDragging:      state.map.dragging
   }
 }
 

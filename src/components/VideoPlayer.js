@@ -116,7 +116,9 @@ export default class VideoPlayer extends Component {
 
     // Initialize when API is ready
     if (nextPlayerState.apiReady !== playerState.apiReady) {
-      this.initializePlayer()
+      window.setTimeout(() => {
+        this.initializePlayer()
+      }, 3000)
     }
 
     // Everything after this requires the player to be ready
@@ -181,6 +183,10 @@ export default class VideoPlayer extends Component {
     this.playerElement.className = 'VideoPlayer'
 
     document.body.appendChild(this.playerElement)
+
+    window.setTimeout(() => {
+      this.playerElement.classList.add('active')
+    }, 2500)
   }
 
   componentWillUnmount() {

@@ -35,15 +35,19 @@ class App extends Component {
           :
           <ReactCSSTransitionGroup
             transitionName="transition"
-            transitionEnterTimeout={3000}
-            transitionLeaveTimeout={3000}>
+            transitionEnterTimeout={30000}
+            transitionLeaveTimeout={30000}>
             {
               !entered
-              ? <LoadingSplash key='LoadingPage'
-                               loading={loading}
-                               onEnter={() => this.setState({entered: true})} />
-              : (
-                <MapPage key='MainPage' />
+              ? (
+                <div key='LoadingPage' className='Page'>
+                  <LoadingSplash loading={loading}
+                                 onEnter={() => this.setState({entered: true})} />
+                </div>
+              ) : (
+                <div key='MainPage' className='Page'>
+                  <MapPage />
+                </div>
               )
             }
           </ReactCSSTransitionGroup>

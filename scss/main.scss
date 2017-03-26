@@ -25,6 +25,7 @@ body {
   box-sizing: border-box;
   font-family: $font-sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 
   * {
     box-sizing: inherit;

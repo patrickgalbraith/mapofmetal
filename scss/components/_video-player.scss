@@ -7,4 +7,10 @@
   top: 55px;
   right: 10px;
   border: 1px solid white;
+  opacity: 0;
+  transition: opacity 1s;
+
+  &.active {
+    opacity: 1;
+  }
 }

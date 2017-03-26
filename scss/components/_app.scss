@@ -1,13 +1,6 @@
+$map-components: '.TopBar, .NowPlaying, .PlayerControls, .GenreInfo, .TrackList';
+
 .App {
-  > span > .transition-enter {
-    opacity: 0;
-
-    &-active {
-      opacity: 1;
-      transition: opacity 1s 2s;
-    }
-  }
-
   > span > .transition-leave {
     opacity: 1;
 
@@ -15,5 +8,18 @@
       opacity: 0;
       transition: opacity 1s;
     }
+  }
+}
+
+.Page.transition-enter {
+  #{$map-components} {
+    opacity: 0 !important;
+  }
+}
+
+.Page.transition-enter-active {
+  #{$map-components} {
+    opacity: 1 !important;
+    transition: opacity 1s 2.5s !important;
   }
 }

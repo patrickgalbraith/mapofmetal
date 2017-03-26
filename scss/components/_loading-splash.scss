@@ -23,7 +23,8 @@
 
   &-notice,
   &-loading,
-  &-enter {
+  &-enter,
+  &-mobile-notice {
     position: absolute;
     left: 0;
     right: 0;
@@ -52,6 +53,20 @@
     @media all and (max-width: 920px) {
       top: auto;
       bottom: 40px;
+    }
+  }
+
+  &-mobile-notice {
+    background: #9c2a2a;
+    color: white;
+    padding: 20px;
+    font-size: 15px;
+    top: 10px;
+    font-family: $font-sans-serif;
+    text-shadow: 0 0 4px black;
+
+    @media all and (min-width: 732px) {
+      display: none;
     }
   }
 

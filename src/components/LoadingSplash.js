@@ -17,6 +17,10 @@ export default function LoadingSplash(props = initialProps) {
         help support the site! prints now available! <a href={POSTER_LINK} target='_blank'>buy online</a>
       </div>
 
+      <div className='LoadingSplash-mobile-notice'>
+        Mobile support coming soon. View on desktop or tablet for optimal experience.
+      </div>
+
       <ReactCSSTransitionGroup
         transitionName="transition"
         transitionEnterTimeout={2000}
