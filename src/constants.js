@@ -16,6 +16,7 @@ export const PLAYER_ERROR           = 'PLAYER_ERROR'
 export const PLAYER_STATE_CHANGE    = 'PLAYER_STATE_CHANGE'
 export const PLAYER_TIME_CHANGE     = 'PLAYER_TIME_CHANGE'
 export const PLAYER_DURATION_CHANGE = 'PLAYER_DURATION_CHANGE'
+export const PLAYER_QUALITY_CHANGE  = 'PLAYER_QUALITY_CHANGE'
 
 export const PLAYER_STATE_UNSTARTED = -1
 export const PLAYER_STATE_ENDED     = 0
@@ -24,13 +25,13 @@ export const PLAYER_STATE_PAUSED    = 2
 export const PLAYER_STATE_BUFFERING = 3
 export const PLAYER_STATE_CUED      = 5
 
-export const PLAYER_QUALITY = {
-  default: 'default',
-  small:   'small',
-  medium:  'medium',
-  large:   'large',
-  xlarge:  'hd720'
-}
+export const PLAYER_QUALITY = new Map([
+  ['default', 'default'],
+  ['small',   'small'],
+  ['medium',  'medium'],
+  ['large',   'large'],
+  ['xlarge',  'hd720']
+])
 
 export const TRACKLIST_SKIP             = 'TRACKLIST_SKIP'
 export const TRACKLIST_NEXT             = 'TRACKLIST_NEXT'

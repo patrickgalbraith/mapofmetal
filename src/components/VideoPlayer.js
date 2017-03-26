@@ -129,7 +129,10 @@ export default class VideoPlayer extends Component {
       this.getCurrentVideoId() &&
       nextPlayerState.videoId !== this.getCurrentVideoId()
     ) {
-      this.player.loadVideoById(nextPlayerState.videoId)
+      this.player.loadVideoById({
+        videoId: nextPlayerState.videoId,
+        suggestedQuality: nextPlayerState.quality
+      })
     }
 
     // Volume changed

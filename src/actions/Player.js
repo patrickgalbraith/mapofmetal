@@ -3,7 +3,8 @@ import {
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
   PLAYER_READY, PLAYER_API_READY,
   PLAYER_STATE_CHANGE, PLAYER_ERROR,
-  PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE
+  PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE,
+  PLAYER_QUALITY_CHANGE
 } from '../constants'
 
 export function apiReady() {
@@ -84,5 +85,12 @@ export function durationChange(duration) {
   return {
     type: PLAYER_DURATION_CHANGE,
     duration
+  }
+}
+
+export function qualityChange(quality) {
+  return {
+    type: PLAYER_QUALITY_CHANGE,
+    quality
   }
 }

@@ -4,6 +4,7 @@ import {
   PLAYER_READY, PLAYER_API_READY,
   PLAYER_STATE_CHANGE, PLAYER_QUALITY,
   PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE,
+  PLAYER_QUALITY_CHANGE,
 
   PLAYER_STATE_UNSTARTED, PLAYER_STATE_PLAYING,
   PLAYER_STATE_PAUSED
@@ -16,7 +17,7 @@ const initialState = {
   volume:      null,
   videoId:     null,
   duration:    0,
-  quality:     PLAYER_QUALITY.default
+  quality:     PLAYER_QUALITY.get('default')
 }
 
 export default function player(state = initialState, action) {
@@ -64,9 +65,9 @@ export default function player(state = initialState, action) {
     })
   }
 
-  if (action.type === PLAYER_QUALITY) {
+  if (action.type === PLAYER_QUALITY_CHANGE) {
     return Object.assign({}, state, {
-      quality: action.newPlayerState
+      quality: action.quality
     })
   }
 
