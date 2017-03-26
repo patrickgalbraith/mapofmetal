@@ -11,7 +11,7 @@ const config = {
     vendor: ['babel-polyfill', 'whatwg-fetch', 'openseadragon', 'react', 'react-dom', 'redux', 'react-redux']
   },
   output: {
-    filename: './static/dist/app.bundle.min.js'
+    filename: './static/dist/app.bundle.js'
   },
   module: {
     loaders: [
@@ -26,7 +26,7 @@ const config = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': environment
     }),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: './static/dist/vendor.bundle.min.js' }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: './static/dist/vendor.bundle.js' }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       warnings: false
