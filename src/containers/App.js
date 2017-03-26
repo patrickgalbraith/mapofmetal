@@ -35,8 +35,8 @@ class App extends Component {
           :
           <ReactCSSTransitionGroup
             transitionName="transition"
-            transitionEnterTimeout={30000}
-            transitionLeaveTimeout={30000}>
+            transitionEnterTimeout={3000}
+            transitionLeaveTimeout={3000}>
             {
               !entered
               ? (
