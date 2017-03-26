@@ -5,6 +5,7 @@ const clean         = require('gulp-clean')
 const rename        = require('gulp-rename')
 const cleanCSS      = require('gulp-clean-css')
 const sourcemaps    = require('gulp-sourcemaps')
+const autoprefixer  = require('gulp-autoprefixer')
 const webpack       = require('webpack')
 const WebpackServer = require('webpack-dev-server')
 const compileGenres = require('./scripts/concat-genre-info')
@@ -32,6 +33,9 @@ gulp.task('sass', function() {
   return gulp.src(sassPath)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['ie 11', 'last 2 versions']
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(distPath))
 })
