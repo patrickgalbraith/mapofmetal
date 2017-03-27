@@ -43,9 +43,6 @@ gulp.task('sass', function() {
 gulp.task('sass-min', ['sass'], function() {
   return gulp.src(distPath + '/main.css')
     .pipe(cleanCSS())
-    .pipe(rename({
-      extname: '.min.css'
-    }))
     .pipe(gulp.dest(distPath))
 })
 
