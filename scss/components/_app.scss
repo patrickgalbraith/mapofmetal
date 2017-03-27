@@ -1,16 +1,5 @@
 $map-components: '.TopBar, .NowPlaying, .PlayerControls, .GenreInfo, .TrackList';
 
-.App {
-  > span > .transition-leave {
-    opacity: 1;
-
-    &-active {
-      opacity: 0;
-      transition: opacity 1s;
-    }
-  }
-}
-
 .Page.transition-enter {
   #{$map-components} {
     opacity: 0 !important;

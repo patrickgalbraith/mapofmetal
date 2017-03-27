@@ -57,6 +57,9 @@ class MapLayer extends Component {
 
     document.body.appendChild(this.viewerElement)
 
+    let buttonsElement = document.createElement('div')
+    buttonsElement.className = 'MapLayer-buttons'
+
     // Add overlay buttons to dom. This is important because Openseadragon creates
     // anchor <a> elements by default which causes most desktop browsers to display
     // a anchor tooltip at the bottom left of the screen
@@ -66,7 +69,7 @@ class MapLayer extends Component {
       button.id        = overlay.id
       button.className = overlay.className
 
-      document.body.appendChild(button)
+      buttonsElement.appendChild(button)
     })
 
     // Note needs this patch https://github.com/openseadragon/openseadragon/pull/1133

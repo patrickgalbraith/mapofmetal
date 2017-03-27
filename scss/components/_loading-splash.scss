@@ -108,4 +108,13 @@
       }
     }
   }
+
+  .Page.transition-leave & {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  .Page.transition-leave-active & {
+    opacity: 0;
+  }
 }
