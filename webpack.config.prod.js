@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 
-const environment = JSON.stringify(process.env.NODE_ENV || 'production')
+const environment = JSON.stringify(process.env.NODE_ENV || 'production').trim()
 
 console.log('WEBPACK_ENV', 'prod')
 
@@ -24,7 +24,7 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': environment
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: './static/dist/vendor.bundle.js' }),
     new webpack.optimize.UglifyJsPlugin({
