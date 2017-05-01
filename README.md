@@ -1,6 +1,6 @@
 ![Logo](http://i.imgur.com/oQaK5uU.jpg)
 
-This project contains the source code and data for the [Map of Metal website](https://mapofmetal.com) first launched in 2010. An interactive map of Metal history and the influential bands that helped shape the genres we know today.
+This project contains the source code and data for the [Map of Metal website](https://mapofmetal.com) first launched in 2009. An interactive map of Metal history and the influential bands that helped shape the genres we know today.
 
 ### https://mapofmetal.com
 
