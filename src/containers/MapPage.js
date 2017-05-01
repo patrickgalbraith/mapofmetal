@@ -1,3 +1,6 @@
+// @flow
+import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, ThunkedDispatch as Dispatch } from '../types'
+
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -20,6 +23,32 @@ import { changeMapCenter, dragStart, dragEnd } from '../actions/Map'
 import { selectGenre } from '../actions/Genre'
 
 class MapPage extends Component {
+  state: {
+    currentModal: ?{
+      key: string,
+      component: AboutModal | SettingsModal | ShareModal | void
+    },
+    currentTime: number
+  }
+
+  props: {
+    key: ?string,
+    className: ?string,
+    overlays: GenreOverlay[],
+    currentGenre: GenreInfoItem,
+    currentTrackList: {
+      genre: GenreInfoItem,
+      trackNo: number
+    },
+    mapCenter: MapCenterPoint,
+    mapDragging: boolean,
+    selectGenre: Dispatch,
+    changeMapCenter: Dispatch,
+    dragStart: Dispatch,
+    dragEnd: Dispatch,
+    skipToTrack: Dispatch
+  }
+
   constructor() {
     super()
 
@@ -82,14 +111,14 @@ class MapPage extends Component {
       currentGenre,
       currentTrackList,
       mapCenter,
-      //mapDragging,
+      mapDragging,
       changeMapCenter,
       dragStart,
       dragEnd
     } = this.props
 
     const Modal   = currentModal ? currentModal.component : null
-    const classes = ['MapPage', this.props.className].join(' ')
+    const classes = ['MapPage', this.props.className, (mapDragging ? 'is-dragging' : '')].join(' ')
 
     return (
       <div className={classes} key={this.props.key}>
@@ -113,7 +142,7 @@ class MapPage extends Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
           { Modal ?
-            <Modal key={currentModal.key} close={() => this.closeModal()} />
+            <Modal key={currentModal ? currentModal.key : null} close={() => this.closeModal()} />
           : null }
         </ReactCSSTransitionGroup>
 
@@ -137,7 +166,7 @@ const mapStateToProps = (state, ownProps) => {
       trackNo: state.app.nowPlaying.trackNo
     },
     mapCenter:        state.map.center,
-    //mapDragging:      state.map.dragging
+    mapDragging:      state.map.dragging
   }
 }
 

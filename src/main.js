@@ -1,3 +1,6 @@
+// @flow
+import type { State } from './reducers'
+
 import React from 'react'
 import { render } from 'react-dom'
 import { createStore, combineReducers } from 'redux'
@@ -13,15 +16,12 @@ import { ENV } from './constants'
 if (ENV === 'development')
   require('./styles')
 
-const initialState = {
-  map: {
-    overlays: []
-  },
-  genres: []
-}
+const initialState: State = null
 
 // Add css class for environment to enable development styles
-document.body.classList.add(`env-${process.env.NODE_ENV}`)
+if (document.body && process.env.NODE_ENV) {
+  document.body.classList.add(`env-${process.env.NODE_ENV}`)
+}
 
 const store = configureStore(initialState)
 

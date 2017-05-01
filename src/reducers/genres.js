@@ -1,12 +1,16 @@
+// @flow
+import type { GenreInfo } from '../types'
 import {
   GENRE_INFO_REQUEST,
   GENRE_INFO_SUCCESS,
   TRACKLIST_VIDEOS_EXHAUSTED
 } from '../constants'
 
-const initialState = []
+export type State = GenreInfo[]
 
-export default function genres(state = initialState, action) {
+const initialState: State = []
+
+export default function genres(state: State = initialState, action: any): State {
   if (action.type === GENRE_INFO_SUCCESS) {
     return action.genreInfo
   }

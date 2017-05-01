@@ -1,3 +1,5 @@
+// @flow
+import type { Action, GenreInfo, GenreOverlay, ThunkedDispatch } from '../types'
 import {
   GENRE_SELECTED,
 
@@ -10,20 +12,27 @@ import {
   GENRE_OVERLAYS_FAILURE
 } from '../constants'
 
-export function selectGenre(genreId) {
+export function selectGenre(genreId: string): {
+  ...Action,
+  newGenre: string
+} {
   return {
     type: GENRE_SELECTED,
     newGenre: genreId
   }
 }
 
-function requestGenreInfo() {
+function requestGenreInfo(): Action {
   return {
     type: GENRE_INFO_REQUEST
   }
 }
 
-function receiveGenreInfo(json) {
+function receiveGenreInfo(json: GenreInfo[]): {
+  ...Action,
+  genreInfo: GenreInfo[],
+  receivedAt: number
+} {
   return {
     type: GENRE_INFO_SUCCESS,
     genreInfo: json,
@@ -31,7 +40,11 @@ function receiveGenreInfo(json) {
   }
 }
 
-function failureGenreInfo(error) {
+function failureGenreInfo(error: string): {
+  ...Action,
+  error: string,
+  receivedAt: number
+} {
   return {
     type: GENRE_INFO_FAILURE,
     error,
@@ -40,7 +53,7 @@ function failureGenreInfo(error) {
 }
 
 export function fetchGenreInfo() {
-  return dispatch => {
+  return (dispatch: ThunkedDispatch) => {
     dispatch(requestGenreInfo())
     return fetch('/data/genre-info.json')
       .then(response => response.json())
@@ -49,13 +62,17 @@ export function fetchGenreInfo() {
   }
 }
 
-function requestGenreOverlays() {
+function requestGenreOverlays(): Action {
   return {
     type: GENRE_OVERLAYS_REQUEST
   }
 }
 
-function receiveGenreOverlays(json) {
+function receiveGenreOverlays(json: GenreOverlay[]): {
+  ...Action,
+  genreOverlays: GenreOverlay[],
+  receivedAt: number
+} {
   return {
     type: GENRE_OVERLAYS_SUCCESS,
     genreOverlays: json,
@@ -63,7 +80,11 @@ function receiveGenreOverlays(json) {
   }
 }
 
-function failureGenreOverlays(error) {
+function failureGenreOverlays(error: string): {
+  ...Action,
+  error: string,
+  receivedAt: number
+} {
   return {
     type: GENRE_OVERLAYS_FAILURE,
     error,
@@ -72,7 +93,7 @@ function failureGenreOverlays(error) {
 }
 
 export function fetchGenreOverlays() {
-  return dispatch => {
+  return (dispatch: ThunkedDispatch) => {
     dispatch(requestGenreOverlays())
     return fetch('/data/genre-overlays.json')
       .then(response => response.json())

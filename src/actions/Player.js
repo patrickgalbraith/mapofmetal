@@ -1,3 +1,5 @@
+// @flow
+import type { Action } from '../types'
 import {
   PLAYER_PLAY, PLAYER_PAUSE, PLAYER_STOP,
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
@@ -7,13 +9,17 @@ import {
   PLAYER_QUALITY_CHANGE
 } from '../constants'
 
-export function apiReady() {
+export function apiReady(): Action {
   return {
     type: PLAYER_API_READY
   }
 }
 
-export function ready(videoId, volume) {
+export function ready(videoId: string, volume: number): {
+  ...Action,
+  videoId: string,
+  volume: number
+} {
   return {
     type: PLAYER_READY,
     videoId,
@@ -21,74 +27,98 @@ export function ready(videoId, volume) {
   }
 }
 
-export function play() {
+export function play(): Action {
   return {
     type: PLAYER_PLAY
   }
 }
 
-export function pause() {
+export function pause(): Action {
   return {
     type: PLAYER_PAUSE
   }
 }
 
-export function stop() {
+export function stop(): Action {
   return {
     type: PLAYER_STOP
   }
 }
 
-export function seek(seconds) {
+export function seek(seconds: number): {
+  ...Action,
+  seconds: number
+} {
   return {
     type: PLAYER_SEEK,
     seconds
   }
 }
 
-export function load(videoId) {
+export function load(videoId: string): {
+  ...Action,
+  videoId: string
+} {
   return {
     type: PLAYER_LOAD,
     videoId
   }
 }
 
-export function volume(volume) {
+export function volume(volume: number): {
+  ...Action,
+  volume: number
+} {
   return {
     type: PLAYER_VOLUME,
     volume: Math.max(0, Math.min(100, volume))
   }
 }
 
-export function error(errorCode) {
+export function error(errorCode: string): {
+  ...Action,
+  errorCode: string
+} {
   return {
     type: PLAYER_ERROR,
     errorCode
   }
 }
 
-export function stateChange(playerState) {
+export function stateChange(playerState: number): {
+  ...Action,
+  playerState: number
+} {
   return {
     type: PLAYER_STATE_CHANGE,
     playerState
   }
 }
 
-export function timeChange(elapsedSeconds) {
+export function timeChange(elapsedSeconds: number): {
+  ...Action,
+  elapsedSeconds: number
+} {
   return {
     type: PLAYER_TIME_CHANGE,
     elapsedSeconds
   }
 }
 
-export function durationChange(duration) {
+export function durationChange(duration: number): {
+  ...Action,
+  duration: number
+} {
   return {
     type: PLAYER_DURATION_CHANGE,
     duration
   }
 }
 
-export function qualityChange(quality) {
+export function qualityChange(quality: string): {
+  ...Action,
+  quality: string
+} {
   return {
     type: PLAYER_QUALITY_CHANGE,
     quality

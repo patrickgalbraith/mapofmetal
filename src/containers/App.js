@@ -1,3 +1,6 @@
+// @flow
+import type { ThunkedDispatch as Dispatch } from '../types'
+
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -9,6 +12,18 @@ import FatalErrorScreen from '../components/FatalErrorScreen'
 import { fetchGenreInfo, fetchGenreOverlays } from '../actions/Genre'
 
 class App extends Component {
+  state: {
+    entered: boolean,
+    fatalRenderError: boolean
+  }
+
+  props: {
+    fatalError: boolean,
+    loading: boolean,
+    fetchGenreInfo: Dispatch,
+    fetchGenreOverlays: Dispatch
+  }
+
   constructor() {
     super()
 

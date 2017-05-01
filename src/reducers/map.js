@@ -1,3 +1,5 @@
+// @flow
+import type { GenreOverlay, MapCenterPoint } from '../types'
 import {
   MAP_MOVE,
   MAP_DRAG_START,
@@ -7,13 +9,19 @@ import {
   GENRE_OVERLAYS_FAILURE
 } from '../constants'
 
-const initialState = {
+export type State = {
+  overlays: GenreOverlay[],
+  center: ?MapCenterPoint,
+  dragging: boolean
+}
+
+const initialState: State = {
   overlays: [],
   center:   null,
   dragging: false
 }
 
-export default function map(state = initialState, action) {
+export default function map(state: State = initialState, action: any): State {
   if (action.type === GENRE_OVERLAYS_SUCCESS) {
     return Object.assign({}, state, {
       overlays: action.genreOverlays

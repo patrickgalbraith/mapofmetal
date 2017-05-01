@@ -1,3 +1,6 @@
+// @flow
+import type { Middleware } from 'redux'
+
 import {
   PLAYER_ERROR,
   TRACKLIST_VIDEOS_EXHAUSTED
@@ -5,7 +8,7 @@ import {
 
 import { nextTrack, nextVideo } from '../actions/TrackList'
 
-const middleware = store => next => action => {
+const middleware: Middleware = store => next => action => {
   // On playback error skip to next video available
   if (action.type === PLAYER_ERROR) {
     store.dispatch(nextVideo())

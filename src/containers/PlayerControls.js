@@ -1,3 +1,6 @@
+// @flow
+import type { State } from '../reducers'
+
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import PlayerControls from '../components/PlayerControls'
@@ -10,14 +13,14 @@ class PlayerControlsContainer extends Component {
   }
 }
 
-const getCurrentTrack = (state) => {
+const getCurrentTrack = (state: State) => {
   const { nowPlaying } = state.app
   const genre          = state.genres.find(g => g.id === nowPlaying.genre)
   const trackNo        = nowPlaying.trackNo
   return genre.tracklist[trackNo]
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: State, ownProps) => {
   return {
     duration: state.player.duration,
     volume: state.player.volume,

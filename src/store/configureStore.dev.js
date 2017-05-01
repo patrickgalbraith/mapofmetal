@@ -1,9 +1,16 @@
+// @flow
 import { createStore, applyMiddleware, compose } from 'redux'
 import { persistState } from 'redux-devtools'
 import thunk from 'redux-thunk'
 import player from '../middleware/player'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
+
+declare var module : {
+  hot : {
+    accept(path:string, callback:() => void): void
+  }
+}
 
 const enhancer = compose(
   applyMiddleware(thunk, player),
@@ -15,7 +22,7 @@ const enhancer = compose(
   )
 )
 
-export default function configureStore(initialState) {
+export default function configureStore(initialState: any) {
   const store = createStore(rootReducer, initialState, enhancer)
 
   if (module.hot) {

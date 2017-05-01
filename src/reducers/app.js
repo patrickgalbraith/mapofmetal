@@ -1,3 +1,5 @@
+// @flow
+import type { Action } from '../types'
 import {
   GENRE_SELECTED,
   GENRE_INFO_FAILURE,
@@ -7,7 +9,17 @@ import {
   TRACKLIST_NEXT_VIDEO
 } from '../constants'
 
-const initialState = {
+export type State = {
+  selectedGenre: string,
+  nowPlaying: {
+    genre:   string,
+    trackNo: number,
+    videoNo: number
+  },
+  fatalError: boolean
+}
+
+const initialState: State = {
   selectedGenre: 'heavymetal',
   nowPlaying: {
     genre:   'heavymetal',
@@ -17,7 +29,7 @@ const initialState = {
   fatalError: false
 }
 
-export default function app(state = initialState, action) {
+export default function app(state: State = initialState, action: any): State {
   if (
     action.type === GENRE_SELECTED &&
     action.newGenre !== state.selectedGenre

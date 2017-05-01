@@ -1,3 +1,6 @@
+// @flow
+import type { State } from '../reducers'
+import type { Action, GenreInfo, TrackInfo, ThunkedDispatch } from '../types'
 import {
   TRACKLIST_SKIP,
   TRACKLIST_NEXT,
@@ -6,12 +9,12 @@ import {
   TRACKLIST_VIDEOS_EXHAUSTED
 } from '../constants'
 
-const isNextTrackValid = (genreInfo, trackNo) => (
+const isNextTrackValid = (genreInfo: GenreInfo, trackNo: number): boolean => (
   trackNo >= 0 &&
   genreInfo.tracklist.length > trackNo
 )
 
-const isNextVideoValid = (genreInfo, trackNo, videoNo) => {
+const isNextVideoValid = (genreInfo: GenreInfo, trackNo: number, videoNo: number): boolean => {
   const track = genreInfo.tracklist[trackNo]
   return (
     (
@@ -22,24 +25,32 @@ const isNextVideoValid = (genreInfo, trackNo, videoNo) => {
   )
 }
 
-export const nextTrack = () => (dispatch, getState) => {
-  const state       = getState()
-  const nowPlaying  = state.app.nowPlaying
-  const genreInfo   = state.genres.find((g) => g.id === nowPlaying.genre)
+export const nextTrack = () => (dispatch: ThunkedDispatch, getState: () => State) => {
+  const state: State = getState()
 
-  let valid = isNextTrackValid(genreInfo, nowPlaying.trackNo + 1)
+  if (state == null)
+    return
+
+  const nowPlaying            = state.app.nowPlaying
+  const genreInfo: ?GenreInfo = state.genres.find((g) => g.id === nowPlaying.genre)
+
+  let valid = genreInfo != null && isNextTrackValid(genreInfo, nowPlaying.trackNo + 1)
 
   dispatch({
     type:  valid ? TRACKLIST_NEXT : TRACKLIST_EXHAUSTED,
-    genre: genreInfo.id,
+    genre: genreInfo ? genreInfo.id : null,
   })
 }
 
-export const skipToTrack = (genre, trackNo) => (dispatch, getState) => {
-  const state     = getState()
-  const genreInfo = state.genres.find((g) => g.id === genre)
+export const skipToTrack = (genre: string, trackNo: number) => (dispatch: ThunkedDispatch, getState: () => State) => {
+  const state: State         = getState()
 
-  if (!isNextTrackValid(genreInfo, trackNo))
+  if (state == null)
+    return null
+
+  const genreInfo: ?GenreInfo = state.genres.find((g) => g.id === genre)
+
+  if (genreInfo == null || !isNextTrackValid(genreInfo, trackNo))
     return null
 
   dispatch({
@@ -49,16 +60,20 @@ export const skipToTrack = (genre, trackNo) => (dispatch, getState) => {
   })
 }
 
-export const nextVideo = () => (dispatch, getState) => {
-  const state      = getState()
-  const nowPlaying = state.app.nowPlaying
-  const genreInfo  = state.genres.find((g) => g.id === nowPlaying.genre)
+export const nextVideo = () => (dispatch: ThunkedDispatch, getState: () => State) => {
+  const state: State = getState()
 
-  let valid = isNextVideoValid(genreInfo, nowPlaying.trackNo, nowPlaying.videoNo + 1)
+  if (state == null)
+    return
+
+  const nowPlaying            = state.app.nowPlaying
+  const genreInfo: ?GenreInfo = state.genres.find((g) => g.id === nowPlaying.genre)
+
+  let valid = genreInfo != null && isNextVideoValid(genreInfo, nowPlaying.trackNo, nowPlaying.videoNo + 1)
 
   dispatch({
     type:    valid ? TRACKLIST_NEXT_VIDEO : TRACKLIST_VIDEOS_EXHAUSTED,
-    genre:   genreInfo.id,
+    genre:   genreInfo ? genreInfo.id : null,
     trackNo: nowPlaying.trackNo
   })
 }

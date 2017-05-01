@@ -1,3 +1,4 @@
+// @flow
 import {
   PLAYER_PLAY, PLAYER_PAUSE, PLAYER_STOP,
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
@@ -10,7 +11,17 @@ import {
   PLAYER_STATE_PAUSED
 } from '../constants'
 
-const initialState = {
+export type State = {
+  apiReady:    boolean,
+  playerReady: boolean,
+  state:       number,
+  volume:      ?number,
+  videoId:     ?string,
+  duration:    number,
+  quality:     ?string
+}
+
+const initialState: State = {
   apiReady:    false,
   playerReady: false,
   state:       PLAYER_STATE_UNSTARTED,
@@ -20,7 +31,7 @@ const initialState = {
   quality:     PLAYER_QUALITY.get('default')
 }
 
-export default function player(state = initialState, action) {
+export default function player(state: State = initialState, action: any): State {
   if (action.type === PLAYER_API_READY) {
     return Object.assign({}, state, {
       apiReady: true

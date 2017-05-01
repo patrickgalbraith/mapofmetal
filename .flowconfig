@@ -1,0 +1,10 @@
+[ignore]
+./static/dist
+./scripts
+
+[include]
+./src/
+
+[libs]
+
+[options]
