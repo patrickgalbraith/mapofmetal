@@ -1,6 +1,13 @@
+// @flow
 import React, { Component, PropTypes } from 'react'
 
+type Props = {
+  close: () => mixed
+}
+
 export default class About extends Component {
+  props: Props
+
   render() {
     const { close } = this.props
 

@@ -1,4 +1,5 @@
 // @flow
+import type { State } from '../reducers'
 import type { ThunkedDispatch as Dispatch } from '../types'
 
 import React, { Component, PropTypes } from 'react'
@@ -77,7 +78,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: State) => {
+  if (state == null) {
+    return {}
+  }
+
   return {
     fatalError: state.app.fatalError,
     loading:    state.genres.length <= 0 || state.map.overlays.length <= 0

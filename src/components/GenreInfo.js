@@ -1,6 +1,16 @@
+// @flow
 import React, { Component, PropTypes } from 'react'
+import type { GenreInfo as GenreInfoItem } from '../types'
+
+type Props = {
+  current: GenreInfoItem, 
+  playing: GenreInfoItem,
+  onNowPlayingClick: () => void
+}
 
 export default class GenreInfo extends Component {
+  props: Props
+
   render() {
     const { current, playing, onNowPlayingClick } = this.props
     const showNowPlaying = playing && current.id != playing.id

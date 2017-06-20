@@ -1,12 +1,19 @@
+// @flow
 import React, { Component, PropTypes } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { POSTER_LINK } from '../constants'
 
-const initialProps = {
-  loading: true
+type Props = {
+  loading: boolean,
+  onEnter: () => void
 }
 
-export default function LoadingSplash(props = initialProps) {
+const initialProps: Props = {
+  loading: true,
+  onEnter: () => {}
+}
+
+export default function LoadingSplash(props: Props = initialProps) {
   const { loading, onEnter } = props
 
   return (

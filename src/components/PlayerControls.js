@@ -1,10 +1,26 @@
+// @flow
+import type { TrackInfo } from '../types'
 import React, { Component, PropTypes } from 'react'
 import { formatSeconds, relativeMousePosition } from '../helpers'
 
+type Props = {
+  track: TrackInfo,
+  currentTime: number,
+  duration: number,
+  volume: number,
+  onPlayClick: () => void,
+  onPauseClick: () => void,
+  onVolumeChange: (number) => void
+}
+
 export default class PlayerControls extends Component {
-  handleVolumeClick(e) {
+  props: Props
+
+  handleVolumeClick(e: MouseEvent) {
+    let currentTarget = e.currentTarget
+
     const pos    = relativeMousePosition(e)
-    const width  = e.currentTarget.clientWidth
+    const width  = currentTarget instanceof HTMLElement ? currentTarget.clientWidth : 0
     const volume = Math.round(pos.x / width * 100)
 
     if (Number.isInteger(volume))

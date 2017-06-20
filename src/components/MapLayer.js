@@ -1,33 +1,65 @@
-import React, { Component, PropTypes } from 'react'
+// @flow
+import type { MapCenterPoint, GenreOverlay } from '../types'
+import React, { Component } from 'react'
 import OpenSeadragon from 'openseadragon'
 
 const IMAGE_WIDTH  = 4961
 const IMAGE_HEIGHT = 3508
 
+type Props = {
+  tileSources:    string,
+  overlays:       [GenreOverlay],
+  centerPosition: MapCenterPoint,
+  onOverlayClick: (string, string) => void,
+  onDragStart:    () => void,
+  onDragEnd:      () => void
+}
+
+declare module 'openseadragon' {
+  declare type Options = any
+  declare class Viewer<options: Options> {
+    viewport: any,
+    addHandler: (string, *) => any,
+    destroy: () => void
+  }
+  declare function OpenSeadragon(options: Options): Viewer<Options>
+}
+
 class MapLayer extends Component {
+  props: Props
+  viewer: OpenSeadragon.Viewer
+  viewerElement: HTMLDivElement
+  dragging: boolean
+
   render() {
     return <div className='MapLayerPlaceholder' />
   }
 
-  parsePosition(position) {
+  parsePosition(position: MapCenterPoint): [number, number] {
+    let newPosition: [number, number] = [0, 0]
+
     if (position[0] === 'left')
-      position[0] = 0
+      newPosition[0] = 0
     else if(position[0] === 'right')
-      position[0] = IMAGE_WIDTH
+      newPosition[0] = IMAGE_WIDTH
+    else
+      newPosition[0] = position[0]
 
     if (position[1] === 'top')
-      position[1] = 0
+      newPosition[1] = 0
     else if (position[1] === 'bottom')
-      position[1] = IMAGE_HEIGHT
+      newPosition[1] = IMAGE_HEIGHT
+    else
+      newPosition[1] = position[1]
 
-    return position
+    return newPosition
   }
 
   shouldComponentUpdate() {
     return false
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     const { centerPosition } = nextProps
 
     if (centerPosition && this.props.centerPosition !== centerPosition) {
@@ -55,7 +87,8 @@ class MapLayer extends Component {
     this.viewerElement = document.createElement('div')
     this.viewerElement.className = 'MapLayer'
 
-    document.body.appendChild(this.viewerElement)
+    if (document.body)
+      document.body.appendChild(this.viewerElement)
 
     let buttonsElement = document.createElement('div')
     buttonsElement.className = 'MapLayer-buttons'
@@ -137,26 +170,25 @@ class MapLayer extends Component {
     // Handle click events on genre overlays
     const convertOverlayIdToGenreId = (overlayId) => overlayId.replace('map-overlay__', '')
 
-    document.body.addEventListener('click', (el) => {
-      if (el.target.classList.contains('map-genre-overlay')) {
-        onOverlayClick(convertOverlayIdToGenreId(el.target.id), el.target.id)
-      }
-    })
+    if (document.body)
+      document.body.addEventListener('click', (e: MouseEvent) => {
+        let target = e.target
+
+        if (
+          target instanceof HTMLDivElement && 
+          target.classList.contains('map-genre-overlay')
+        ) {
+          onOverlayClick(convertOverlayIdToGenreId(target.id), target.id)
+        }
+      })
   }
 
   componentWillUnmount() {
     this.viewer.destroy()
-    document.body.removeChild(this.viewerElement)
-  }
-}
 
-MapLayer.propTypes = {
-  tileSources:    PropTypes.string.isRequired,
-  overlays:       PropTypes.array.isRequired,
-  centerPosition: PropTypes.array,
-  onOverlayClick: PropTypes.func.isRequired,
-  onDragStart:    PropTypes.func.isRequired,
-  onDragEnd:      PropTypes.func.isRequired
+    if (document.body)
+      document.body.removeChild(this.viewerElement)
+  }
 }
 
 export default MapLayer

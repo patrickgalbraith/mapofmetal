@@ -1,4 +1,5 @@
 // @flow
+import type { State as ReduxState } from '../reducers'
 import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, ThunkedDispatch as Dispatch } from '../types'
 
 import React, { Component, PropTypes } from 'react'
@@ -22,34 +23,39 @@ import { skipToTrack } from '../actions/TrackList'
 import { changeMapCenter, dragStart, dragEnd } from '../actions/Map'
 import { selectGenre } from '../actions/Genre'
 
+type ModalReference = {
+  key: string,
+  component: ?ReactClass<*>
+}
+
+type State = {
+  currentModal: ModalReference | null,
+  currentTime: number
+}
+
+type Props = {
+  key: ?string,
+  className: ?string,
+  overlays: GenreOverlay[],
+  currentGenre: GenreInfoItem,
+  currentTrackList: {
+    genre: GenreInfoItem,
+    trackNo: number
+  },
+  mapCenter: MapCenterPoint,
+  mapDragging: boolean,
+  selectGenre: Dispatch,
+  changeMapCenter: Dispatch,
+  dragStart: Dispatch,
+  dragEnd: Dispatch,
+  skipToTrack: Dispatch
+}
+
 class MapPage extends Component {
-  state: {
-    currentModal: ?{
-      key: string,
-      component: AboutModal | SettingsModal | ShareModal | void
-    },
-    currentTime: number
-  }
+  props: Props
+  state: State
 
-  props: {
-    key: ?string,
-    className: ?string,
-    overlays: GenreOverlay[],
-    currentGenre: GenreInfoItem,
-    currentTrackList: {
-      genre: GenreInfoItem,
-      trackNo: number
-    },
-    mapCenter: MapCenterPoint,
-    mapDragging: boolean,
-    selectGenre: Dispatch,
-    changeMapCenter: Dispatch,
-    dragStart: Dispatch,
-    dragEnd: Dispatch,
-    skipToTrack: Dispatch
-  }
-
-  constructor() {
+  constructor(): void {
     super()
 
     this.state = {
@@ -58,13 +64,13 @@ class MapPage extends Component {
     }
   }
 
-  changeGenre(genreId) {
+  changeGenre(genreId: string): void {
     const { selectGenre } = this.props
     selectGenre(genreId)
   }
 
-  openModal(type) {
-    let currentModal = null
+  openModal(type: string): void {
+    let currentModal: ?ModalReference = null
 
     switch(type) {
       case 'About':
@@ -90,13 +96,13 @@ class MapPage extends Component {
     this.setState({ currentModal })
   }
 
-  closeModal() {
+  closeModal(): void {
     this.setState({
       currentModal: null
     })
   }
 
-  changeTrack(trackNo) {
+  changeTrack(trackNo: number): void {
     this.props.skipToTrack(this.props.currentGenre.id, trackNo)
   }
 
@@ -117,8 +123,8 @@ class MapPage extends Component {
       dragEnd
     } = this.props
 
-    const Modal   = currentModal ? currentModal.component : null
-    const classes = ['MapPage', this.props.className, (mapDragging ? 'is-dragging' : '')].join(' ')
+    const Modal: ?ReactClass<*> = currentModal ? currentModal.component : null
+    const classes: string = ['MapPage', this.props.className, (mapDragging ? 'is-dragging' : '')].join(' ')
 
     return (
       <div className={classes} key={this.props.key}>
@@ -141,8 +147,8 @@ class MapPage extends Component {
           transitionName="transition"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
-          { Modal ?
-            <Modal key={currentModal ? currentModal.key : null} close={() => this.closeModal()} />
+          { Modal && currentModal && currentModal.key ?
+            <Modal key={currentModal.key} close={() => this.closeModal()} />
           : null }
         </ReactCSSTransitionGroup>
 
@@ -157,12 +163,16 @@ class MapPage extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: ReduxState) => {
+  if (state == null) {
+    return
+  }
+
   return {
     overlays:         state.map.overlays,
-    currentGenre:     state.genres.find(g => g.id === state.app.selectedGenre),
+    currentGenre:     state.genres.find(g => state && g.id === state.app.selectedGenre),
     currentTrackList: {
-      genre:   state.genres.find(g => g.id === state.app.nowPlaying.genre),
+      genre:   state.genres.find(g => state && g.id === state.app.nowPlaying.genre),
       trackNo: state.app.nowPlaying.trackNo
     },
     mapCenter:        state.map.center,

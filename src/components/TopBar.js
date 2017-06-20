@@ -1,9 +1,18 @@
+// @flow
+import type { MapCenterPoint } from '../types'
 import React, { Component, PropTypes } from 'react'
 import { toggleFullScreen } from '../helpers'
 import { POSTER_LINK } from '../constants'
 
+type Props = {
+  changeMapCenter: (MapCenterPoint) => void, 
+  openModal: (string) => void
+}
+
 export default class TopBar extends Component {
-  openUrl(url) {
+  props: Props
+
+  openUrl(url: string) {
     window.open(url)
   }
 

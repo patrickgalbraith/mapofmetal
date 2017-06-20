@@ -1,3 +1,6 @@
+// @flow
+import type { State as ReduxState } from '../../reducers'
+
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
@@ -5,8 +8,18 @@ import { PLAYER_QUALITY } from '../../constants'
 
 import { qualityChange } from '../../actions/Player'
 
+type Quality = string
+
+type Props = {
+  quality: ?Quality,
+  close: () => mixed,
+  qualityChange: (Quality) => mixed
+}
+
 class Settings extends Component {
-  getNextQuality(quality) {
+  props: Props
+
+  getNextQuality(quality: ?Quality): ?Quality {
     const iterator = PLAYER_QUALITY.entries()
     let nextQuality = null
 
@@ -17,12 +30,22 @@ class Settings extends Component {
     if (nextQuality.done)
       return PLAYER_QUALITY.get('default') // return first item
 
-    return iterator.next().value[0]
+    nextQuality = iterator.next()
+
+    if (nextQuality.value == null)
+      return PLAYER_QUALITY.get('default') // return first item
+
+    return nextQuality.value[0]
   }
 
   toggleStreamQuality() {
     const nextQuality = this.getNextQuality(this.props.quality)
-    this.props.qualityChange(PLAYER_QUALITY.get(nextQuality))
+    const quality = PLAYER_QUALITY.get(nextQuality || 'default')
+
+    if (quality == null)
+      return
+
+    this.props.qualityChange(quality)
   }
 
   render() {
@@ -56,15 +79,17 @@ class Settings extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: ReduxState, ownProps: Props): {
+  quality: ?Quality
+} => {
   return {
     quality: state.player.quality
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: *) => {
   return {
-    qualityChange: (q) => dispatch(qualityChange(q))
+    qualityChange: (q: string) => dispatch(qualityChange(q))
   }
 }
 

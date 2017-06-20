@@ -10,7 +10,7 @@ import map from './map'
 import genres from './genres'
 import player from './player'
 
-export type State = ?{
+export type State = {
   app: AppState,
   map: MapState,
   genres: GenresState,
