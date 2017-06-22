@@ -6,5 +6,6 @@
 ./src/
 
 [libs]
+./flow-typed/
 
 [options]

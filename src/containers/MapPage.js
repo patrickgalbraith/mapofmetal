@@ -164,9 +164,8 @@ class MapPage extends Component {
 }
 
 const mapStateToProps = (state: ReduxState) => {
-  if (state == null) {
+  if (state == null)
     return
-  }
 
   return {
     overlays:         state.map.overlays,

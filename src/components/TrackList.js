@@ -1,10 +1,23 @@
+// @flow
+import type { GenreInfo as GenreInfoItem, TrackInfo } from '../types'
 import React, { Component, PropTypes } from 'react'
 
+type Props = {
+  current: GenreInfoItem, 
+  playing: {
+    genre: GenreInfoItem,
+    trackNo: number
+  }, 
+  onTrackClick: (number) => void
+}
+
 export default class TrackList extends Component {
+  props: Props
+
   render() {
     const { current, playing, onTrackClick } = this.props
 
-    const getTrackLabel = (track) =>
+    const getTrackLabel = (track: TrackInfo) =>
       `${track.title} - ${track.artist} (${track.year})`
 
     const isPlaying = (track, idx) =>

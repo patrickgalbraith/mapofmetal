@@ -15,10 +15,10 @@ export type State = {
   apiReady:    boolean,
   playerReady: boolean,
   state:       number,
-  volume:      ?number,
-  videoId:     ?string,
+  volume:      number | null,
+  videoId:     string | null,
   duration:    number,
-  quality:     ?string
+  quality:     string | void
 }
 
 const initialState: State = {

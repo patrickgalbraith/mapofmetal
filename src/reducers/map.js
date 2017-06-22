@@ -11,7 +11,7 @@ import {
 
 export type State = {
   overlays: GenreOverlay[],
-  center: ?MapCenterPoint,
+  center: MapCenterPoint | null,
   dragging: boolean
 }
 

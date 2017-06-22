@@ -1,3 +1,6 @@
+// @flow
+import type { State as PlayerState } from '../reducers/player'
+import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, ThunkedDispatch as Dispatch } from '../types'
 import React, { Component, PropTypes } from 'react'
 
 import {
@@ -6,7 +9,29 @@ import {
   PLAYER_STATE_ENDED
 } from '../constants'
 
+type Props = {
+  playerState: PlayerState, 
+  nowPlaying: {
+    genre: GenreInfoItem,
+    trackNo: number,
+    videoNo: number
+  },
+  onApiReady: () => void,
+  onReady: (initialYoutubeId: string, initialVolume: number) => void,
+  onStateChange: (playerState: number) => void,
+  onError: (errorCode: number) => void,
+  nextTrack: () => void,
+  loadVideo: () => void,
+  onDuration: () => void,
+  onPlaybackTime: (number) => void
+}
+
 export default class VideoPlayer extends Component {
+  props: Props
+  player: YTVideoPlayer
+  playerElement: HTMLDivElement
+  currentTimer: number | void
+
   constructor() {
     super()
     window.onYouTubeIframeAPIReady = () => this.props.onApiReady()
@@ -21,7 +46,7 @@ export default class VideoPlayer extends Component {
     return false
   }
 
-  loadYoutubeApi() {
+  loadYoutubeApi(): void {
     const id             = 'youtube-api-script'
     const tag            = document.createElement('script')
     const firstScriptTag = document.getElementsByTagName('script')[0]
@@ -32,10 +57,11 @@ export default class VideoPlayer extends Component {
     tag.id  = id
     tag.src = "https://www.youtube.com/iframe_api"
 
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+    if (firstScriptTag.parentNode)
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
   }
 
-  getVideo(tracklist, trackNo, index = 0, fallback = null) {
+  getVideo(tracklist: TrackInfo[], trackNo: number, index: number = 0, fallback: string = ''): string {
     if (!tracklist)
       return fallback
 
@@ -47,22 +73,22 @@ export default class VideoPlayer extends Component {
     return fallback
   }
 
-  getNextVideo(props) {
+  getNextVideo(props: Props): string {
     const { nowPlaying } = props
     return this.getVideo(nowPlaying.genre.tracklist, nowPlaying.trackNo, nowPlaying.videoNo)
   }
 
-  getCurrentVideoId() {
+  getCurrentVideoId(): ?string {
     const videoData = this.player ? this.player.getVideoData() : null
     return videoData ? videoData['video_id'] : null
   }
 
-  getDuration() {
+  getDuration(): number {
     const duration = this.player ? Math.round(this.player.getDuration()) : 0
     return duration ? this.player.getDuration() : 0
   }
 
-  watchCurrentTime() {
+  watchCurrentTime(): void {
     if (this.currentTimer)
       clearInterval(this.currentTimer)
 
@@ -83,7 +109,7 @@ export default class VideoPlayer extends Component {
 
     const initialTrackNo   = nowPlaying.trackNo
     const initialYoutubeId = this.getVideo(nowPlaying.genre.tracklist, initialTrackNo, 0, 'Uq42HUUJFzU')
-    const initialVolume    = (player) => player.isMuted() ? 0 : player.getVolume()
+    const initialVolume    = (player: YTVideoPlayer) => player.isMuted() ? 0 : player.getVolume()
 
     this.player = new YT.Player(this.playerElement.id, {
       width:   '323',
@@ -91,8 +117,8 @@ export default class VideoPlayer extends Component {
       videoId: initialYoutubeId,
       events: {
         onReady:       ()  => this.props.onReady(initialYoutubeId, initialVolume(this.player)),
-        onStateChange: (e) => this.props.onStateChange(e.data),
-        onError:       (e) => this.props.onError(e.data)
+        onStateChange: (e: {data: number}) => this.props.onStateChange(e.data),
+        onError:       (e: {data: number}) => this.props.onError(e.data)
       },
       playerVars: {
         autoplay: 1,
@@ -107,7 +133,7 @@ export default class VideoPlayer extends Component {
     this.watchCurrentTime()
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     const { playerState, nowPlaying } = this.props
     const {
       nowPlaying:  nextNowPlaying,

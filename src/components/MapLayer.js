@@ -8,21 +8,11 @@ const IMAGE_HEIGHT = 3508
 
 type Props = {
   tileSources:    string,
-  overlays:       [GenreOverlay],
+  overlays:       GenreOverlay[],
   centerPosition: MapCenterPoint,
   onOverlayClick: (string, string) => void,
   onDragStart:    () => void,
   onDragEnd:      () => void
-}
-
-declare module 'openseadragon' {
-  declare type Options = any
-  declare class Viewer<options: Options> {
-    viewport: any,
-    addHandler: (string, *) => any,
-    destroy: () => void
-  }
-  declare function OpenSeadragon(options: Options): Viewer<Options>
 }
 
 class MapLayer extends Component {

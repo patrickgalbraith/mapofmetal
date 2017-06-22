@@ -14,7 +14,8 @@ export type TrackInfo = {
   artist: string,
   title: string,
   year: string,
-  videos: string | Array<string>
+  videos: string | Array<string>,
+  _failed?: boolean
 }
 
 export type GenreInfo = {
