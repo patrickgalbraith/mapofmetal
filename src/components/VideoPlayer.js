@@ -10,7 +10,7 @@ import {
 } from '../constants'
 
 type Props = {
-  playerState: PlayerState, 
+  playerState: PlayerState,
   nowPlaying: {
     genre: GenreInfoItem,
     trackNo: number,
@@ -21,8 +21,8 @@ type Props = {
   onStateChange: (playerState: number) => void,
   onError: (errorCode: number) => void,
   nextTrack: () => void,
-  loadVideo: () => void,
-  onDuration: () => void,
+  loadVideo: (videoId: string) => void,
+  onDuration: (duration: number) => void,
   onPlaybackTime: (number) => void
 }
 
@@ -34,7 +34,7 @@ export default class VideoPlayer extends Component {
 
   constructor() {
     super()
-    window.onYouTubeIframeAPIReady = () => this.props.onApiReady()
+    window.onYouTubeIframeAPIReady = (): void => this.props.onApiReady()
     this.loadYoutubeApi()
   }
 
@@ -142,7 +142,7 @@ export default class VideoPlayer extends Component {
 
     // Initialize when API is ready
     if (nextPlayerState.apiReady !== playerState.apiReady) {
-      window.setTimeout(() => {
+      setTimeout((): void => {
         this.initializePlayer()
       }, 3000)
     }
@@ -165,7 +165,8 @@ export default class VideoPlayer extends Component {
 
     // Volume changed
     if (nextPlayerState.volume !== this.player.getVolume()) {
-      this.player.setVolume(nextPlayerState.volume)
+      if (nextPlayerState.volume != null)
+        this.player.setVolume(nextPlayerState.volume)
 
       if (this.player.isMuted())
         this.player.unMute()
@@ -208,15 +209,18 @@ export default class VideoPlayer extends Component {
     this.playerElement.id        = 'yt-video-player'
     this.playerElement.className = 'VideoPlayer'
 
-    document.body.appendChild(this.playerElement)
+    if (document.body)
+      document.body.appendChild(this.playerElement)
 
-    window.setTimeout(() => {
+    setTimeout((): void => {
       this.playerElement.classList.add('active')
     }, 2500)
   }
 
   componentWillUnmount() {
     this.player.destroy()
-    document.body.removeChild(this.playerElement)
+
+    if (document.body)
+      document.body.removeChild(this.playerElement)
   }
 }

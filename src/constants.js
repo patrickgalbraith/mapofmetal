@@ -26,7 +26,7 @@ export const PLAYER_STATE_PAUSED    : number = 2
 export const PLAYER_STATE_BUFFERING : number = 3
 export const PLAYER_STATE_CUED      : number = 5
 
-export const PLAYER_QUALITY = new Map([
+export const PLAYER_QUALITY: Map<string, string> = new Map([
   ['default', 'default'],
   ['small',   'small'],
   ['medium',  'medium'],
