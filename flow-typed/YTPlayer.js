@@ -4,8 +4,8 @@ declare class YTVideoPlayer {
   cueVideoById(videoId: string | {videoId: string,
                     startSeconds?: number,
                     endSeconds?: number,
-                    suggestedQuality?: string }, 
-                  startSeconds?: number, 
+                    suggestedQuality?: string },
+                  startSeconds?: number,
                   suggestedQuality?: string): void;
 
   loadVideoById(videoId: string | {videoId: string,
@@ -28,7 +28,7 @@ declare class YTVideoPlayer {
                       suggestedQuality?: string},
                     startSeconds?: number,
                     suggestedQuality?: string): void;
-                    
+
   cuePlaylist(playlist: string | string[] | {list: string | string[],
                     listType?: string,
                     index?: number,
@@ -85,7 +85,7 @@ declare class YTVideoPlayer {
   getIframe(): HTMLIFrameElement;
   destroy(): void;
 
-  // Undocumented functions
+  // Undocumented function
   getVideoData(): {
     title?: string,
     author?: string,
