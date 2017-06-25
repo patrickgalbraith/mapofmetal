@@ -1,4 +1,5 @@
 // @flow
+import type { Viewer as OpenSeadragonViewer } from 'openseadragon'
 import type { MapCenterPoint, GenreOverlay } from '../types'
 import React, { Component } from 'react'
 import OpenSeadragon from 'openseadragon'
@@ -17,7 +18,7 @@ type Props = {
 
 class MapLayer extends Component {
   props: Props
-  viewer: OpenSeadragon.Viewer
+  viewer: OpenSeadragonViewer
   viewerElement: HTMLDivElement
   dragging: boolean
 
@@ -117,7 +118,7 @@ class MapLayer extends Component {
       overlays:              overlays
     })
 
-    this.viewer.addHandler('open', (e) => {
+    this.viewer.addHandler('open', () => {
       let zoomLevel = (IMAGE_WIDTH / window.innerWidth)
       let startCenter = centerPosition || [1023-62, 750]
 
@@ -143,14 +144,14 @@ class MapLayer extends Component {
       }, 2000)
     })
 
-    this.viewer.addHandler('animation-start', (e) => {
+    this.viewer.addHandler('animation-start', () => {
       if(!this.dragging) {
         this.dragging = true
         onDragStart()
       }
     })
 
-    this.viewer.addHandler('animation-finish', (e) => {
+    this.viewer.addHandler('animation-finish', () => {
       if(this.dragging) {
         this.dragging = false
         onDragEnd()
@@ -165,7 +166,7 @@ class MapLayer extends Component {
         let target = e.target
 
         if (
-          target instanceof HTMLDivElement && 
+          target instanceof HTMLDivElement &&
           target.classList.contains('map-genre-overlay')
         ) {
           onOverlayClick(convertOverlayIdToGenreId(target.id), target.id)
