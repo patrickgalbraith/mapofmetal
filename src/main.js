@@ -16,7 +16,7 @@ import { ENV } from './constants'
 if (ENV === 'development')
   require('./styles')
 
-const initialState: ?State = null
+const initialState = {}
 
 // Add css class for environment to enable development styles
 if (document.body && process.env.NODE_ENV) {
