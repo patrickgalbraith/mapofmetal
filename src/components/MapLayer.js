@@ -1,5 +1,4 @@
 // @flow
-import type { Viewer as OpenSeadragonViewer } from 'openseadragon'
 import type { MapCenterPoint, GenreOverlay } from '../types'
 import React, { Component } from 'react'
 import OpenSeadragon from 'openseadragon'
@@ -18,7 +17,7 @@ type Props = {
 
 class MapLayer extends Component {
   props: Props
-  viewer: OpenSeadragonViewer
+  viewer: OpenSeadragon.Viewer
   viewerElement: HTMLDivElement
   dragging: boolean
 
@@ -101,7 +100,7 @@ class MapLayer extends Component {
       element:               this.viewerElement,
       tileSources:           tileSources,
       showNavigationControl: false,
-      immediateRender:       window.matchMedia('(max-width: 768px)').matches,
+      immediateRender:       matchMedia('(max-width: 768px)').matches,
 
       showNavigator:         false,
 
@@ -123,7 +122,7 @@ class MapLayer extends Component {
       let startCenter = centerPosition || [1023-62, 750]
 
       // Adjust center and zoom on mobile
-      if (window.matchMedia('(max-width: 1024px)').matches) {
+      if (matchMedia('(max-width: 1024px)').matches) {
         zoomLevel = zoomLevel * 0.7 // Zoom out a bit so text fits in
         startCenter = [960, 790]
       }

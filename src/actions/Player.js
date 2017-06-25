@@ -75,9 +75,9 @@ export function volume(volume: number): {
   }
 }
 
-export function error(errorCode: string): {
+export function error(errorCode: number): {
   ...Action,
-  errorCode: string
+  errorCode: number
 } {
   return {
     type: PLAYER_ERROR,

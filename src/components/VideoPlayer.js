@@ -9,7 +9,7 @@ import {
   PLAYER_STATE_ENDED
 } from '../constants'
 
-type Props = {
+export type Props = {
   playerState: PlayerState,
   nowPlaying: {
     genre: GenreInfoItem,
@@ -23,7 +23,7 @@ type Props = {
   nextTrack: () => void,
   loadVideo: (videoId: string) => void,
   onDuration: (duration: number) => void,
-  onPlaybackTime: (number) => void
+  onPlaybackTime: (time: number) => void
 }
 
 export default class VideoPlayer extends Component {
