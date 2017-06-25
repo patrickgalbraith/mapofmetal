@@ -83,6 +83,8 @@ gulp build
 gulp watch
 ```
 
+**Note** this project currently uses a forked version of `openseadragon` which needs to be built manually `cd ./node_modules/openseadragon && npm install && grunt build`.
+
 ## License
 
 Basically I am happy for you to use anything **except** for the images, design, and name (Map of Metal).
