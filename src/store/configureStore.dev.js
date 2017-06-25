@@ -6,12 +6,6 @@ import player from '../middleware/player'
 import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools'
 
-declare var module : {
-  hot : {
-    accept(path:string, callback:() => void): void
-  }
-}
-
 const enhancer = compose(
   applyMiddleware(thunk, player),
   DevTools.instrument(),
