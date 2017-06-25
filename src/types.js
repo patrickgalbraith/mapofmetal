@@ -1,10 +1,5 @@
 // @flow
-import type { Dispatch as ReduxDispatch } from 'redux'
-
-export type ThunkedAction = (dispatch: ReduxDispatch) => void
-
-export type ThunkedDispatch =
-  ReduxDispatch<Action> & (action: ThunkedAction) => void
+export type { Dispatch } from 'redux'
 
 export type Action = {
   type: string

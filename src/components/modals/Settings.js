@@ -87,13 +87,11 @@ const mapStateToProps = (state: ReduxState, ownProps: Props): {
   }
 }
 
-const mapDispatchToProps = (dispatch: *) => {
-  return {
-    qualityChange: (q: string) => dispatch(qualityChange(q))
-  }
+const actionCreators = {
+  qualityChange
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  actionCreators
 )(Settings)

@@ -1,6 +1,6 @@
 // @flow
 import type { State as ReduxState } from '../reducers'
-import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, ThunkedDispatch as Dispatch } from '../types'
+import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, Dispatch } from '../types'
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -44,11 +44,11 @@ type Props = {
   },
   mapCenter: MapCenterPoint,
   mapDragging: boolean,
-  selectGenre: Dispatch,
-  changeMapCenter: Dispatch,
-  dragStart: Dispatch,
-  dragEnd: Dispatch,
-  skipToTrack: Dispatch
+  selectGenre: typeof selectGenre,
+  changeMapCenter: typeof changeMapCenter,
+  dragStart: typeof dragStart,
+  dragEnd: typeof dragEnd,
+  skipToTrack: typeof skipToTrack
 }
 
 class MapPage extends Component {
@@ -131,7 +131,7 @@ class MapPage extends Component {
         <TopBar changeMapCenter={changeMapCenter}
                 openModal={this.openModal.bind(this)} />
 
-        <VideoPlayer onPlaybackTime={(s) => { this.setState({currentTime: s}) }} />
+        <VideoPlayer onPlaybackTime={(s: number) => { this.setState({currentTime: s}) }} />
 
         <GenreInfo current={currentGenre}
                    playing={currentTrackList.genre}
@@ -165,7 +165,7 @@ class MapPage extends Component {
 
 const mapStateToProps = (state: ReduxState) => {
   if (state == null)
-    return
+    return {}
 
   return {
     overlays:         state.map.overlays,
@@ -179,7 +179,7 @@ const mapStateToProps = (state: ReduxState) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch<*, *>) => {
   return {
     selectGenre:     (i)    => dispatch(selectGenre(i)),
     changeMapCenter: (c)    => dispatch(changeMapCenter(c)),

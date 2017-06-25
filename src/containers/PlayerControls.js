@@ -1,4 +1,5 @@
 // @flow
+import type { Props } from '../components/PlayerControls'
 import type { State } from '../reducers'
 import type { TrackInfo } from '../types'
 
@@ -8,13 +9,9 @@ import PlayerControls from '../components/PlayerControls'
 
 import { play, pause, volume } from '../actions/Player'
 
-type Props = {
-  duration: number,
-  volume: ?number,
-  track: ?TrackInfo
-}
-
 class PlayerControlsContainer extends Component {
+  props: Props
+
   render() {
     return <PlayerControls {...this.props} />
   }
@@ -34,10 +31,9 @@ const getCurrentTrack = (state: State): ?TrackInfo => {
   return genre.tracklist[trackNo]
 }
 
-const mapStateToProps = (state: State): ?Props => {
-  if (state == null) {
-    return
-  }
+const mapStateToProps = (state: State): any => {
+  if (state == null)
+    return {}
 
   return {
     duration: state.player.duration,
@@ -46,15 +42,13 @@ const mapStateToProps = (state: State): ?Props => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onPlayClick:    ()  => dispatch(play()),
-    onPauseClick:   ()  => dispatch(pause()),
-    onVolumeChange: (v) => dispatch(volume(v))
-  }
+const actionCreators = {
+  onPlayClick:    play,
+  onPauseClick:   pause,
+  onVolumeChange: volume
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  actionCreators
 )(PlayerControlsContainer)

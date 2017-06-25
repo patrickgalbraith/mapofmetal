@@ -5,8 +5,8 @@ import { toggleFullScreen } from '../helpers'
 import { POSTER_LINK } from '../constants'
 
 type Props = {
-  changeMapCenter: (MapCenterPoint) => void, 
-  openModal: (string) => void
+  changeMapCenter: (center: MapCenterPoint) => mixed,
+  openModal: (key: string) => void
 }
 
 export default class TopBar extends Component {

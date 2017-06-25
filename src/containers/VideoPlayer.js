@@ -1,7 +1,7 @@
 // @flow
 import type { Props } from '../components/VideoPlayer'
 import type { State as ReduxState } from '../reducers'
-import type { ThunkedDispatch as Dispatch } from '../types'
+import type { Dispatch } from '../types'
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -29,19 +29,17 @@ const mapStateToProps = (state: ReduxState, ownProps: Props) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    onReady:        (v: string, a: number) => dispatch(ready(v, a)),
-    onApiReady:     ()                     => dispatch(apiReady()),
-    onStateChange:  (s: number)            => dispatch(stateChange(s)),
-    onError:        (e: number)            => dispatch(error(e)),
-    onDuration:     (d: number)            => dispatch(durationChange(d)),
-    loadVideo:      (v: string)            => dispatch(load(v)),
-    nextTrack:      ()                     => dispatch(nextTrack()),
-  }
+const actionCreators = {
+  onReady:       ready,
+  onApiReady:    apiReady,
+  onStateChange: stateChange,
+  onError:       error,
+  onDuration:    durationChange,
+  loadVideo:     load,
+  nextTrack:     nextTrack,
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  actionCreators
 )(VideoPlayerContainer)

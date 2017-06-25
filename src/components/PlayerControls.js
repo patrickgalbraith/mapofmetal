@@ -3,7 +3,7 @@ import type { TrackInfo } from '../types'
 import React, { Component, PropTypes } from 'react'
 import { formatSeconds, relativeMousePosition } from '../helpers'
 
-type Props = {
+export type Props = {
   track: TrackInfo,
   currentTime: number,
   duration: number,

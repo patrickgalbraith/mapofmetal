@@ -1,5 +1,4 @@
 // @flow
-import type { Action } from '../types'
 import {
   GENRE_SELECTED,
   GENRE_INFO_FAILURE,

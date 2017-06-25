@@ -1,6 +1,6 @@
 // @flow
 import type { State } from '../reducers'
-import type { Action, GenreInfo, TrackInfo, ThunkedDispatch } from '../types'
+import type { Action, GenreInfo, TrackInfo, Dispatch } from '../types'
 import {
   TRACKLIST_SKIP,
   TRACKLIST_NEXT,
@@ -25,7 +25,7 @@ const isNextVideoValid = (genreInfo: GenreInfo, trackNo: number, videoNo: number
   )
 }
 
-export const nextTrack = () => (dispatch: ThunkedDispatch, getState: () => State) => {
+export const nextTrack = () => (dispatch: Dispatch<*, *>, getState: () => State) => {
   const state: State = getState()
 
   if (state == null)
@@ -42,8 +42,8 @@ export const nextTrack = () => (dispatch: ThunkedDispatch, getState: () => State
   })
 }
 
-export const skipToTrack = (genre: string, trackNo: number) => (dispatch: ThunkedDispatch, getState: () => State) => {
-  const state: State         = getState()
+export const skipToTrack = (genre: string, trackNo: number) => (dispatch: Dispatch<*, *>, getState: () => State) => {
+  const state: State = getState()
 
   if (state == null)
     return null
@@ -60,7 +60,7 @@ export const skipToTrack = (genre: string, trackNo: number) => (dispatch: Thunke
   })
 }
 
-export const nextVideo = () => (dispatch: ThunkedDispatch, getState: () => State) => {
+export const nextVideo = () => (dispatch: Dispatch<*, *>, getState: () => State) => {
   const state: State = getState()
 
   if (state == null)

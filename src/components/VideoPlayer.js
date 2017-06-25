@@ -1,6 +1,6 @@
 // @flow
 import type { State as PlayerState } from '../reducers/player'
-import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, ThunkedDispatch as Dispatch } from '../types'
+import type { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, Dispatch } from '../types'
 import React, { Component, PropTypes } from 'react'
 
 import {

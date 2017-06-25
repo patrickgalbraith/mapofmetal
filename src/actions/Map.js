@@ -3,7 +3,7 @@ import type { Action, MapCenterPoint } from '../types'
 import { MAP_MOVE, MAP_DRAG_START, MAP_DRAG_END } from '../constants'
 
 export function changeMapCenter(mapCenter: MapCenterPoint): {
-  ...Action,
+  type: string,
   mapCenter: MapCenterPoint
 } {
   return {

@@ -10,9 +10,9 @@ type Props = {
   tileSources:    string,
   overlays:       GenreOverlay[],
   centerPosition: MapCenterPoint,
-  onOverlayClick: (string, string) => void,
-  onDragStart:    () => void,
-  onDragEnd:      () => void
+  onOverlayClick: (string, string) => mixed,
+  onDragStart:    () => mixed,
+  onDragEnd:      () => mixed
 }
 
 class MapLayer extends Component {

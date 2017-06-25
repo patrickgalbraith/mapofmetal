@@ -1,3 +1,6 @@
+// flow-typed signature: c5c1a1120e4ff336d29ddb40ca150f23
+// flow-typed version: <<STUB>>/openseadragon_vgit+ssh://git@github.com:openseadragon/openseadragon.git/flow_v0.48.0
+
 declare module 'openseadragon' {
 
   declare type Options = {

@@ -1,6 +1,6 @@
 // @flow
 import type { State } from '../reducers'
-import type { ThunkedDispatch as Dispatch } from '../types'
+import type { Dispatch } from '../types'
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -21,8 +21,8 @@ class App extends Component {
   props: {
     fatalError: boolean,
     loading: boolean,
-    fetchGenreInfo: Dispatch,
-    fetchGenreOverlays: Dispatch
+    fetchGenreInfo: typeof fetchGenreInfo,
+    fetchGenreOverlays: typeof fetchGenreOverlays
   }
 
   constructor() {
@@ -89,7 +89,7 @@ const mapStateToProps = (state: State) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch<*, *>) => {
   return {
     fetchGenreInfo:     () => dispatch(fetchGenreInfo()),
     fetchGenreOverlays: () => dispatch(fetchGenreOverlays())

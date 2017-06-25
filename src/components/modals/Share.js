@@ -7,8 +7,8 @@ type Props = {
 
 export default class Share extends Component {
   props: Props
-  
-  getShareUrl(network: string) {
+
+  getShareUrl(network: string): string {
     const url      = 'http://mapofmetal.com'
     const title    = 'Map of Metal'
     const networks = {

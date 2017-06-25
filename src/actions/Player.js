@@ -16,7 +16,7 @@ export function apiReady(): Action {
 }
 
 export function ready(videoId: string, volume: number): {
-  ...Action,
+  type: string,
   videoId: string,
   volume: number
 } {
@@ -46,7 +46,7 @@ export function stop(): Action {
 }
 
 export function seek(seconds: number): {
-  ...Action,
+  type: string,
   seconds: number
 } {
   return {
@@ -56,7 +56,7 @@ export function seek(seconds: number): {
 }
 
 export function load(videoId: string): {
-  ...Action,
+  type: string,
   videoId: string
 } {
   return {
@@ -66,7 +66,7 @@ export function load(videoId: string): {
 }
 
 export function volume(volume: number): {
-  ...Action,
+  type: string,
   volume: number
 } {
   return {
@@ -76,7 +76,7 @@ export function volume(volume: number): {
 }
 
 export function error(errorCode: number): {
-  ...Action,
+  type: string,
   errorCode: number
 } {
   return {
@@ -86,7 +86,7 @@ export function error(errorCode: number): {
 }
 
 export function stateChange(playerState: number): {
-  ...Action,
+  type: string,
   playerState: number
 } {
   return {
@@ -96,7 +96,7 @@ export function stateChange(playerState: number): {
 }
 
 export function timeChange(elapsedSeconds: number): {
-  ...Action,
+  type: string,
   elapsedSeconds: number
 } {
   return {
@@ -106,7 +106,7 @@ export function timeChange(elapsedSeconds: number): {
 }
 
 export function durationChange(duration: number): {
-  ...Action,
+  type: string,
   duration: number
 } {
   return {
@@ -116,7 +116,7 @@ export function durationChange(duration: number): {
 }
 
 export function qualityChange(quality: string): {
-  ...Action,
+  type: string,
   quality: string
 } {
   return {

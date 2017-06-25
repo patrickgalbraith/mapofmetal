@@ -1,5 +1,5 @@
 // @flow
-import type { Action, GenreInfo, GenreOverlay, ThunkedDispatch } from '../types'
+import type { Action, GenreInfo, GenreOverlay, Dispatch } from '../types'
 import {
   GENRE_SELECTED,
 
@@ -13,7 +13,7 @@ import {
 } from '../constants'
 
 export function selectGenre(genreId: string): {
-  ...Action,
+  type: string,
   newGenre: string
 } {
   return {
@@ -29,7 +29,7 @@ function requestGenreInfo(): Action {
 }
 
 function receiveGenreInfo(json: GenreInfo[]): {
-  ...Action,
+  type: string,
   genreInfo: GenreInfo[],
   receivedAt: number
 } {
@@ -41,7 +41,7 @@ function receiveGenreInfo(json: GenreInfo[]): {
 }
 
 function failureGenreInfo(error: string): {
-  ...Action,
+  type: string,
   error: string,
   receivedAt: number
 } {
@@ -53,7 +53,7 @@ function failureGenreInfo(error: string): {
 }
 
 export function fetchGenreInfo() {
-  return (dispatch: ThunkedDispatch) => {
+  return (dispatch: Dispatch<*, *>) => {
     dispatch(requestGenreInfo())
     return fetch('/data/genre-info.json')
       .then(response => response.json())
@@ -69,7 +69,7 @@ function requestGenreOverlays(): Action {
 }
 
 function receiveGenreOverlays(json: GenreOverlay[]): {
-  ...Action,
+  type: string,
   genreOverlays: GenreOverlay[],
   receivedAt: number
 } {
@@ -81,7 +81,7 @@ function receiveGenreOverlays(json: GenreOverlay[]): {
 }
 
 function failureGenreOverlays(error: string): {
-  ...Action,
+  type: string,
   error: string,
   receivedAt: number
 } {
@@ -93,7 +93,7 @@ function failureGenreOverlays(error: string): {
 }
 
 export function fetchGenreOverlays() {
-  return (dispatch: ThunkedDispatch) => {
+  return (dispatch: Dispatch<*, *>) => {
     dispatch(requestGenreOverlays())
     return fetch('/data/genre-overlays.json')
       .then(response => response.json())
