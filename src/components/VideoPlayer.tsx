@@ -1,108 +1,110 @@
 
-import { State as PlayerState } from "../reducers/player";
-import { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, Dispatch } from "../types";
-import React, { Component, PropTypes } from "react";
+import { State as PlayerState } from "../reducers/player"
+import { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, Dispatch } from "../types"
+import React, { Component, PropTypes } from "react"
 
-import { PLAYER_STATE_PAUSED, PLAYER_STATE_PLAYING, PLAYER_STATE_ENDED } from "../constants";
+import { PLAYER_STATE_PAUSED, PLAYER_STATE_PLAYING, PLAYER_STATE_ENDED } from "../constants"
 
 export type Props = {
-  playerState: PlayerState;
+  playerState: PlayerState
   nowPlaying: {
-    genre: GenreInfoItem;
-    trackNo: number;
-    videoNo: number;
-  };
-  onApiReady: () => void;
-  onReady: (initialYoutubeId: string, initialVolume: number) => void;
-  onStateChange: (playerState: number) => void;
-  onError: (errorCode: number) => void;
-  nextTrack: () => void;
-  loadVideo: (videoId: string) => void;
-  onDuration: (duration: number) => void;
-  onPlaybackTime: (time: number) => void;
-};
+    genre: GenreInfoItem
+    trackNo: number
+    videoNo: number
+  }
+  onApiReady: () => void
+  onReady: (initialYoutubeId: string, initialVolume: number) => void
+  onStateChange: (playerState: number) => void
+  onError: (errorCode: number) => void
+  nextTrack: () => void
+  loadVideo: (videoId: string) => void
+  onDuration: (duration: number) => void
+  onPlaybackTime: (time: number) => void
+}
 
 export default class VideoPlayer extends Component {
 
-  props: Props;
-  player: YTVideoPlayer;
-  playerElement: HTMLDivElement;
-  currentTimer: number | void;
+  props: Props
+  player: YT.Player
+  playerElement: HTMLDivElement
+  currentTimer: NodeJS.Timeout
 
   constructor() {
-    super();
-    window.onYouTubeIframeAPIReady = (): void => this.props.onApiReady();
-    this.loadYoutubeApi();
+    super()
+    window.onYouTubeIframeAPIReady = () => this.props.onApiReady()
+    this.loadYoutubeApi()
   }
 
   render() {
-    return <div className='VideoPlayerPlaceholder' />;
+    return <div className='VideoPlayerPlaceholder' />
   }
 
   shouldComponentUpdate() {
-    return false;
+    return false
   }
 
   loadYoutubeApi(): void {
-    const id = 'youtube-api-script';
-    const tag = document.createElement('script');
-    const firstScriptTag = document.getElementsByTagName('script')[0];
+    const id = 'youtube-api-script'
+    const tag = document.createElement('script')
+    const firstScriptTag = document.getElementsByTagName('script')[0]
 
-    if (document.getElementById(id) !== null) return console.log('VideoPlayer - YouTube API already loaded');
+    if (document.getElementById(id) !== null) return console.log('VideoPlayer - YouTube API already loaded')
 
-    tag.id = id;
-    tag.src = "https://www.youtube.com/iframe_api";
+    tag.id = id
+    tag.src = "https://www.youtube.com/iframe_api"
 
-    if (firstScriptTag.parentNode) firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    if (firstScriptTag.parentNode) firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
   }
 
   getVideo(tracklist: TrackInfo[], trackNo: number, index: number = 0, fallback: string = ''): string {
-    if (!tracklist) return fallback;
+    if (!tracklist) return fallback
 
-    const track = tracklist[trackNo];
+    const track = tracklist[trackNo]
 
-    if (track) return Array.isArray(track.videos) ? track.videos[index] : track.videos;
+    if (track) return Array.isArray(track.videos) ? track.videos[index] : track.videos
 
-    return fallback;
+    return fallback
   }
 
   getNextVideo(props: Props): string {
     const {
       nowPlaying
-    } = props;
-    return this.getVideo(nowPlaying.genre.tracklist, nowPlaying.trackNo, nowPlaying.videoNo);
+    } = props
+    return this.getVideo(nowPlaying.genre.tracklist, nowPlaying.trackNo, nowPlaying.videoNo)
   }
 
   getCurrentVideoId(): string | null | undefined {
-    const videoData = this.player ? this.player.getVideoData() : null;
-    return videoData ? videoData['video_id'] : null;
+    const videoData = this.player ? this.player.getVideoData() : null
+    return videoData ? videoData['video_id'] : null
   }
 
   getDuration(): number {
-    const duration = this.player ? Math.round(this.player.getDuration()) : 0;
-    return duration ? this.player.getDuration() : 0;
+    const duration = this.player ? Math.round(this.player.getDuration()) : 0
+    return duration ? this.player.getDuration() : 0
   }
 
   watchCurrentTime(): void {
-    if (this.currentTimer) clearInterval(this.currentTimer);
+    if (this.currentTimer)
+      clearInterval(this.currentTimer)
 
     this.currentTimer = setInterval(() => {
-      if (this.player && this.props.playerState.playerReady) this.props.onPlaybackTime(Math.round(this.player.getCurrentTime()));
-    }, 1000);
+      if (this.player && this.props.playerState.playerReady)
+        this.props.onPlaybackTime(Math.round(this.player.getCurrentTime()))
+    }, 1000)
   }
 
   initializePlayer() {
-    if (!this.playerElement) return console.log('VideoPlayer - Player element not found');
+    if (!this.playerElement)
+      return console.log('VideoPlayer - Player element not found')
 
-    if (!YT || !YT.Player) return console.log('VideoPlayer - YouTube API not loaded');
+    if (!YT || !YT.Player)
+      return console.log('VideoPlayer - YouTube API not loaded')
 
-    const {
-      nowPlaying
-    } = this.props;
+    const { nowPlaying } = this.props
 
-    const initialTrackNo = nowPlaying.trackNo;
-    const initialYoutubeId = this.getVideo(nowPlaying.genre.tracklist, initialTrackNo, 0, 'Uq42HUUJFzU');
-    const initialVolume = (player: YTVideoPlayer) => player.isMuted() ? 0 : player.getVolume();
+    const initialTrackNo = nowPlaying.trackNo
+    const initialYoutubeId = this.getVideo(nowPlaying.genre.tracklist, initialTrackNo, 0, 'Uq42HUUJFzU')
+    const initialVolume = (player: YT.Player) => player.isMuted() ? 0 : player.getVolume()
 
     this.player = new YT.Player(this.playerElement.id, {
       width: '323',
@@ -110,8 +112,8 @@ export default class VideoPlayer extends Component {
       videoId: initialYoutubeId,
       events: {
         onReady: () => this.props.onReady(initialYoutubeId, initialVolume(this.player)),
-        onStateChange: (e: {data: number;}) => this.props.onStateChange(e.data),
-        onError: (e: {data: number;}) => this.props.onError(e.data)
+        onStateChange: e => this.props.onStateChange(e.data),
+        onError: e => this.props.onError(e.data)
       },
       playerVars: {
         autoplay: 1,
@@ -121,86 +123,98 @@ export default class VideoPlayer extends Component {
         rel: 0,
         showinfo: 0
       }
-    });
+    })
 
-    this.watchCurrentTime();
+    this.watchCurrentTime()
   }
 
   componentWillReceiveProps(nextProps: Props) {
     const {
       playerState,
       nowPlaying
-    } = this.props;
+    } = this.props
+
     const {
       nowPlaying: nextNowPlaying,
       playerState: nextPlayerState
-    } = nextProps;
+    } = nextProps
 
     // Initialize when API is ready
     if (nextPlayerState.apiReady !== playerState.apiReady) {
       setTimeout((): void => {
-        this.initializePlayer();
-      }, 3000);
+        this.initializePlayer()
+      }, 3000)
     }
 
     // Everything after this requires the player to be ready
-    if (!this.player || !nextPlayerState.playerReady) return;
+    if (!this.player || !nextPlayerState.playerReady) return
 
     // Video changed
-    if (nextPlayerState.videoId && this.getCurrentVideoId() && nextPlayerState.videoId !== this.getCurrentVideoId()) {
+    if (nextPlayerState.videoId
+      && this.getCurrentVideoId()
+      && nextPlayerState.videoId !== this.getCurrentVideoId()
+    ) {
       this.player.loadVideoById({
         videoId: nextPlayerState.videoId,
         suggestedQuality: nextPlayerState.quality
-      });
+      })
     }
 
     // Volume changed
     if (nextPlayerState.volume !== this.player.getVolume()) {
-      if (nextPlayerState.volume != null) this.player.setVolume(nextPlayerState.volume);
+      if (nextPlayerState.volume != null) this.player.setVolume(nextPlayerState.volume)
 
-      if (this.player.isMuted()) this.player.unMute();
+      if (this.player.isMuted()) this.player.unMute()
     }
 
     // Play/pause
     if (nextPlayerState.state !== this.player.getPlayerState()) {
       if (nextPlayerState.state === PLAYER_STATE_PAUSED) {
-        this.player.pauseVideo();
+        this.player.pauseVideo()
       } else if (nextPlayerState.state === PLAYER_STATE_PLAYING) {
-        this.player.playVideo();
+        this.player.playVideo()
       }
     }
 
     // When video finishes play next track
-    if (nextPlayerState.state !== playerState.state && nextPlayerState.state === PLAYER_STATE_ENDED) {
-      this.props.nextTrack();
+    if (
+      nextPlayerState.state !== playerState.state
+      && nextPlayerState.state === PLAYER_STATE_ENDED
+    ) {
+      this.props.nextTrack()
     }
 
     // Track/genre changed
-    if (nowPlaying.genre.id !== nextNowPlaying.genre.id || nowPlaying.trackNo !== nextNowPlaying.trackNo || nowPlaying.videoNo !== nextNowPlaying.videoNo) {
-      this.props.loadVideo(this.getNextVideo(nextProps));
+    if (
+      nowPlaying.genre.id !== nextNowPlaying.genre.id ||
+      nowPlaying.trackNo !== nextNowPlaying.trackNo ||
+      nowPlaying.videoNo !== nextNowPlaying.videoNo
+    ) {
+      this.props.loadVideo(this.getNextVideo(nextProps))
     }
 
     // Get duration when playing starts
     if (nextPlayerState.duration !== this.getDuration()) {
-      this.props.onDuration(this.getDuration());
+      this.props.onDuration(this.getDuration())
     }
   }
 
   componentDidMount() {
-    this.playerElement = document.createElement('div');
-    this.playerElement.id = 'yt-video-player';
-    this.playerElement.className = 'VideoPlayer';
+    this.playerElement = document.createElement('div')
+    this.playerElement.id = 'yt-video-player'
+    this.playerElement.className = 'VideoPlayer'
 
-    if (document.body) document.body.appendChild(this.playerElement);
+    if (document.body)
+      document.body.appendChild(this.playerElement)
 
     setTimeout((): void => {
-      this.playerElement.classList.add('active');
-    }, 2500);
+      this.playerElement.classList.add('active')
+    }, 2500)
   }
 
   componentWillUnmount() {
-    this.player.destroy();
+    this.player.destroy()
 
-    if (document.body) document.body.removeChild(this.playerElement);
+    if (document.body) document.body.removeChild(this.playerElement)
   }
 }

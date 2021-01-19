@@ -1,30 +1,29 @@
-
-import { TrackInfo } from "../types";
-import React, { Component, PropTypes } from "react";
-import { formatSeconds, relativeMousePosition } from "../helpers";
+import { TrackInfo } from "../types"
+import React, { Component } from "react"
+import { formatSeconds, relativeMousePosition } from "../helpers"
 
 export type Props = {
-  track: TrackInfo;
-  currentTime: number;
-  duration: number;
-  volume: number;
-  onPlayClick: () => void;
-  onPauseClick: () => void;
-  onVolumeChange: (arg0: number) => void;
-};
+  track: TrackInfo
+  currentTime: number
+  duration: number
+  volume: number
+  onPlayClick: () => void
+  onPauseClick: () => void
+  onVolumeChange: (volume: number) => void
+}
 
 export default class PlayerControls extends Component {
+  props: Props
 
-  props: Props;
+  handleVolumeClick(e: React.MouseEvent<HTMLDivElement>) {
+    let currentTarget = e.currentTarget
 
-  handleVolumeClick(e: MouseEvent) {
-    let currentTarget = e.currentTarget;
+    const pos = relativeMousePosition(e)
+    const width = currentTarget instanceof HTMLElement ? currentTarget.clientWidth : 0
+    const volume = Math.round(pos.x / width * 100)
 
-    const pos = relativeMousePosition(e);
-    const width = currentTarget instanceof HTMLElement ? currentTarget.clientWidth : 0;
-    const volume = Math.round(pos.x / width * 100);
-
-    if (Number.isInteger(volume)) this.props.onVolumeChange(volume);
+    if (Number.isInteger(volume))
+      this.props.onVolumeChange(volume)
   }
 
   render() {
@@ -34,9 +33,8 @@ export default class PlayerControls extends Component {
       duration,
       volume,
       onPlayClick,
-      onPauseClick,
-      onVolumeChange
-    } = this.props;
+      onPauseClick
+    } = this.props
 
     return <div className='PlayerControls'>
         <div className='PlayerControls-left'>
@@ -55,6 +53,6 @@ export default class PlayerControls extends Component {
           <div className='PlayerControls-title'>{track.title} ({track.year})</div>
           <div className='PlayerControls-artist'>{track.artist}</div>
         </div>
-      </div>;
+      </div>
   }
 }

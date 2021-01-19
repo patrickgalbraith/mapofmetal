@@ -1,58 +1,54 @@
-
-import { State } from "../reducers";
-import { Dispatch } from "../types";
-
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-
-import MapPage from "./MapPage";
-import LoadingSplash from "../components/LoadingSplash";
-import FatalErrorScreen from "../components/FatalErrorScreen";
-
-import { fetchGenreInfo, fetchGenreOverlays } from "../actions/Genre";
+import { State } from "../reducers"
+import { Dispatch } from "../types"
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import ReactCSSTransitionGroup from "react-addons-css-transition-group"
+import MapPage from "./MapPage"
+import LoadingSplash from "../components/LoadingSplash"
+import FatalErrorScreen from "../components/FatalErrorScreen"
+import { fetchGenreInfo, fetchGenreOverlays } from "../actions/Genre"
 
 class App extends Component {
 
   state: {
-    entered: boolean;
-    fatalRenderError: boolean;
-  };
+    entered: boolean
+    fatalRenderError: boolean
+  }
 
   props: {
-    fatalError: boolean;
-    loading: boolean;
-    fetchGenreInfo: typeof fetchGenreInfo;
-    fetchGenreOverlays: typeof fetchGenreOverlays;
-  };
+    fatalError: boolean
+    loading: boolean
+    fetchGenreInfo: typeof fetchGenreInfo
+    fetchGenreOverlays: typeof fetchGenreOverlays
+  }
 
   constructor() {
-    super();
+    super()
 
     this.state = {
       entered: false,
       fatalRenderError: false
-    };
+    }
   }
 
   componentDidMount() {
     const {
       fetchGenreInfo,
       fetchGenreOverlays
-    } = this.props;
-    fetchGenreInfo();
-    fetchGenreOverlays();
+    } = this.props
+    fetchGenreInfo()
+    fetchGenreOverlays()
   }
 
   render() {
     const {
       entered,
       fatalRenderError
-    } = this.state;
+    } = this.state
     const {
       loading,
       fatalError
-    } = this.props;
+    } = this.props
 
     return <div className='App'>
         {fatalError || fatalRenderError ? <FatalErrorScreen /> : <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={3000} transitionLeaveTimeout={3000}>
@@ -62,31 +58,31 @@ class App extends Component {
                   <MapPage />
                 </div>}
           </ReactCSSTransitionGroup>}
-      </div>;
+      </div>
   }
 
   unstable_handleError(...args) {
-    console.error(...args);
-    this.setState({ fatalRenderError: true });
+    console.error(...args)
+    this.setState({ fatalRenderError: true })
   }
 }
 
 const mapStateToProps = (state: State) => {
   if (state == null) {
-    return {};
+    return {}
   }
 
   return {
     fatalError: state.app.fatalError,
     loading: state.genres.length <= 0 || state.map.overlays.length <= 0
-  };
-};
+  }
+}
 
-const mapDispatchToProps = (dispatch: Dispatch<any, any>) => {
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
   return {
     fetchGenreInfo: () => dispatch(fetchGenreInfo()),
     fetchGenreOverlays: () => dispatch(fetchGenreOverlays())
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

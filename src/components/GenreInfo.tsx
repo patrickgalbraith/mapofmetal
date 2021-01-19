@@ -1,24 +1,23 @@
-
-import React, { Component, PropTypes } from "react";
-import { GenreInfo as GenreInfoItem } from "../types";
+import React, { Component } from "react"
+import { GenreInfo as GenreInfoItem } from "../types"
 
 type Props = {
-  current: GenreInfoItem;
-  playing: GenreInfoItem;
-  onNowPlayingClick: () => void;
-};
+  current: GenreInfoItem
+  playing: GenreInfoItem
+  onNowPlayingClick: () => void
+}
 
 export default class GenreInfo extends Component {
 
-  props: Props;
+  props: Props
 
   render() {
     const {
       current,
       playing,
       onNowPlayingClick
-    } = this.props;
-    const showNowPlaying = playing && current.id != playing.id;
+    } = this.props
+    const showNowPlaying = playing && current.id != playing.id
 
     return <div>
         {showNowPlaying ? <div className='NowPlaying' onClick={onNowPlayingClick}>
@@ -32,6 +31,6 @@ export default class GenreInfo extends Component {
             <div className='GenreInfo-description' dangerouslySetInnerHTML={{ __html: current.description }} />
           </div>
         </div>
-      </div>;
+      </div>
   }
 }

@@ -1,30 +1,28 @@
-
-import { GenreInfo as GenreInfoItem, TrackInfo } from "../types";
-import React, { Component, PropTypes } from "react";
+import { GenreInfo as GenreInfoItem, TrackInfo } from "../types"
+import React, { Component } from "react"
 
 type Props = {
-  current: GenreInfoItem;
+  current: GenreInfoItem
   playing: {
-    genre: GenreInfoItem;
-    trackNo: number;
-  };
-  onTrackClick: (arg0: number) => void;
-};
+    genre: GenreInfoItem
+    trackNo: number
+  }
+  onTrackClick: (arg0: number) => void
+}
 
 export default class TrackList extends Component {
-
-  props: Props;
+  props: Props
 
   render() {
     const {
       current,
       playing,
       onTrackClick
-    } = this.props;
+    } = this.props
 
-    const getTrackLabel = (track: TrackInfo) => `${track.title} - ${track.artist} (${track.year})`;
+    const getTrackLabel = (track: TrackInfo) => `${track.title} - ${track.artist} (${track.year})`
 
-    const isPlaying = (track, idx) => playing.genre.id === current.id && idx === playing.trackNo;
+    const isPlaying = (track, idx) => playing.genre.id === current.id && idx === playing.trackNo
 
     return <div className='TrackList'>
         <div className='TrackList-content'>
@@ -34,6 +32,6 @@ export default class TrackList extends Component {
               </li>)}
           </ul>
         </div>
-      </div>;
+      </div>
   }
 }
