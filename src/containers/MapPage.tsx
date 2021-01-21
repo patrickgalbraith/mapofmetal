@@ -1,6 +1,5 @@
 import React, { Component, Dispatch } from "react"
 import { connect } from "react-redux"
-import ReactCSSTransitionGroup from "react-addons-css-transition-group"
 import { RootState } from "../reducers"
 import { MapCenterPoint } from "../types"
 import VideoPlayer from "./VideoPlayer"
@@ -18,6 +17,7 @@ import { changeMapCenter, dragStart, dragEnd } from "../actions/Map"
 import { selectGenre } from "../actions/Genre"
 
 import { MAP_TILE_SOURCE } from "../constants"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 type ModalReference = {
   key: string
@@ -123,9 +123,12 @@ class MapPage extends Component<Props, State> {
 
         <PlayerControls currentTime={currentTime} />
 
-        <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-          {Modal && currentModal && currentModal.key ? <Modal key={currentModal.key} close={() => this.closeModal()} /> : null}
-        </ReactCSSTransitionGroup>
+        <TransitionGroup>
+          {Modal && currentModal && currentModal.key &&
+            <CSSTransition key={currentModal.key} classNames="transition" timeout={{ enter: 500, exit: 500 }}>
+              <Modal close={() => this.closeModal()} />
+            </CSSTransition>}
+        </TransitionGroup>
 
         <MapLayer
           tileSources={MAP_TILE_SOURCE}

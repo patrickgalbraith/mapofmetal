@@ -1,6 +1,6 @@
 import React, { Component, Dispatch } from "react"
 import { connect } from "react-redux"
-import ReactCSSTransitionGroup from "react-addons-css-transition-group"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 import MapPage from "./MapPage"
 import LoadingSplash from "../components/LoadingSplash"
 import FatalErrorScreen from "../components/FatalErrorScreen"
@@ -30,19 +30,25 @@ class App extends Component<AppProps, AppState> {
     const { entered, fatalRenderError } = this.state
     const { loading, fatalError } = this.props
 
-    return <div className='App'>
+    return (
+      <div className='App'>
         {fatalError || fatalRenderError
           ? <FatalErrorScreen />
-          : <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={3000} transitionLeaveTimeout={3000}>
-            {!entered
-              ? <div key='LoadingPage' className='Page'>
-                  <LoadingSplash loading={loading} onEnter={() => this.setState({ entered: true })} />
-                </div>
-              : <div key='MainPage' className='Page'>
-                  <MapPage />
-                </div>}
-          </ReactCSSTransitionGroup>}
+          : <TransitionGroup>
+              {!entered
+                ? <IntroTransition key='LoadingPage'>
+                    <div className='Page'>
+                      <LoadingSplash loading={loading} onEnter={() => this.setState({ entered: true })} />
+                    </div>
+                  </IntroTransition>
+                : <IntroTransition key='MainPage'>
+                    <div className='Page'>
+                      <MapPage />
+                    </div>
+                  </IntroTransition>}
+            </TransitionGroup>}
       </div>
+    )
   }
 
   unstable_handleError(...args: any[]) {
@@ -50,6 +56,14 @@ class App extends Component<AppProps, AppState> {
     this.setState({ fatalRenderError: true })
   }
 }
+
+const IntroTransition = (props: any) => (
+  <CSSTransition
+    {...props}
+    classNames="transition"
+    timeout={{ enter: 3000, exit: 3000 }}
+  />
+)
 
 const mapStateToProps = (state: RootState) => {
   if (state == null) {

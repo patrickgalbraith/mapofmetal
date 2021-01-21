@@ -1,5 +1,5 @@
 import React from "react"
-import ReactCSSTransitionGroup from "react-addons-css-transition-group"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { POSTER_LINK } from "../constants"
 
 type Props = {
@@ -29,11 +29,22 @@ export default function LoadingSplash(props = initialProps) {
         Mobile support coming soon. View on desktop or tablet for optimal experience.
       </div>
 
-      <ReactCSSTransitionGroup transitionName="transition" transitionEnterTimeout={2000} transitionLeaveTimeout={2000}>
+      <TransitionGroup>
         { loading
-          ? <div key='loading' className='LoadingSplash-loading'>LOADING...</div>
-          : <div key='enter' className='LoadingSplash-enter'><a onClick={onEnter}>ENTER</a></div>
-        }
-      </ReactCSSTransitionGroup>
+          ? <LoadingTransition key='loading'>
+              <div className='LoadingSplash-loading'>LOADING...</div>
+            </LoadingTransition>
+          : <LoadingTransition key='enter'>
+              <div className='LoadingSplash-enter'><a onClick={onEnter}>ENTER</a></div>
+            </LoadingTransition> }
+      </TransitionGroup>
     </div>
 }
+
+const LoadingTransition = (props: any) => (
+  <CSSTransition
+    {...props}
+    classNames="transition"
+    timeout={{ enter: 2000, exit: 2000 }}
+  />
+)
