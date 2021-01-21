@@ -1,5 +1,6 @@
+import React from "react"
+import { Component } from "react"
 import { MapCenterPoint, GenreOverlay } from "../types"
-import React, { Component } from "react"
 import OpenSeadragon from "openseadragon"
 
 const IMAGE_WIDTH = 4961
@@ -8,18 +9,16 @@ const IMAGE_HEIGHT = 3508
 type Props = {
   tileSources: string
   overlays: GenreOverlay[]
-  centerPosition: MapCenterPoint
-  onOverlayClick: (arg0: string, arg1: string) => unknown
-  onDragStart: () => unknown
-  onDragEnd: () => unknown
+  centerPosition: MapCenterPoint | null
+  onOverlayClick: (genreId: string, elId: string) => void
+  onDragStart: () => void
+  onDragEnd: () => void
 }
 
-class MapLayer extends Component {
-
-  props: Props
-  viewer: OpenSeadragon.Viewer
-  viewerElement: HTMLDivElement
-  dragging: boolean
+class MapLayer extends Component<Props> {
+  viewer?: OpenSeadragon.Viewer
+  viewerElement?: HTMLDivElement
+  dragging: boolean = false
 
   render() {
     return <div className='MapLayerPlaceholder' />
@@ -50,16 +49,15 @@ class MapLayer extends Component {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    const {
-      centerPosition
-    } = nextProps
+    const { centerPosition } = nextProps
 
-    if (centerPosition && this.props.centerPosition !== centerPosition) {
+    if (this.viewer && centerPosition && this.props.centerPosition !== centerPosition) {
       const pos = this.parsePosition(centerPosition)
 
       const centerCoord = this.viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(pos[0], pos[1]))
 
-      this.viewer.viewport.panTo(centerCoord, false).applyConstraints(false)
+      this.viewer.viewport.panTo(centerCoord, false)
+        .applyConstraints(false)
     }
   }
 
@@ -126,15 +124,17 @@ class MapLayer extends Component {
         startCenter = [960, 790]
       }
 
-      startCenter = this.parsePosition(startCenter)
+      const startCenterParsed = this.parsePosition(startCenter)
+      const startCenterCoord = this.viewer!.viewport.imageToViewportCoordinates(
+        new OpenSeadragon.Point(startCenterParsed[0], startCenterParsed[1]))
 
-      const startCenterCoord = this.viewer.viewport.imageToViewportCoordinates(new OpenSeadragon.Point(startCenter[0], startCenter[1]))
-
-      this.viewer.viewport.panTo(startCenterCoord, true).zoomTo(zoomLevel, null, true).applyConstraints(true)
+      this.viewer!.viewport.panTo(startCenterCoord, true)
+        .zoomTo(zoomLevel, undefined, true)
+        .applyConstraints(true)
 
       // For initial fade in
       setTimeout(() => {
-        this.viewerElement.classList.add('active')
+        this.viewerElement?.classList.add('active')
       }, 2000)
     })
 
@@ -153,21 +153,25 @@ class MapLayer extends Component {
     })
 
     // Handle click events on genre overlays
-    const convertOverlayIdToGenreId = overlayId => overlayId.replace('map-overlay__', '')
+    const convertOverlayIdToGenreId = (overlayId: string) =>
+      overlayId.replace('map-overlay__', '')
 
-    if (document.body) document.body.addEventListener('click', (e: MouseEvent) => {
-      let target = e.target
+    if (document.body) {
+      document.body.addEventListener('click', (e: MouseEvent) => {
+        let target = e.target
 
-      if (target instanceof HTMLDivElement && target.classList.contains('map-genre-overlay')) {
-        onOverlayClick(convertOverlayIdToGenreId(target.id), target.id)
-      }
-    })
+        if (target instanceof HTMLDivElement && target.classList.contains('map-genre-overlay')) {
+          onOverlayClick(convertOverlayIdToGenreId(target.id), target.id)
+        }
+      })
+    }
   }
 
   componentWillUnmount() {
-    this.viewer.destroy()
+    this.viewer?.destroy()
 
-    if (document.body) document.body.removeChild(this.viewerElement)
+    if (document.body && this.viewerElement)
+      document.body.removeChild(this.viewerElement)
   }
 }
 

@@ -1,4 +1,4 @@
-import { Action } from "../types"
+import { Action } from "redux"
 import {
   PLAYER_PLAY, PLAYER_PAUSE, PLAYER_STOP,
   PLAYER_SEEK, PLAYER_LOAD, PLAYER_VOLUME,
@@ -6,14 +6,13 @@ import {
   PLAYER_ERROR, PLAYER_TIME_CHANGE, PLAYER_DURATION_CHANGE,
   PLAYER_QUALITY_CHANGE } from "../constants"
 
-export function apiReady(): Action {
+export function apiReady(): Action<string> {
   return {
     type: PLAYER_API_READY
   }
 }
 
-export function ready(videoId: string, volume: number): {
-  type: string
+export function ready(videoId: string, volume: number): Action<string> & {
   videoId: string
   volume: number
 } {
@@ -24,26 +23,25 @@ export function ready(videoId: string, volume: number): {
   }
 }
 
-export function play(): Action {
+export function play(): Action<string> {
   return {
     type: PLAYER_PLAY
   }
 }
 
-export function pause(): Action {
+export function pause(): Action<string> {
   return {
     type: PLAYER_PAUSE
   }
 }
 
-export function stop(): Action {
+export function stop(): Action<string> {
   return {
     type: PLAYER_STOP
   }
 }
 
-export function seek(seconds: number): {
-  type: string
+export function seek(seconds: number): Action<string> & {
   seconds: number
 } {
   return {
@@ -52,8 +50,7 @@ export function seek(seconds: number): {
   }
 }
 
-export function load(videoId: string): {
-  type: string
+export function load(videoId: string): Action<string> & {
   videoId: string
 } {
   return {
@@ -62,8 +59,7 @@ export function load(videoId: string): {
   }
 }
 
-export function volume(volume: number): {
-  type: string
+export function volume(volume: number): Action<string> & {
   volume: number
 } {
   return {
@@ -72,8 +68,7 @@ export function volume(volume: number): {
   }
 }
 
-export function error(errorCode: number): {
-  type: string
+export function error(errorCode: number): Action<string> & {
   errorCode: number
 } {
   return {
@@ -82,8 +77,7 @@ export function error(errorCode: number): {
   }
 }
 
-export function stateChange(playerState: number): {
-  type: string
+export function stateChange(playerState: number): Action<string> & {
   playerState: number
 } {
   return {
@@ -92,8 +86,7 @@ export function stateChange(playerState: number): {
   }
 }
 
-export function timeChange(elapsedSeconds: number): {
-  type: string
+export function timeChange(elapsedSeconds: number): Action<string> & {
   elapsedSeconds: number
 } {
   return {
@@ -102,8 +95,7 @@ export function timeChange(elapsedSeconds: number): {
   }
 }
 
-export function durationChange(duration: number): {
-  type: string
+export function durationChange(duration: number): Action<string> & {
   duration: number
 } {
   return {
@@ -112,8 +104,7 @@ export function durationChange(duration: number): {
   }
 }
 
-export function qualityChange(quality: string): {
-  type: string
+export function qualityChange(quality: string): Action<string> & {
   quality: string
 } {
   return {

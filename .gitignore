@@ -3,3 +3,5 @@
 /tiles/sources
 /data/genre-info.json
 *.log
+.cache
+dist

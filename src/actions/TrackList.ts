@@ -1,5 +1,5 @@
-import { State } from "../reducers"
-import { GenreInfo, Dispatch } from "../types"
+import { RootState } from "../reducers"
+import { GenreInfo, AppThunk } from "../types"
 import {
   TRACKLIST_SKIP, TRACKLIST_NEXT,
   TRACKLIST_NEXT_VIDEO, TRACKLIST_EXHAUSTED,
@@ -14,10 +14,11 @@ const isNextVideoValid = (genreInfo: GenreInfo, trackNo: number, videoNo: number
   return ((videoNo === 0 || Array.isArray(track.videos)) && track.videos.length > videoNo)
 }
 
-export const nextTrack = () => (dispatch: Dispatch<any>, getState: () => State) => {
-  const state: State = getState()
+export const nextTrack = (): AppThunk => (dispatch, getState) => {
+  const state: RootState = getState()
 
-  if (state == null) return
+  if (state == null)
+    return
 
   const nowPlaying = state.app.nowPlaying
   const genreInfo = state.genres.find(g => g.id === nowPlaying.genre)
@@ -30,15 +31,16 @@ export const nextTrack = () => (dispatch: Dispatch<any>, getState: () => State) 
   })
 }
 
-export const skipToTrack = (genre: string, trackNo: number) => (dispatch: Dispatch<any>, getState: () => State) => {
-  const state: State = getState()
+export const skipToTrack = (genre: string, trackNo: number): AppThunk => (dispatch, getState) => {
+  const state = getState()
 
-  if (state == null) return null
+  if (state == null)
+    return
 
   const genreInfo = state.genres.find(g => g.id === genre)
 
   if (genreInfo == null || !isNextTrackValid(genreInfo, trackNo))
-    return null
+    return
 
   dispatch({
     type: TRACKLIST_SKIP,
@@ -47,10 +49,11 @@ export const skipToTrack = (genre: string, trackNo: number) => (dispatch: Dispat
   })
 }
 
-export const nextVideo = () => (dispatch: Dispatch<any>, getState: () => State) => {
-  const state: State = getState()
+export const nextVideo = (): AppThunk => (dispatch, getState) => {
+  const state: RootState = getState()
 
-  if (state == null) return
+  if (state == null)
+    return
 
   const nowPlaying = state.app.nowPlaying
   const genreInfo = state.genres.find(g => g.id === nowPlaying.genre)

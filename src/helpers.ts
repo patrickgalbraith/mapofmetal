@@ -42,7 +42,7 @@ export function relativeMousePosition(e: React.MouseEvent<any>): {x: number, y: 
       m_posy: number = 0,
       e_posx: number = 0,
       e_posy: number = 0,
-      obj = e ? e.target : window.event.target
+      obj = e ? e.target : window.event?.target
 
   // get mouse position on document crossbrowser
   if (!e) {

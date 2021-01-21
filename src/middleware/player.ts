@@ -1,8 +1,10 @@
+import { Action } from "redux"
+import { ThunkMiddleware } from "redux-thunk"
 import { PLAYER_ERROR, TRACKLIST_VIDEOS_EXHAUSTED } from "../constants"
-
 import { nextTrack, nextVideo } from "../actions/TrackList"
+import { RootState } from "../reducers"
 
-const middleware: any = store => next => action => {
+const middleware: ThunkMiddleware<RootState, Action<string>> = store => next => action => {
   // On playback error skip to next video available
   if (action.type === PLAYER_ERROR) {
     store.dispatch(nextVideo())

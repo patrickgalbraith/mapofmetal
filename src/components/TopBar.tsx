@@ -1,5 +1,6 @@
+import React from "react"
+import { Component } from "react"
 import { MapCenterPoint } from "../types"
-import React, { Component } from "react"
 import { toggleFullScreen } from "../helpers"
 import { POSTER_LINK } from "../constants"
 
@@ -8,19 +9,13 @@ type Props = {
   openModal: (key: string) => void
 }
 
-export default class TopBar extends Component {
-
-  props: Props
-
+export default class TopBar extends Component<Props> {
   openUrl(url: string) {
     window.open(url)
   }
 
   render() {
-    const {
-      changeMapCenter,
-      openModal
-    } = this.props
+    const { changeMapCenter, openModal } = this.props
 
     const menuItems = [{
       title: 'legend',
@@ -43,7 +38,11 @@ export default class TopBar extends Component {
     }]
 
     return <ul className='TopBar'>
-        {menuItems.map((item, idx) => <li key={idx} className='TopBar-item'><button onClick={item.onClick}>{item.title}</button></li>)}
+        {menuItems.map((item, idx) =>
+          <li key={idx} className='TopBar-item'>
+            <button onClick={item.onClick}>{item.title}</button>
+          </li>
+        )}
       </ul>
   }
 }

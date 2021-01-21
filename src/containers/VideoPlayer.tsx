@@ -1,34 +1,31 @@
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { RootState } from "../reducers"
+import VideoPlayer, { Props as VideoPlayerProps } from "../components/VideoPlayer"
+import { nextTrack } from "../actions/TrackList"
+import {
+  ready, apiReady, load,
+  stateChange, durationChange, error
+} from "../actions/Player"
 
-import { Props } from "../components/VideoPlayer";
-import { State as ReduxState } from "../reducers";
-import { Dispatch } from "../types";
+export type Props = Omit<VideoPlayerProps, keyof DispatchProps | keyof StateProps> & StateProps & DispatchProps
 
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import VideoPlayer from "../components/VideoPlayer";
-
-import { nextTrack } from "../actions/TrackList";
-import { ready, apiReady, load, stateChange, durationChange, error } from "../actions/Player";
-
-class VideoPlayerContainer extends Component {
-
-  props: Props;
-
+class VideoPlayerContainer extends Component<Props> {
   render() {
-    return <VideoPlayer {...this.props} />;
+    return <VideoPlayer {...this.props} />
   }
 }
 
-const mapStateToProps = (state: ReduxState, ownProps: Props) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    playerState: state.player,
+    playerState: state?.player,
     nowPlaying: {
-      genre: state.genres.find(g => g.id === state.app.nowPlaying.genre),
-      trackNo: state.app.nowPlaying.trackNo,
-      videoNo: state.app.nowPlaying.videoNo
+      genre: state.genres.find(g => g.id === state?.app.nowPlaying.genre),
+      trackNo: state?.app.nowPlaying.trackNo,
+      videoNo: state?.app.nowPlaying.videoNo
     }
-  };
-};
+  }
+}
 
 const actionCreators = {
   onReady: ready,
@@ -37,7 +34,10 @@ const actionCreators = {
   onError: error,
   onDuration: durationChange,
   loadVideo: load,
-  nextTrack: nextTrack
-};
+  nextTrack: nextTrack as () => any
+}
 
-export default connect(mapStateToProps, actionCreators)(VideoPlayerContainer);
+type StateProps = ReturnType<typeof mapStateToProps>
+type DispatchProps = typeof actionCreators
+
+export default connect(mapStateToProps, actionCreators)(VideoPlayerContainer)

@@ -1,8 +1,6 @@
-export { Dispatch } from "redux"
-
-export type Action = {
-  type: string
-}
+import { Action } from "redux"
+import { ThunkAction } from "redux-thunk"
+import { RootState } from "./reducers/index"
 
 export type TrackInfo = {
   artist: string
@@ -30,3 +28,10 @@ export type GenreOverlay = {
 }
 
 export type MapCenterPoint = ["left" | "right" | number, "top" | "bottom" | number]
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>

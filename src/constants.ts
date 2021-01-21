@@ -25,7 +25,13 @@ export const PLAYER_STATE_PAUSED: number = 2
 export const PLAYER_STATE_BUFFERING: number = 3
 export const PLAYER_STATE_CUED: number = 5
 
-export const PLAYER_QUALITY: Map<string, string> = new Map([['default', 'default'], ['small', 'small'], ['medium', 'medium'], ['large', 'large'], ['xlarge', 'hd720']])
+export const PLAYER_QUALITY: Map<string, YT.SuggestedVideoQuality> = new Map([
+  ['default', 'default'],
+  ['small', 'small'],
+  ['medium', 'medium'],
+  ['large', 'large'],
+  ['xlarge', 'hd720']
+])
 
 export const TRACKLIST_SKIP: string = 'TRACKLIST_SKIP'
 export const TRACKLIST_NEXT: string = 'TRACKLIST_NEXT'

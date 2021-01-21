@@ -1,56 +1,50 @@
+import React from "react"
+import { Component } from "react"
+import { RootState } from "../../reducers"
+import { connect } from "react-redux"
+import { PLAYER_QUALITY } from "../../constants"
+import { qualityChange } from "../../actions/Player"
 
-import { State as ReduxState } from "../../reducers";
-
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-
-import { PLAYER_QUALITY } from "../../constants";
-
-import { qualityChange } from "../../actions/Player";
-
-type Quality = string;
+type Quality = string
 
 type Props = {
-  quality: Quality | null | undefined;
-  close: () => unknown;
-  qualityChange: (arg0: Quality) => unknown;
-};
+  quality?: Quality | null
+  close: () => unknown
+  qualityChange: (quality: Quality) => void
+}
 
-class Settings extends Component {
-
-  props: Props;
-
-  getNextQuality(quality: Quality | null | undefined): Quality | null | undefined {
-    const iterator = PLAYER_QUALITY.entries();
-    let nextQuality = null;
+class Settings extends Component<Props> {
+  getNextQuality(quality: Quality): Quality {
+    const iterator = PLAYER_QUALITY.entries()
+    let nextQuality = null
 
     do {
-      nextQuality = iterator.next();
-    } while (!nextQuality.done && nextQuality.value[0] !== quality);
+      nextQuality = iterator.next()
+    } while (!nextQuality.done && nextQuality.value[0] !== quality)
 
-    if (nextQuality.done) return PLAYER_QUALITY.get('default'); // return first item
+    if (nextQuality.done)
+      return PLAYER_QUALITY.get('default')! // return first item
 
-    nextQuality = iterator.next();
+    nextQuality = iterator.next()
 
-    if (nextQuality.value == null) return PLAYER_QUALITY.get('default'); // return first item
+    if (nextQuality.value == null)
+      return PLAYER_QUALITY.get('default')! // return first item
 
-    return nextQuality.value[0];
+    return nextQuality.value[0]
   }
 
   toggleStreamQuality() {
-    const nextQuality = this.getNextQuality(this.props.quality);
-    const quality = PLAYER_QUALITY.get(nextQuality || 'default');
+    const nextQuality = this.getNextQuality(this.props.quality ?? 'default')
+    const quality = PLAYER_QUALITY.get(nextQuality ?? 'default')
 
-    if (quality == null) return;
+    if (quality == null)
+      return
 
-    this.props.qualityChange(quality);
+    this.props.qualityChange(quality)
   }
 
   render() {
-    const {
-      close,
-      quality
-    } = this.props;
+    const { close, quality } = this.props
 
     return <div className='ModalWrapper'>
         <div className='Modal SettingsModal'>
@@ -73,20 +67,20 @@ class Settings extends Component {
             <button className='Modal-close' onClick={close}>ok</button>
           </div>
         </div>
-      </div>;
+      </div>
   }
 }
 
-const mapStateToProps = (state: ReduxState, ownProps: Props): {
-  quality: Quality | null | undefined;
+const mapStateToProps = (state: RootState, _ownProps: Props): {
+  quality?: Quality | null
 } => {
   return {
     quality: state.player.quality
-  };
-};
+  }
+}
 
 const actionCreators = {
   qualityChange
-};
+}
 
-export default connect(mapStateToProps, actionCreators)(Settings);
+export default connect(mapStateToProps, actionCreators)(Settings)

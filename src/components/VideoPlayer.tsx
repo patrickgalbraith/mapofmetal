@@ -1,14 +1,16 @@
-
+import React from "react"
+import { Component } from "react"
 import { State as PlayerState } from "../reducers/player"
-import { GenreInfo as GenreInfoItem, GenreOverlay, TrackInfo, MapCenterPoint, Dispatch } from "../types"
-import React, { Component, PropTypes } from "react"
-
-import { PLAYER_STATE_PAUSED, PLAYER_STATE_PLAYING, PLAYER_STATE_ENDED } from "../constants"
+import { GenreInfo as GenreInfoItem, TrackInfo } from "../types"
+import {
+  PLAYER_STATE_PAUSED, PLAYER_STATE_PLAYING,
+  PLAYER_STATE_ENDED
+} from "../constants"
 
 export type Props = {
   playerState: PlayerState
   nowPlaying: {
-    genre: GenreInfoItem
+    genre?: GenreInfoItem
     trackNo: number
     videoNo: number
   }
@@ -22,15 +24,14 @@ export type Props = {
   onPlaybackTime: (time: number) => void
 }
 
-export default class VideoPlayer extends Component {
+export default class VideoPlayer extends Component<Props> {
+  player: YT.Player | undefined
+  playerElement: HTMLDivElement | undefined
+  currentTimer: NodeJS.Timeout | undefined
+  currentVideoIdFallback: string | null = null
 
-  props: Props
-  player: YT.Player
-  playerElement: HTMLDivElement
-  currentTimer: NodeJS.Timeout
-
-  constructor() {
-    super()
+  constructor(props: Props | Readonly<Props>) {
+    super(props)
     window.onYouTubeIframeAPIReady = () => this.props.onApiReady()
     this.loadYoutubeApi()
   }
@@ -48,39 +49,42 @@ export default class VideoPlayer extends Component {
     const tag = document.createElement('script')
     const firstScriptTag = document.getElementsByTagName('script')[0]
 
-    if (document.getElementById(id) !== null) return console.log('VideoPlayer - YouTube API already loaded')
+    if (document.getElementById(id) !== null)
+      return console.log('VideoPlayer - YouTube API already loaded')
 
     tag.id = id
     tag.src = "https://www.youtube.com/iframe_api"
 
-    if (firstScriptTag.parentNode) firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+    if (firstScriptTag.parentNode)
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
   }
 
   getVideo(tracklist: TrackInfo[], trackNo: number, index: number = 0, fallback: string = ''): string {
-    if (!tracklist) return fallback
+    if (!tracklist)
+      return fallback
 
     const track = tracklist[trackNo]
 
-    if (track) return Array.isArray(track.videos) ? track.videos[index] : track.videos
+    if (track)
+      return Array.isArray(track.videos) ? track.videos[index] : track.videos
 
     return fallback
   }
 
   getNextVideo(props: Props): string {
-    const {
-      nowPlaying
-    } = props
-    return this.getVideo(nowPlaying.genre.tracklist, nowPlaying.trackNo, nowPlaying.videoNo)
+    const { nowPlaying } = props
+    return this.getVideo(nowPlaying.genre?.tracklist ?? [], nowPlaying.trackNo, nowPlaying.videoNo)
   }
 
-  getCurrentVideoId(): string | null | undefined {
-    const videoData = this.player ? this.player.getVideoData() : null
-    return videoData ? videoData['video_id'] : null
+  getCurrentVideoId(): string | null {
+    const player: any = this.player // getVideoData is an undocumented internal function
+    const videoData = player && player.getVideoData ? player.getVideoData() : null
+    return videoData?.['video_id'] ?? this.currentVideoIdFallback
   }
 
   getDuration(): number {
     const duration = this.player ? Math.round(this.player.getDuration()) : 0
-    return duration ? this.player.getDuration() : 0
+    return duration ? this.player?.getDuration() ?? 0 : 0
   }
 
   watchCurrentTime(): void {
@@ -103,7 +107,7 @@ export default class VideoPlayer extends Component {
     const { nowPlaying } = this.props
 
     const initialTrackNo = nowPlaying.trackNo
-    const initialYoutubeId = this.getVideo(nowPlaying.genre.tracklist, initialTrackNo, 0, 'Uq42HUUJFzU')
+    const initialYoutubeId = this.getVideo(nowPlaying.genre?.tracklist ?? [], initialTrackNo, 0, 'Uq42HUUJFzU')
     const initialVolume = (player: YT.Player) => player.isMuted() ? 0 : player.getVolume()
 
     this.player = new YT.Player(this.playerElement.id, {
@@ -111,7 +115,7 @@ export default class VideoPlayer extends Component {
       height: '242',
       videoId: initialYoutubeId,
       events: {
-        onReady: () => this.props.onReady(initialYoutubeId, initialVolume(this.player)),
+        onReady: () => this.props.onReady(initialYoutubeId, initialVolume(this.player!)),
         onStateChange: e => this.props.onStateChange(e.data),
         onError: e => this.props.onError(e.data)
       },
@@ -125,14 +129,13 @@ export default class VideoPlayer extends Component {
       }
     })
 
+    this.currentVideoIdFallback = initialYoutubeId
+
     this.watchCurrentTime()
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    const {
-      playerState,
-      nowPlaying
-    } = this.props
+    const { playerState, nowPlaying } = this.props
 
     const {
       nowPlaying: nextNowPlaying,
@@ -147,7 +150,8 @@ export default class VideoPlayer extends Component {
     }
 
     // Everything after this requires the player to be ready
-    if (!this.player || !nextPlayerState.playerReady) return
+    if (!this.player || !nextPlayerState.playerReady)
+      return
 
     // Video changed
     if (nextPlayerState.videoId
@@ -158,13 +162,17 @@ export default class VideoPlayer extends Component {
         videoId: nextPlayerState.videoId,
         suggestedQuality: nextPlayerState.quality
       })
+
+      this.currentVideoIdFallback = nextPlayerState.videoId
     }
 
     // Volume changed
     if (nextPlayerState.volume !== this.player.getVolume()) {
-      if (nextPlayerState.volume != null) this.player.setVolume(nextPlayerState.volume)
+      if (nextPlayerState.volume != null)
+        this.player.setVolume(nextPlayerState.volume)
 
-      if (this.player.isMuted()) this.player.unMute()
+      if (this.player.isMuted())
+        this.player.unMute()
     }
 
     // Play/pause
@@ -186,7 +194,7 @@ export default class VideoPlayer extends Component {
 
     // Track/genre changed
     if (
-      nowPlaying.genre.id !== nextNowPlaying.genre.id ||
+      nowPlaying.genre?.id !== nextNowPlaying.genre?.id ||
       nowPlaying.trackNo !== nextNowPlaying.trackNo ||
       nowPlaying.videoNo !== nextNowPlaying.videoNo
     ) {
@@ -208,13 +216,14 @@ export default class VideoPlayer extends Component {
       document.body.appendChild(this.playerElement)
 
     setTimeout((): void => {
-      this.playerElement.classList.add('active')
+      this.playerElement?.classList.add('active')
     }, 2500)
   }
 
   componentWillUnmount() {
-    this.player.destroy()
+    this.player?.destroy()
 
-    if (document.body) document.body.removeChild(this.playerElement)
+    if (document.body && this.playerElement)
+      document.body.removeChild(this.playerElement)
   }
 }

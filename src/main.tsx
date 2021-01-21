@@ -1,13 +1,15 @@
+import "babel-polyfill"
+import "whatwg-fetch"
+
 import React from "react"
-import { render } from "react-dom"
+import ReactDom from "react-dom"
 import { Provider } from "react-redux"
 import configureStore from "./store/configureStore"
 import App from "./containers/App"
-import DevTools from "./containers/DevTools"
 
-import { ENV } from "./constants"
-
-if (ENV === 'development') require('./styles')
+if (module.hot) {
+  module.hot.accept()
+}
 
 const initialState = {}
 
@@ -18,11 +20,11 @@ if (document.body && process.env.NODE_ENV) {
 
 const store = configureStore(initialState)
 
-render(
+ReactDom.render(
   <Provider store={store}>
     <div>
       <App />
-      {ENV === 'development' ? <DevTools /> : null}
     </div>
-  </Provider>, document.getElementById('react-root')
+  </Provider>,
+  document.getElementById('react-root')
 )

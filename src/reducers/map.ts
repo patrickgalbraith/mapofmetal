@@ -1,3 +1,4 @@
+import { AnyAction } from "redux"
 import { GenreOverlay, MapCenterPoint } from "../types"
 import {
   MAP_MOVE, MAP_DRAG_START,
@@ -16,29 +17,33 @@ const initialState: State = {
   dragging: false
 }
 
-export default function map(state: State = initialState, action: any): State {
+export default function map(state: State = initialState, action: AnyAction): State {
   if (action.type === GENRE_OVERLAYS_SUCCESS) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       overlays: action.genreOverlays
-    })
+    }
   }
 
   if (action.type === MAP_MOVE) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       center: action.mapCenter
-    })
+    }
   }
 
   if (action.type === MAP_DRAG_START) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       dragging: true
-    })
+    }
   }
 
   if (action.type === MAP_DRAG_END) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       dragging: false
-    })
+    }
   }
 
   return state

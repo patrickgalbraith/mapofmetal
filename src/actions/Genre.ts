@@ -1,8 +1,13 @@
-import { Action, GenreInfo, GenreOverlay, Dispatch } from "../types"
-import { GENRE_SELECTED, GENRE_INFO_REQUEST, GENRE_INFO_SUCCESS, GENRE_INFO_FAILURE, GENRE_OVERLAYS_REQUEST, GENRE_OVERLAYS_SUCCESS, GENRE_OVERLAYS_FAILURE } from "../constants"
+import { Action, Dispatch } from "redux"
+import { GenreInfo, GenreOverlay } from "../types"
+import {
+  GENRE_SELECTED, GENRE_INFO_REQUEST,
+  GENRE_INFO_SUCCESS, GENRE_INFO_FAILURE,
+  GENRE_OVERLAYS_REQUEST, GENRE_OVERLAYS_SUCCESS,
+  GENRE_OVERLAYS_FAILURE
+} from "../constants"
 
-export function selectGenre(genreId: string): {
-  type: string
+export function selectGenre(genreId: string): Action<string> & {
   newGenre: string
 } {
   return {
@@ -11,14 +16,13 @@ export function selectGenre(genreId: string): {
   }
 }
 
-function requestGenreInfo(): Action {
+function requestGenreInfo(): Action<string> {
   return {
     type: GENRE_INFO_REQUEST
   }
 }
 
-function receiveGenreInfo(json: GenreInfo[]): {
-  type: string
+function receiveGenreInfo(json: GenreInfo[]): Action<string> & {
   genreInfo: GenreInfo[]
   receivedAt: number
 } {
@@ -29,8 +33,7 @@ function receiveGenreInfo(json: GenreInfo[]): {
   }
 }
 
-function failureGenreInfo(error: string): {
-  type: string
+function failureGenreInfo(error: string): Action<string> & {
   error: string
   receivedAt: number
 } {
@@ -42,17 +45,20 @@ function failureGenreInfo(error: string): {
 }
 
 export function fetchGenreInfo() {
-  return (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<any>) => {
     dispatch(requestGenreInfo())
 
-    return fetch('/data/genre-info.json')
-      .then(response => response.json())
-      .then(json => dispatch(receiveGenreInfo(json)))
-      .catch(error => dispatch(failureGenreInfo(error)))
+    try {
+      const response = await fetch('/data/genre-info.json')
+      const json = await response.json()
+      return dispatch(receiveGenreInfo(json))
+    } catch (error) {
+      return dispatch(failureGenreInfo(error))
+    }
   }
 }
 
-function requestGenreOverlays(): Action {
+function requestGenreOverlays(): Action<string> {
   return {
     type: GENRE_OVERLAYS_REQUEST
   }
@@ -70,8 +76,7 @@ function receiveGenreOverlays(json: GenreOverlay[]): {
   }
 }
 
-function failureGenreOverlays(error: string): {
-  type: string
+function failureGenreOverlays(error: string): Action<string> & {
   error: string
   receivedAt: number
 } {
@@ -83,12 +88,15 @@ function failureGenreOverlays(error: string): {
 }
 
 export function fetchGenreOverlays() {
-  return (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<any>) => {
     dispatch(requestGenreOverlays())
 
-    return fetch('/data/genre-overlays.json')
-      .then(response => response.json())
-      .then(json => dispatch(receiveGenreOverlays(json)))
-      .catch(error => dispatch(failureGenreOverlays(error)))
+    try {
+      const response = await fetch('/data/genre-overlays.json')
+      const json = await response.json()
+      return dispatch(receiveGenreOverlays(json))
+    } catch (error) {
+      return dispatch(failureGenreOverlays(error))
+    }
   }
 }

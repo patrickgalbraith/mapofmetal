@@ -1,9 +1,10 @@
+import React from "react"
 import { TrackInfo } from "../types"
-import React, { Component } from "react"
+import { Component } from "react"
 import { formatSeconds, relativeMousePosition } from "../helpers"
 
 export type Props = {
-  track: TrackInfo
+  track: TrackInfo | null
   currentTime: number
   duration: number
   volume: number
@@ -12,9 +13,7 @@ export type Props = {
   onVolumeChange: (volume: number) => void
 }
 
-export default class PlayerControls extends Component {
-  props: Props
-
+export default class PlayerControls extends Component<Props> {
   handleVolumeClick(e: React.MouseEvent<HTMLDivElement>) {
     let currentTarget = e.currentTarget
 
@@ -50,8 +49,8 @@ export default class PlayerControls extends Component {
           </div>
         </div>
         <div className='PlayerControls-right'>
-          <div className='PlayerControls-title'>{track.title} ({track.year})</div>
-          <div className='PlayerControls-artist'>{track.artist}</div>
+          <div className='PlayerControls-title'>{track?.title} ({track?.year})</div>
+          <div className='PlayerControls-artist'>{track?.artist}</div>
         </div>
       </div>
   }

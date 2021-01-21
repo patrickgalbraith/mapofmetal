@@ -1,3 +1,4 @@
+import { AnyAction } from "redux"
 import {
   PLAYER_PLAY, PLAYER_PAUSE,
   PLAYER_LOAD, PLAYER_VOLUME,
@@ -28,61 +29,70 @@ const initialState: State = {
   quality: PLAYER_QUALITY.get('default')
 }
 
-export default function player(state: State = initialState, action: any): State {
+export default function player(state: State = initialState, action: AnyAction): State {
   if (action.type === PLAYER_API_READY) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       apiReady: true
-    })
+    }
   }
 
   if (action.type === PLAYER_READY) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       playerReady: true,
       videoId: action.videoId,
       volume: action.volume
-    })
+    }
   }
 
   if (action.type === PLAYER_LOAD) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       videoId: action.videoId
-    })
+    }
   }
 
   if (action.type === PLAYER_PLAY && state.state === PLAYER_STATE_PAUSED) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       state: PLAYER_STATE_PLAYING
-    })
+    }
   }
 
   if (action.type === PLAYER_PAUSE && state.state === PLAYER_STATE_PLAYING) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       state: PLAYER_STATE_PAUSED
-    })
+    }
   }
 
   if (action.type === PLAYER_VOLUME) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       volume: action.volume
-    })
+    }
   }
 
   if (action.type === PLAYER_QUALITY_CHANGE) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       quality: action.quality
-    })
+    }
   }
 
   if (action.type === PLAYER_STATE_CHANGE) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       state: action.playerState
-    })
+    }
   }
 
   if (action.type === PLAYER_DURATION_CHANGE) {
-    return Object.assign({}, state, {
+    return {
+      ...state,
       duration: action.duration
-    })
+    }
   }
 
   return state

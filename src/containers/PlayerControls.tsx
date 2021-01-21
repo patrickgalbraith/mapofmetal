@@ -1,51 +1,47 @@
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { RootState } from "../reducers"
+import { TrackInfo } from "../types"
+import PlayerControls, { Props as PlayerControlsProps } from "../components/PlayerControls"
+import { play, pause, volume } from "../actions/Player"
 
-import { Props } from "../components/PlayerControls";
-import { State } from "../reducers";
-import { TrackInfo } from "../types";
+export type Props = Omit<PlayerControlsProps, keyof DispatchProps | keyof StateProps> & StateProps & DispatchProps
 
-import React, { Component, PropTypes } from "react";
-import { connect } from "react-redux";
-import PlayerControls from "../components/PlayerControls";
-
-import { play, pause, volume } from "../actions/Player";
-
-class PlayerControlsContainer extends Component {
-
-  props: Props;
-
+class PlayerControlsContainer extends Component<Props> {
   render() {
-    return <PlayerControls {...this.props} />;
+    return <PlayerControls {...this.props} />
   }
 }
 
-const getCurrentTrack = (state: State): TrackInfo | null | undefined => {
-  if (state == null) return;
+const getCurrentTrack = (state: RootState | null | undefined): TrackInfo | null => {
+  if (!state)
+    return null
 
-  const {
-    nowPlaying
-  } = state.app;
-  const genre = state.genres.find(g => g.id === nowPlaying.genre);
-  const trackNo = nowPlaying.trackNo;
+  const { nowPlaying } = state.app
+  const genre = state.genres.find(g => g.id === nowPlaying.genre)
+  const trackNo = nowPlaying.trackNo
 
-  if (genre == null) return;
+  if (genre == null)
+    return null
 
-  return genre.tracklist[trackNo];
-};
+  return genre.tracklist[trackNo]
+}
 
-const mapStateToProps = (state: State): any => {
-  if (state == null) return {};
-
+const mapStateToProps = (state: RootState) => {
   return {
-    duration: state.player.duration,
-    volume: state.player.volume,
+    duration: state?.player.duration ?? 1,
+    volume: state?.player.volume ?? 100,
     track: getCurrentTrack(state)
-  };
-};
+  }
+}
 
 const actionCreators = {
   onPlayClick: play,
   onPauseClick: pause,
   onVolumeChange: volume
-};
+}
 
-export default connect(mapStateToProps, actionCreators)(PlayerControlsContainer);
+type StateProps = ReturnType<typeof mapStateToProps>
+type DispatchProps = typeof actionCreators
+
+export default connect(mapStateToProps, actionCreators)(PlayerControlsContainer)

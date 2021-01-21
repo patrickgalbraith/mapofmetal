@@ -1,6 +1,10 @@
 export {}
 
 declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void
+  }
+
   interface Document {
     cancelFullScreen?: () => Promise<void>
     mozCancelFullScreen?: () => Promise<void>

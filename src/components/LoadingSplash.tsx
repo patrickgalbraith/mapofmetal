@@ -12,7 +12,7 @@ const initialProps: Props = {
   onEnter: () => {}
 }
 
-export default function LoadingSplash(props: Props = initialProps) {
+export default function LoadingSplash(props = initialProps) {
   const {
     loading,
     onEnter
