@@ -42,7 +42,7 @@ function run(cb) {
 
 // If called directly then run
 if (require.main === module) {
-  run()
+  run(() => {})
 }
 
 module.exports = run
