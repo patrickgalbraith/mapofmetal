@@ -134,7 +134,7 @@ export default class VideoPlayer extends Component<Props> {
     this.watchCurrentTime()
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { playerState, nowPlaying } = this.props
 
     const {

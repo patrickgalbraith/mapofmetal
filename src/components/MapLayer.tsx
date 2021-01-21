@@ -48,7 +48,7 @@ class MapLayer extends Component<Props> {
     return false
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { centerPosition } = nextProps
 
     if (this.viewer && centerPosition && this.props.centerPosition !== centerPosition) {
