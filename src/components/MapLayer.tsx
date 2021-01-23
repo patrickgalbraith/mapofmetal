@@ -160,7 +160,7 @@ class MapLayer extends Component<Props> {
       document.body.addEventListener('click', (e: MouseEvent) => {
         let target = e.target
 
-        if (target instanceof HTMLDivElement && target.classList.contains('map-genre-overlay')) {
+        if (target instanceof HTMLElement && target.classList.contains('map-genre-overlay')) {
           onOverlayClick(convertOverlayIdToGenreId(target.id), target.id)
         }
       })
