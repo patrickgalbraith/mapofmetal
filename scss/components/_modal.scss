@@ -32,7 +32,7 @@
     }
   }
 
-  &.transition-leave {
+  &.transition-exit {
     &-active {
       &:after,
       > div { opacity: 0; }

@@ -1,4 +1,5 @@
 import React, { Component, Dispatch } from "react"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 import { connect } from "react-redux"
 import { RootState } from "../reducers"
 import { MapCenterPoint } from "../types"
@@ -17,7 +18,6 @@ import { changeMapCenter, dragStart, dragEnd } from "../actions/Map"
 import { selectGenre } from "../actions/Genre"
 
 import { MAP_TILE_SOURCE } from "../constants"
-import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 type ModalReference = {
   key: string

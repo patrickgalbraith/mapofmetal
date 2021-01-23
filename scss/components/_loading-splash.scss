@@ -85,7 +85,7 @@
       }
     }
 
-    &.transition-leave {
+    &.transition-exit {
       &-active {
         opacity: 0;
         transition: opacity 1s;
@@ -109,12 +109,12 @@
     }
   }
 
-  .Page.transition-leave & {
+  .Page.transition-exit & {
     opacity: 1;
     transition: opacity 1s;
   }
 
-  .Page.transition-leave-active & {
+  .Page.transition-exit-active & {
     opacity: 0;
   }
 }
