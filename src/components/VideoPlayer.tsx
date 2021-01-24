@@ -29,12 +29,7 @@ export default class VideoPlayer extends Component<Props> {
   playerElement: HTMLDivElement | undefined
   currentTimer: NodeJS.Timeout | undefined
   currentVideoIdFallback: string | null = null
-
-  constructor(props: Props | Readonly<Props>) {
-    super(props)
-    window.onYouTubeIframeAPIReady = () => this.props.onApiReady()
-    this.loadYoutubeApi()
-  }
+  stopMonitoringPlayerReady?: () => void
 
   render() {
     return <div className='VideoPlayerPlaceholder' />
@@ -42,21 +37,6 @@ export default class VideoPlayer extends Component<Props> {
 
   shouldComponentUpdate() {
     return false
-  }
-
-  loadYoutubeApi(): void {
-    const id = 'youtube-api-script'
-    const tag = document.createElement('script')
-    const firstScriptTag = document.getElementsByTagName('script')[0]
-
-    if (document.getElementById(id) !== null)
-      return console.log('VideoPlayer - YouTube API already loaded')
-
-    tag.id = id
-    tag.src = "https://www.youtube.com/iframe_api"
-
-    if (firstScriptTag.parentNode)
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
   }
 
   getVideo(tracklist: TrackInfo[], trackNo: number, index: number = 0, fallback: string = ''): string {
@@ -215,6 +195,8 @@ export default class VideoPlayer extends Component<Props> {
     if (document.body)
       document.body.appendChild(this.playerElement)
 
+    this.stopMonitoringPlayerReady = monitorPlayerReady(() => this.props.onApiReady())
+
     setTimeout((): void => {
       this.playerElement?.classList.add('active')
     }, 2500)
@@ -222,8 +204,31 @@ export default class VideoPlayer extends Component<Props> {
 
   componentWillUnmount() {
     this.player?.destroy()
+    this.stopMonitoringPlayerReady?.()
 
     if (document.body && this.playerElement)
       document.body.removeChild(this.playerElement)
   }
+}
+
+/**
+ * Triggers callback when Youtube IFrame API is ready
+ * @param callback Disposes timer
+ */
+const monitorPlayerReady = (callback: () => void) => {
+  if (window.__YOUTUBE_PLAYER_INIT__) {
+    callback()
+    return () => {} // no-op
+  }
+
+  const timer = setInterval(() => {
+    if (window.__YOUTUBE_PLAYER_INIT__) {
+      callback()
+      dispose()
+    }
+  }, 100)
+
+  const dispose = () => clearInterval(timer)
+
+  return dispose
 }

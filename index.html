@@ -95,6 +95,15 @@
       <p style="font-size:80%">Created by Patrick Galbraith (<a href="http://pjgalbraith.com" target="_blank">Website</a>)</p>
     </noscript>
 
+    <script>
+      window.__YOUTUBE_PLAYER_INIT__ = false;
+      window.onYouTubeIframeAPIReady = function() {
+        window.__YOUTUBE_PLAYER_INIT__ = true;
+      };
+    </script>
+
+    <script defer src="https://www.youtube.com/iframe_api"></script>
+
     <script src="src/main.tsx"></script>
 
     <!-- Browser update notification -->

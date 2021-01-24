@@ -2,7 +2,8 @@ export {}
 
 declare global {
   interface Window {
-    onYouTubeIframeAPIReady: () => void
+    onYouTubeIframeAPIReady: () => void,
+    __YOUTUBE_PLAYER_INIT__: boolean
   }
 
   interface Document {
