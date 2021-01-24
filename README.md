@@ -65,25 +65,31 @@ Please be aware that adding a new genre to the map can take time as it requires 
 
 ```
 NodeJS & NPM - https://nodejs.org
-Gulp         - npm install -g gulp
 ```
 
 **Install**
+
+Install packages:
+
 ```
 npm install
 ```
 
+Setup `dist` directory by copying static assets:
+
+```
+mkdir -p dist && cp -r ./tiles ./dist/tiles && cp -r ./static ./dist/static && cp -r ./data ./dist/data
+```
+
+**Run**
+```
+npm run dev
+```
+
 **Build**
 ```
-gulp build
+npm run build
 ```
-
-**Watch**
-```
-gulp watch
-```
-
-**Note** this project currently uses a forked version of `openseadragon` which needs to be built manually `cd ./node_modules/openseadragon && npm install && grunt build`.
 
 ## License
 

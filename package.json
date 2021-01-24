@@ -5,9 +5,9 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "concatgenreinfo": "node ./scripts/concat-genre-info.js",
-    "dev": "npm run concatgenreinfo && parcel index.html --port 51234 --hmr-port 51235",
-    "build": "npm run concatgenreinfo && parcel build index.html"
+    "concat_genreinfo": "node ./scripts/concat-genre-info.js",
+    "dev": "npm run concat_genreinfo && parcel index.html --port 51234 --hmr-port 51235",
+    "build": "npm run concat_genreinfo && parcel build index.html"
   },
   "author": "Patrick Galbraith",
   "license": "UNLICENSED",
