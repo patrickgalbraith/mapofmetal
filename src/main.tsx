@@ -7,10 +7,6 @@ import { Provider } from "react-redux"
 import configureStore from "./store/configureStore"
 import App from "./containers/App"
 
-if (module.hot) {
-  module.hot.accept()
-}
-
 const initialState = {}
 
 // Add css class for environment to enable development styles

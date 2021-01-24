@@ -10,13 +10,5 @@ export default function configureStore(initialState: RootState | {}) {
     applyMiddleware(thunkMiddleware, playerMiddleware)
   ))
 
-  if (module.hot) {
-    // Enable hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers/index');
-      store.replaceReducer(nextRootReducer);
-    })
-  }
-
   return store
 }
