@@ -4,6 +4,8 @@ This project contains the source code and data for the [Map of Metal website](ht
 
 ### https://mapofmetal.com
 
+### Join our discord https://discord.gg/yW2wrPT7ZE
+
 ## Contributing
 
 To submit a bug report please visit https://github.com/patrickgalbraith/mapofmetal/issues/new
