@@ -1,0 +1,57 @@
+backend:
+  name: github
+  branch: patrickgalbraith/mapofmetal
+
+publish_mode: editorial_workflow
+
+collections:
+  - label: Genres
+    name: genres
+    identifier_field: id
+    format: json
+    slug: "{{slug}}"
+    folder: "data/genre-info"
+    create: true
+    fields:
+      - label: "ID"
+        name: "id"
+        widget: "string"
+        required: true
+
+      - label: "Title"
+        name: "title"
+        widget: "string"
+        required: true
+
+      - label: "Description"
+        name: "description"
+        widget: "text"
+        required: true
+
+      - label: "Track List"
+        name: "tracklist"
+        widget: "list"
+        summary: '{{fields.artist}} - {{fields.title}}'
+        min: 1
+        fields:
+          - label: "Artist"
+            name: "artist"
+            widget: "string"
+            required: true
+
+          - label: "Title"
+            name: "title"
+            widget: "string"
+            required: true
+
+          - label: "Year"
+            name: "year"
+            widget: "string"
+            required: false
+            pattern: ['^[0-9][0-9][0-9][0-9]$', "Must be a four digit number"]
+
+          - label: "Videos"
+            hint: "List of Youtube Video IDs"
+            name: "videos"
+            widget: "list"
+            min: 1
