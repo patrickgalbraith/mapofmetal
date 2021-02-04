@@ -54,10 +54,10 @@ To make changes follow these instructions https://help.github.com/articles/editi
 
 I am happy to receive suggestions for new genres however due to the amount of work involved I would expect at least the following to be provided.
 
- * Name of genre
- * Short description of genre or link to a description of the genre
- * Decade that genre began - 80s, 90s, 00s, etc...
- * List of tracks exemplifying the genre (at least 4, ideally 8-10)
+- Name of genre
+- Short description of genre or link to a description of the genre
+- Decade that genre began - 80s, 90s, 00s, etc...
+- List of tracks exemplifying the genre (at least 4, ideally 8-10)
 
 Please be aware that adding a new genre to the map can take time as it requires making changes to the underlying map design.
 
@@ -77,18 +77,14 @@ Install packages:
 npm install
 ```
 
-Setup `dist` directory by copying static assets:
-
-```
-mkdir -p dist && cp -r ./tiles ./dist/tiles && cp -r ./static ./dist/static && cp -r ./data ./dist/data
-```
-
 **Run**
+
 ```
 npm run dev
 ```
 
 **Build**
+
 ```
 npm run build
 ```
