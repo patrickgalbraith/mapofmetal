@@ -1,6 +1,9 @@
 backend:
   name: github
-  branch: patrickgalbraith/mapofmetal
+  repo: patrickgalbraith/mapofmetal
+  branch: feature-cms
+
+media_folder: ""
 
 publish_mode: editorial_workflow
 
@@ -31,7 +34,7 @@ collections:
       - label: "Track List"
         name: "tracklist"
         widget: "list"
-        summary: '{{fields.artist}} - {{fields.title}}'
+        summary: "{{fields.artist}} - {{fields.title}}"
         min: 1
         fields:
           - label: "Artist"
@@ -48,7 +51,7 @@ collections:
             name: "year"
             widget: "string"
             required: false
-            pattern: ['^[0-9][0-9][0-9][0-9]$', "Must be a four digit number"]
+            pattern: ["^[0-9][0-9][0-9][0-9]$", "Must be a four digit number"]
 
           - label: "Videos"
             hint: "List of Youtube Video IDs"
