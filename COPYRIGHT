@@ -2,8 +2,7 @@ COPYRIGHTS
 ==========
 
 Description: Source code
-Path:        /scss
-             /src
+Path:        /src
 Url:         http://www.mapofmetal.com/
 Copyright:   2017, Patrick Galbraith
 License:     AGPL - see LICENSE.AGPL file
@@ -16,13 +15,13 @@ License:     CC BY-SA - see LICENSE.CCBYSA
                       - https://creativecommons.org/licenses/by-sa/4.0/
 
 Description: Graphic design, map design and tile images
-Path:        /tiles
-             /static/img
+Path:        /public/tiles
+             /public/img
 Url:         http://www.mapofmetal.com/
 Copyright:   2010-2017, Patrick Galbraith
 License:     No license - All rights reserved
 
 Description: Simple Icons
-Path:        /static/icons
+Path:        /public/icons
 Url:         https://github.com/danleech/simple-icons
 License:     CC0 - see https://github.com/danleech/simple-icons/blob/gh-pages/LICENSE.md

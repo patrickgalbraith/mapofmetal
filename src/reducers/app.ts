@@ -1,43 +1,55 @@
-import { AnyAction } from "redux"
+import { AnyAction } from "redux";
 import {
-  GENRE_SELECTED, GENRE_INFO_FAILURE,
-  GENRE_OVERLAYS_FAILURE, TRACKLIST_SKIP,
-  TRACKLIST_NEXT, TRACKLIST_NEXT_VIDEO
-} from "../constants"
+  GENRE_SELECTED,
+  GENRE_INFO_FAILURE,
+  GENRE_OVERLAYS_FAILURE,
+  TRACKLIST_SKIP,
+  TRACKLIST_NEXT,
+  TRACKLIST_NEXT_VIDEO,
+} from "../constants";
 
 export type State = {
-  selectedGenre: string
+  selectedGenre: string;
   nowPlaying: {
-    genre: string
-    trackNo: number
-    videoNo: number
-  }
-  fatalError: boolean
-}
+    genre: string;
+    trackNo: number;
+    videoNo: number;
+  };
+  fatalError: boolean;
+};
 
 const initialState: State = {
-  selectedGenre: 'heavymetal',
+  selectedGenre: "heavymetal",
   nowPlaying: {
-    genre: 'heavymetal',
+    genre: "heavymetal",
     trackNo: 0,
-    videoNo: 0 // Increments on playback error
+    videoNo: 0, // Increments on playback error
   },
-  fatalError: false
-}
+  fatalError: false,
+};
 
-export default function app(state: State = initialState, action: AnyAction): State {
-  if (action.type === GENRE_SELECTED && action.newGenre !== state.selectedGenre) {
+export default function app(
+  state: State = initialState,
+  action: AnyAction
+): State {
+  if (
+    action.type === GENRE_SELECTED &&
+    action.newGenre !== state.selectedGenre
+  ) {
     return {
       ...state,
-      selectedGenre: action.newGenre
-    }
+      selectedGenre: action.newGenre,
+    };
   }
 
-  if (action.type === GENRE_INFO_FAILURE || action.type === GENRE_OVERLAYS_FAILURE) {
+  if (
+    action.type === GENRE_INFO_FAILURE ||
+    action.type === GENRE_OVERLAYS_FAILURE
+  ) {
     return {
       ...state,
-      fatalError: true
-    }
+      fatalError: true,
+    };
   }
 
   if (action.type === TRACKLIST_SKIP) {
@@ -46,9 +58,9 @@ export default function app(state: State = initialState, action: AnyAction): Sta
       nowPlaying: {
         genre: action.genre || state.nowPlaying.genre,
         trackNo: action.trackNo || 0,
-        videoNo: 0
-      }
-    }
+        videoNo: 0,
+      },
+    };
   }
 
   if (action.type === TRACKLIST_NEXT) {
@@ -57,9 +69,9 @@ export default function app(state: State = initialState, action: AnyAction): Sta
       nowPlaying: {
         ...state.nowPlaying,
         trackNo: state.nowPlaying.trackNo + 1,
-        videoNo: 0
-      }
-    }
+        videoNo: 0,
+      },
+    };
   }
 
   if (action.type === TRACKLIST_NEXT_VIDEO) {
@@ -67,10 +79,10 @@ export default function app(state: State = initialState, action: AnyAction): Sta
       ...state,
       nowPlaying: {
         ...state.nowPlaying,
-        videoNo: state.nowPlaying.videoNo + 1
-      }
-    }
+        videoNo: state.nowPlaying.videoNo + 1,
+      },
+    };
   }
 
-  return state
+  return state;
 }

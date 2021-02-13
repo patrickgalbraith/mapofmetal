@@ -77,15 +77,9 @@ Install packages:
 npm install
 ```
 
-Setup `dist` directory by copying static assets:
-
-```
-mkdir -p dist && cp -r ./tiles ./dist/tiles && cp -r ./static ./dist/static && cp -r ./data ./dist/data
-```
-
 **Run**
 ```
-npm run dev
+npm run start
 ```
 
 **Build**

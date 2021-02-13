@@ -1,0 +1,104 @@
+.ShareModal {
+  padding: 20px 25px;
+  width: 450px;
+  max-width: 95%;
+  color: white;
+
+  .Modal {
+    &-title {
+      text-align: center;
+      margin: 0 0 15px 0;
+    }
+
+    &-footer {
+      display: flex;
+      border-top: 1px solid #595858;
+      padding-top: 15px;
+      margin-top: 15px;
+      align-items: center;
+
+      p {
+        margin: 0;
+
+        &:first-child {
+          flex: 1 1 auto;
+        }
+
+        &:last-child {
+          flex: 0 0 auto;
+        }
+      }
+    }
+  }
+
+  .social {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      border-radius: 6px;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      background-color: white;
+      background-position: center;
+      background-size: 100% 100%;
+      margin: 0 5px;
+
+      a {
+        display: block;
+        width: 40px;
+        height: 40px;
+      }
+
+      &.facebook {
+        background-color: white;
+        background-image: url("../../static/icons/facebook.svg");
+      }
+
+      &.twitter {
+        background-color: #1da1f2;
+        background-image: url("../../static/icons/twitter.svg");
+        background-size: 70% 70%;
+      }
+
+      &.reddit {
+        background-color: #b8d4ec;
+        background-image: url("../../static/icons/reddit-colored.svg");
+        background-size: 80% 80%;
+      }
+
+      &.pinterest {
+        background-color: #bd081c;
+        background-image: url("../../static/icons/pinterest.svg");
+        background-size: 75% 75%;
+      }
+
+      &.stumbleupon {
+        background-color: #eb4924;
+        background-image: url("../../static/icons/stumbleupon.svg");
+        background-size: 75% 75%;
+      }
+
+      &.tumblr {
+        background-color: #36465d;
+        background-image: url("../../static/icons/tumblr.svg");
+        background-size: 70% 70%;
+      }
+
+      &.linkedin {
+        background-color: white;
+        background-image: url("../../static/icons/linkedin.svg");
+      }
+
+      &.digg {
+        background-color: #000000;
+        background-image: url("../../static/icons/digg.svg");
+        background-size: 70% 70%;
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+@import "styles/variables";
+@import "styles/fonts";
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: black;
+  box-sizing: border-box;
+  font-family: $font-sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+
+  * {
+    box-sizing: inherit;
+  }
+}
+
+// Webkit scrollbars
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 255, 255);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(196, 196, 196);
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(63, 61, 60);
+}
+
+// Internet explorer scrollbars
+body {
+  scrollbar-arrow-color: #ffffff;
+  scrollbar-base-color: #ffffff;
+  scrollbar-track-color: #3f3d3c;
+  scrollbar-face-color: #ffffff;
+  scrollbar-highlight-color: #ffffff;
+  scrollbar-3dlight-color: #ffffff;
+  scrollbar-darkshadow-color: #ffffff;
+  scrollbar-shadow-color: #ffffff;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+// Debug colours
+body.env-development {
+  .map-genre-overlay {
+    border: 1px red solid;
+
+    &__related {
+      border-color: green;
+    }
+
+    &__fusion {
+      border-color: blue;
+    }
+  }
+}
+
+@import "./components/App/styles";
+@import "./components/MapLayer/styles";
+@import "./components/LoadingSplash/styles";
+@import "./components/TopBar/styles";
+@import "./components/GenreInfo/styles";
+@import "./components/TrackList/styles";
+@import "./components/YoutubeVideoPlayer/styles";
+@import "./components/PlayerControls/styles";
+@import "./components/FatalErrorScreen/styles";
+
+@import "./styles/modal";
+@import "./components/SettingsModal/styles";
+@import "./components/ShareModal/styles";
+@import "./components/AboutModal/styles";

@@ -1,50 +1,55 @@
-import { AnyAction } from "redux"
-import { GenreOverlay, MapCenterPoint } from "../types"
+import { AnyAction } from "redux";
+import { GenreOverlay, MapCenterPoint } from "../types";
 import {
-  MAP_MOVE, MAP_DRAG_START,
-  MAP_DRAG_END, GENRE_OVERLAYS_SUCCESS
-} from "../constants"
+  MAP_MOVE,
+  MAP_DRAG_START,
+  MAP_DRAG_END,
+  GENRE_OVERLAYS_SUCCESS,
+} from "../constants";
 
 export type State = {
-  overlays: GenreOverlay[]
-  center: MapCenterPoint | null
-  dragging: boolean
-}
+  overlays: GenreOverlay[];
+  center: MapCenterPoint | null;
+  dragging: boolean;
+};
 
 const initialState: State = {
   overlays: [],
   center: null,
-  dragging: false
-}
+  dragging: false,
+};
 
-export default function map(state: State = initialState, action: AnyAction): State {
+export default function map(
+  state: State = initialState,
+  action: AnyAction
+): State {
   if (action.type === GENRE_OVERLAYS_SUCCESS) {
     return {
       ...state,
-      overlays: action.genreOverlays
-    }
+      overlays: action.genreOverlays,
+    };
   }
 
   if (action.type === MAP_MOVE) {
     return {
       ...state,
-      center: action.mapCenter
-    }
+      center: action.mapCenter,
+    };
   }
 
   if (action.type === MAP_DRAG_START) {
     return {
       ...state,
-      dragging: true
-    }
+      dragging: true,
+    };
   }
 
   if (action.type === MAP_DRAG_END) {
     return {
       ...state,
-      dragging: false
-    }
+      dragging: false,
+    };
   }
 
-  return state
+  return state;
 }

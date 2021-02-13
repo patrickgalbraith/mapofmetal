@@ -1,102 +1,115 @@
-import { Action, Dispatch } from "redux"
-import { GenreInfo, GenreOverlay } from "../types"
+import { Action, Dispatch } from "redux";
+import { GenreInfo, GenreOverlay } from "../types";
 import {
-  GENRE_SELECTED, GENRE_INFO_REQUEST,
-  GENRE_INFO_SUCCESS, GENRE_INFO_FAILURE,
-  GENRE_OVERLAYS_REQUEST, GENRE_OVERLAYS_SUCCESS,
-  GENRE_OVERLAYS_FAILURE
-} from "../constants"
+  GENRE_SELECTED,
+  GENRE_INFO_REQUEST,
+  GENRE_INFO_SUCCESS,
+  GENRE_INFO_FAILURE,
+  GENRE_OVERLAYS_REQUEST,
+  GENRE_OVERLAYS_SUCCESS,
+  GENRE_OVERLAYS_FAILURE,
+} from "../constants";
 
-export function selectGenre(genreId: string): Action<string> & {
-  newGenre: string
+export function selectGenre(
+  genreId: string
+): Action<string> & {
+  newGenre: string;
 } {
   return {
     type: GENRE_SELECTED,
-    newGenre: genreId
-  }
+    newGenre: genreId,
+  };
 }
 
 function requestGenreInfo(): Action<string> {
   return {
-    type: GENRE_INFO_REQUEST
-  }
+    type: GENRE_INFO_REQUEST,
+  };
 }
 
-function receiveGenreInfo(json: GenreInfo[]): Action<string> & {
-  genreInfo: GenreInfo[]
-  receivedAt: number
+function receiveGenreInfo(
+  json: GenreInfo[]
+): Action<string> & {
+  genreInfo: GenreInfo[];
+  receivedAt: number;
 } {
   return {
     type: GENRE_INFO_SUCCESS,
     genreInfo: json,
-    receivedAt: Date.now()
-  }
+    receivedAt: Date.now(),
+  };
 }
 
-function failureGenreInfo(error: string): Action<string> & {
+function failureGenreInfo(
   error: string
-  receivedAt: number
+): Action<string> & {
+  error: string;
+  receivedAt: number;
 } {
   return {
     type: GENRE_INFO_FAILURE,
     error,
-    receivedAt: Date.now()
-  }
+    receivedAt: Date.now(),
+  };
 }
 
 export function fetchGenreInfo() {
   return async (dispatch: Dispatch<any>) => {
-    dispatch(requestGenreInfo())
+    dispatch(requestGenreInfo());
 
     try {
-      const response = await fetch('/data/genre-info.json')
-      const json = await response.json()
-      return dispatch(receiveGenreInfo(json))
+      const response = await fetch("/data/genre-info.json");
+      const json = await response.json();
+      return dispatch(receiveGenreInfo(json));
     } catch (error) {
-      return dispatch(failureGenreInfo(error))
+      return dispatch(failureGenreInfo(error));
     }
-  }
+  };
 }
 
 function requestGenreOverlays(): Action<string> {
   return {
-    type: GENRE_OVERLAYS_REQUEST
-  }
+    type: GENRE_OVERLAYS_REQUEST,
+  };
 }
 
-function receiveGenreOverlays(json: GenreOverlay[]): {
-  type: string
-  genreOverlays: GenreOverlay[]
-  receivedAt: number
+function receiveGenreOverlays(
+  json: GenreOverlay[]
+): {
+  type: string;
+  genreOverlays: GenreOverlay[];
+  receivedAt: number;
 } {
   return {
     type: GENRE_OVERLAYS_SUCCESS,
     genreOverlays: json,
-    receivedAt: Date.now()
-  }
+    receivedAt: Date.now(),
+  };
 }
 
-function failureGenreOverlays(error: string): Action<string> & {
+function failureGenreOverlays(
   error: string
-  receivedAt: number
+): Action<string> & {
+  error: string;
+  receivedAt: number;
 } {
   return {
     type: GENRE_OVERLAYS_FAILURE,
     error,
-    receivedAt: Date.now()
-  }
+    receivedAt: Date.now(),
+  };
 }
 
 export function fetchGenreOverlays() {
   return async (dispatch: Dispatch<any>) => {
-    dispatch(requestGenreOverlays())
+    dispatch(requestGenreOverlays());
 
     try {
-      const response = await fetch('/data/genre-overlays.json')
-      const json = await response.json()
-      return dispatch(receiveGenreOverlays(json))
+      const response = await fetch("/data/genre-overlays.json");
+      const json = await response.json();
+      return dispatch(receiveGenreOverlays(json));
     } catch (error) {
-      return dispatch(failureGenreOverlays(error))
+      return dispatch(failureGenreOverlays(error));
     }
-  }
+  };
 }
