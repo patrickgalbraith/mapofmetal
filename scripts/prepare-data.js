@@ -1,4 +1,3 @@
-const { fstat } = require("fs");
 const fs = require("fs");
 const path = require("path");
 const concatGenreInfo = require("./concat-genre-info");
@@ -10,6 +9,11 @@ const run = () => {
   console.log("Begin preparing data.");
 
   concatGenreInfo(() => {
+    fs.copyFileSync(
+      path.join(DATA_DIR, "genre-info.json"),
+      path.join(PUBLIC_DIR, "./data/genre-info.json")
+    );
+
     fs.copyFileSync(
       path.join(DATA_DIR, "genre-overlays.json"),
       path.join(PUBLIC_DIR, "./data/genre-overlays.json")

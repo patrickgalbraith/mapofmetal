@@ -39,7 +39,7 @@ function run(cb) {
       // Finish Fn
       (err, genres) => {
         fs.writeFile(
-          DATA_DIR + "../public/data/genre-info.json",
+          DATA_DIR + "/genre-info.json",
           JSON.stringify(genres, null, 2),
           "utf8",
           cb
