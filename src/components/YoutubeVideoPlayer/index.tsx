@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { State as PlayerState } from "../../reducers/player";
 import { GenreInfo as GenreInfoItem, TrackInfo } from "../../types";
 import {
@@ -26,13 +26,24 @@ export type Props = {
 
 export default class YoutubeVideoPlayer extends Component<Props> {
   player: YT.Player | undefined;
-  playerElement: HTMLDivElement | undefined;
+  playerElement: React.RefObject<HTMLDivElement> | undefined;
   currentTimer: NodeJS.Timeout | undefined;
   currentVideoIdFallback: string | null = null;
   stopMonitoringPlayerReady?: () => void;
 
+  constructor(props: Props) {
+    super(props);
+    this.playerElement = React.createRef();
+  }
+
   render() {
-    return <div className="VideoPlayerPlaceholder" />;
+    return (
+      <div
+        className="VideoPlayer"
+        id="yt-video-player"
+        ref={this.playerElement}
+      />
+    );
   }
 
   shouldComponentUpdate() {
@@ -104,9 +115,9 @@ export default class YoutubeVideoPlayer extends Component<Props> {
     const initialVolume = (player: YT.Player) =>
       player.isMuted() ? 0 : player.getVolume();
 
-    this.player = new YT.Player(this.playerElement.id, {
-      width: "323",
-      height: "242",
+    this.player = new YT.Player(this.playerElement.current!.id, {
+      width: "267",
+      height: "200",
       videoId: initialYoutubeId,
       events: {
         onReady: () =>
@@ -138,7 +149,10 @@ export default class YoutubeVideoPlayer extends Component<Props> {
     } = nextProps;
 
     // Initialize when API is ready
-    if (nextPlayerState.apiReady !== playerState.apiReady) {
+    if (
+      nextPlayerState.apiReady !== playerState.apiReady &&
+      nextPlayerState.apiReady
+    ) {
       setTimeout((): void => {
         this.initializePlayer();
       }, 3000);
@@ -170,7 +184,10 @@ export default class YoutubeVideoPlayer extends Component<Props> {
     }
 
     // Play/pause
-    if (nextPlayerState.state !== this.player.getPlayerState()) {
+    if (
+      !nextPlayerState.stopped &&
+      nextPlayerState.state !== this.player.getPlayerState()
+    ) {
       if (nextPlayerState.state === PLAYER_STATE_PAUSED) {
         this.player.pauseVideo();
       } else if (nextPlayerState.state === PLAYER_STATE_PLAYING) {
@@ -178,8 +195,17 @@ export default class YoutubeVideoPlayer extends Component<Props> {
       }
     }
 
+    // Stop
+    if (
+      playerState.stopped !== nextPlayerState.stopped &&
+      nextPlayerState.stopped
+    ) {
+      this.player.stopVideo();
+    }
+
     // When video finishes play next track
     if (
+      !nextPlayerState.stopped &&
       nextPlayerState.state !== playerState.state &&
       nextPlayerState.state === PLAYER_STATE_ENDED
     ) {
@@ -202,27 +228,18 @@ export default class YoutubeVideoPlayer extends Component<Props> {
   }
 
   componentDidMount() {
-    this.playerElement = document.createElement("div");
-    this.playerElement.id = "yt-video-player";
-    this.playerElement.className = "VideoPlayer";
-
-    if (document.body) document.body.appendChild(this.playerElement);
-
     this.stopMonitoringPlayerReady = monitorPlayerReady(() =>
       this.props.onApiReady()
     );
 
     setTimeout((): void => {
-      this.playerElement?.classList.add("active");
+      this.playerElement?.current?.classList.add("active");
     }, 2500);
   }
 
   componentWillUnmount() {
     this.player?.destroy();
     this.stopMonitoringPlayerReady?.();
-
-    if (document.body && this.playerElement)
-      document.body.removeChild(this.playerElement);
   }
 }
 

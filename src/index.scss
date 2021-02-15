@@ -77,11 +77,8 @@ body.env-development {
 @import "./components/App/styles";
 @import "./components/MapLayer/styles";
 @import "./components/LoadingSplash/styles";
-@import "./components/TopBar/styles";
-@import "./components/GenreInfo/styles";
-@import "./components/TrackList/styles";
 @import "./components/YoutubeVideoPlayer/styles";
-@import "./components/PlayerControls/styles";
+@import "./components/Player/styles";
 @import "./components/FatalErrorScreen/styles";
 
 @import "./styles/modal";

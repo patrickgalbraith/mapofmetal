@@ -12,11 +12,17 @@ import {
   PLAYER_STATE_UNSTARTED,
   PLAYER_STATE_PLAYING,
   PLAYER_STATE_PAUSED,
+  PLAYER_STOP,
+  PLAYER_STATE_ENDED,
+  TRACKLIST_NEXT,
+  TRACKLIST_NEXT_VIDEO,
+  TRACKLIST_SKIP,
 } from "../constants";
 
 export type State = {
   apiReady: boolean;
   playerReady: boolean;
+  stopped: boolean;
   state: number;
   volume: number | null;
   videoId: string | null;
@@ -27,6 +33,7 @@ export type State = {
 const initialState: State = {
   apiReady: false,
   playerReady: false,
+  stopped: false,
   state: PLAYER_STATE_UNSTARTED,
   volume: null,
   videoId: null,
@@ -61,10 +68,11 @@ export default function player(
     };
   }
 
-  if (action.type === PLAYER_PLAY && state.state === PLAYER_STATE_PAUSED) {
+  if (action.type === PLAYER_PLAY && state.state !== PLAYER_STATE_PLAYING) {
     return {
       ...state,
       state: PLAYER_STATE_PLAYING,
+      stopped: false,
     };
   }
 
@@ -72,6 +80,14 @@ export default function player(
     return {
       ...state,
       state: PLAYER_STATE_PAUSED,
+      stopped: false,
+    };
+  }
+
+  if (action.type === PLAYER_STOP && state.state !== PLAYER_STATE_ENDED) {
+    return {
+      ...state,
+      stopped: true,
     };
   }
 
@@ -100,6 +116,17 @@ export default function player(
     return {
       ...state,
       duration: action.duration,
+    };
+  }
+
+  if (
+    action.type === TRACKLIST_SKIP ||
+    action.type === TRACKLIST_NEXT ||
+    action.type === TRACKLIST_NEXT_VIDEO
+  ) {
+    return {
+      ...state,
+      stopped: false,
     };
   }
 

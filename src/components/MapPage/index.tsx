@@ -18,6 +18,7 @@ import { changeMapCenter, dragStart, dragEnd } from "../../actions/Map";
 import { selectGenre } from "../../actions/Genre";
 
 import { MAP_TILE_SOURCE } from "../../constants";
+import PlayerContainer from "../PlayerContainer";
 
 type ModalReference = {
   key: string;
@@ -106,30 +107,33 @@ class MapPage extends Component<Props, State> {
 
     return (
       <div className={classes} key={this.props.key}>
-        <TopBar
+        {/* <TopBar
           changeMapCenter={changeMapCenter}
           openModal={this.openModal.bind(this)}
-        />
+        /> */}
 
-        <VideoPlayerContainer
+        {/* <GenreInfo
+          current={currentGenre}
+          playing={currentTrackList.genre}
+          onNowPlayingClick={() => this.changeGenre(currentTrackList.genre!.id)}
+        /> */}
+
+        {/* <TrackList
+          current={currentGenre}
+          playing={currentTrackList}
+          onTrackClick={(trackNo) => this.changeTrack(trackNo)}
+        /> */}
+
+        {/* <PlayerControlsContainer currentTime={currentTime} /> */}
+
+        <PlayerContainer
+          currentTime={currentTime}
+          showNowPlaying={true} /* TODO toggle based on whether on mobile and showing genre info panel */
+          onNowPlayingClick={() => this.changeGenre(currentTrackList.genre!.id)}
           onPlaybackTime={(s) => {
             this.setState({ currentTime: s });
           }}
         />
-
-        <GenreInfo
-          current={currentGenre}
-          playing={currentTrackList.genre}
-          onNowPlayingClick={() => this.changeGenre(currentTrackList.genre!.id)}
-        />
-
-        <TrackList
-          current={currentGenre}
-          playing={currentTrackList}
-          onTrackClick={(trackNo) => this.changeTrack(trackNo)}
-        />
-
-        <PlayerControlsContainer currentTime={currentTime} />
 
         <TransitionGroup>
           {Modal && currentModal && currentModal.key && (
