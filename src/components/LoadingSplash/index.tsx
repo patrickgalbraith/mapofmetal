@@ -26,11 +26,6 @@ export default function LoadingSplash(props = initialProps) {
         </a>
       </div>
 
-      <div className="LoadingSplash-mobile-notice">
-        Mobile support coming soon. View on desktop or tablet for optimal
-        experience.
-      </div>
-
       <TransitionGroup>
         {loading ? (
           <LoadingTransition key="loading">
