@@ -116,7 +116,7 @@ export default class YoutubeVideoPlayer extends Component<Props> {
       player.isMuted() ? 0 : player.getVolume();
 
     this.player = new YT.Player(this.playerElement.current!.id, {
-      width: "267",
+      width: "100%",
       height: "200",
       videoId: initialYoutubeId,
       events: {
@@ -127,7 +127,7 @@ export default class YoutubeVideoPlayer extends Component<Props> {
       },
       playerVars: {
         autoplay: 1,
-        //controls: 0,
+        controls: 0,
         iv_load_policy: 3,
         modestbranding: 1,
         rel: 0,

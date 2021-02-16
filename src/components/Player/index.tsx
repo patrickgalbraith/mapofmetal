@@ -34,15 +34,17 @@ export default function Player(props: Props) {
     onNextTrackClick,
   } = props;
 
-  const percentagePlayed = duration ? (currentTime / duration) * 100 : 0;
+  const progress = duration ? currentTime / duration : 0;
 
   return (
     <div className="Player-container">
       {showNowPlaying && playingGenre && (
-        <div className="NowPlaying" onClick={onNowPlayingClick}>
-          Now Playing: <strong>{playingGenre.title}</strong>
+        <div className="NowPlaying">
+          <button className="NowPlaying-currentGenre" onClick={onNowPlayingClick}>
+            Now Playing: <strong>{playingGenre.title}</strong>
+          </button>
           <button className="NowPlaying-stop" onClick={onStopClick}>
-            Stop
+            <span className="visually-hidden">Stop</span>
           </button>
         </div>
       )}
@@ -54,34 +56,36 @@ export default function Player(props: Props) {
           </div>
           <div className="Player-controller">
             <div className="Player-info">
-              <p>{track.title}</p>
-              <p>{track.artist}</p>
+              <p className="Player-info-title">{track.title}</p>
+              <p className="Player-info-artist">{track.artist}</p>
             </div>
             <div className="Player-controls">
-              <button className="Player-controls-info">Genre Info</button>
+              <button className="Player-control Player-control--info">
+                <span className="visually-hidden">Genre Info</span>
+              </button>
               {playerState === PLAYER_STATE_PLAYING ? (
                 <button
-                  className="Player-controls-pause"
+                  className="Player-control Player-control--pause"
                   onClick={onPauseClick}
                 >
-                  Pause
+                  <span className="visually-hidden">Pause</span>
                 </button>
               ) : (
-                <button className="Player-controls-play" onClick={onPlayClick}>
-                  Play
+                <button className="Player-control Player-control--play" onClick={onPlayClick}>
+                  <span className="visually-hidden">Play</span>
                 </button>
               )}
               <button
-                className="Player-controls-next"
+                className="Player-control Player-control--next"
                 onClick={onNextTrackClick}
               >
-                Next Track
+                <span className="visually-hidden">Next Track</span>
               </button>
             </div>
             <div className="Player-playbar">
               <div
                 className="Player-playbar-progress"
-                style={{ width: percentagePlayed + "%" }}
+                style={{ transform: `scale3d(${progress}, 1, 1` }}
               ></div>
             </div>
           </div>
