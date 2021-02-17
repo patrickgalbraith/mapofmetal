@@ -40,7 +40,10 @@ export default function Player(props: Props) {
     <div className="Player-container">
       {showNowPlaying && playingGenre && (
         <div className="NowPlaying">
-          <button className="NowPlaying-currentGenre" onClick={onNowPlayingClick}>
+          <button
+            className="NowPlaying-currentGenre"
+            onClick={onNowPlayingClick}
+          >
             Now Playing: <strong>{playingGenre.title}</strong>
           </button>
           <button className="NowPlaying-stop" onClick={onStopClick}>
@@ -60,7 +63,10 @@ export default function Player(props: Props) {
               <p className="Player-info-artist">{track.artist}</p>
             </div>
             <div className="Player-controls">
-              <button className="Player-control Player-control--info">
+              <button
+                className="Player-control Player-control--info"
+                onClick={onNowPlayingClick}
+              >
                 <span className="visually-hidden">Genre Info</span>
               </button>
               {playerState === PLAYER_STATE_PLAYING ? (
@@ -71,7 +77,10 @@ export default function Player(props: Props) {
                   <span className="visually-hidden">Pause</span>
                 </button>
               ) : (
-                <button className="Player-control Player-control--play" onClick={onPlayClick}>
+                <button
+                  className="Player-control Player-control--play"
+                  onClick={onPlayClick}
+                >
                   <span className="visually-hidden">Play</span>
                 </button>
               )}

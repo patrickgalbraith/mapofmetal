@@ -3,12 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { RootState } from "../../reducers";
 import { MapCenterPoint } from "../../types";
-import VideoPlayerContainer from "../VideoPlayerContainer";
-import TopBar from "../TopBar";
-import PlayerControlsContainer from "../PlayerControlsContainer";
 import MapLayer from "../MapLayer";
-import GenreInfo from "../GenreInfo";
-import TrackList from "../TrackList";
 import AboutModal from "../AboutModal";
 import SettingsModal from "../SettingsModal";
 import ShareModal from "../ShareModal";
@@ -19,6 +14,7 @@ import { selectGenre } from "../../actions/Genre";
 
 import { MAP_TILE_SOURCE } from "../../constants";
 import PlayerContainer from "../PlayerContainer";
+import GenreInfoPanel from "../GenreInfoPanel";
 
 type ModalReference = {
   key: string;
@@ -28,6 +24,7 @@ type ModalReference = {
 type State = {
   currentModal: ModalReference | null;
   currentTime: number;
+  showGenreInfo: boolean;
 };
 
 type Props = StateProps &
@@ -40,11 +37,13 @@ class MapPage extends Component<Props, State> {
   state: State = {
     currentModal: null,
     currentTime: 0,
+    showGenreInfo: false,
   };
 
   changeGenre(genreId: string): void {
     const { selectGenre } = this.props;
     selectGenre(genreId);
+    this.setState({ showGenreInfo: true });
   }
 
   openModal(type: string): void {
@@ -84,8 +83,17 @@ class MapPage extends Component<Props, State> {
     this.props.skipToTrack(this.props.currentGenre!.id, trackNo);
   }
 
+  toggleGenreInfoPanel(newVisibility?: boolean) {
+    newVisibility =
+      typeof newVisibility === "undefined"
+        ? !this.state.showGenreInfo
+        : newVisibility;
+
+    this.setState({ showGenreInfo: newVisibility! });
+  }
+
   render() {
-    const { currentModal, currentTime } = this.state;
+    const { currentModal, currentTime, showGenreInfo } = this.state;
 
     const {
       overlays,
@@ -93,7 +101,7 @@ class MapPage extends Component<Props, State> {
       currentTrackList,
       mapCenter,
       mapDragging,
-      changeMapCenter,
+      isPlayerStopped,
       dragStart,
       dragEnd,
     } = this.props;
@@ -126,14 +134,38 @@ class MapPage extends Component<Props, State> {
 
         {/* <PlayerControlsContainer currentTime={currentTime} /> */}
 
-        <PlayerContainer
-          currentTime={currentTime}
-          showNowPlaying={true} /* TODO toggle based on whether on mobile and showing genre info panel */
-          onNowPlayingClick={() => this.changeGenre(currentTrackList.genre!.id)}
-          onPlaybackTime={(s) => {
-            this.setState({ currentTime: s });
-          }}
-        />
+        <div className="MapPage-content">
+          <CSSTransition
+            in={!isPlayerStopped}
+            timeout={200}
+            classNames="transition"
+          >
+            <PlayerContainer
+              currentTime={currentTime}
+              showNowPlaying={
+                true
+              } /* TODO toggle based on whether on mobile and showing genre info panel */
+              onNowPlayingClick={() =>
+                this.changeGenre(currentTrackList.genre!.id)
+              }
+              onPlaybackTime={(s) => {
+                this.setState({ currentTime: s });
+              }}
+            />
+          </CSSTransition>
+          <CSSTransition
+            in={showGenreInfo}
+            timeout={200}
+            classNames="transition"
+          >
+            <GenreInfoPanel
+              currentGenre={currentGenre}
+              playing={currentTrackList}
+              onTrackClick={(trackNo) => this.changeTrack(trackNo)}
+              onCloseClick={() => this.toggleGenreInfoPanel(false)}
+            />
+          </CSSTransition>
+        </div>
 
         <TransitionGroup>
           {Modal && currentModal && currentModal.key && (
@@ -174,6 +206,7 @@ const mapStateToProps = (state: RootState) => {
     },
     mapCenter: state.map.center,
     mapDragging: state.map.dragging,
+    isPlayerStopped: state.player.stopped,
   };
 };
 

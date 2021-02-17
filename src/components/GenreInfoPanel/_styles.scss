@@ -1,0 +1,124 @@
+.GenreInfoPanel {
+  position: absolute;
+  right: 0;
+  width: 380px;
+  max-width: 100%;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: $zindex-m;
+  color: white;
+  padding: 45px 35px 40px 40px;
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.55), 0 0 25px 0 rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease-out;
+  transform: translate3d(100%, 0, 0);
+
+  &.transition {
+    &-enter {
+      transform: translate3d(100%, 0, 0);
+    }
+
+    &-enter-done {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &-exit {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &-exit-done {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  &-header {
+    position: relative;
+  }
+
+  &-content {
+    overflow-y: auto;
+    max-height: 100%;
+    padding-right: 10px;
+  }
+
+  &-description {
+    position: relative;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #d0d0d0;
+    overflow: hidden;
+    max-height: 120px;
+    mask-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 35%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+
+  &-preheading {
+    font-size: 10px;
+    color: #ccc;
+    margin: 0;
+  }
+
+  &-subtitle {
+    font-family: $font-faithcollapsing;
+    margin: 8px 0 -5px 0;
+    font-size: 24px;
+    color: #ccc;
+    line-height: 1;
+  }
+
+  &-title {
+    font-family: $font-faithcollapsing;
+    font-size: 42px;
+    margin: 0 0 10px 0;
+  }
+
+  &-close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    background-position: center center;
+    background-image: url("../../static/img/close-button.svg");
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+  }
+}
+
+.Tracklist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &-track {
+    display: block;
+    margin: 2px 0;
+    padding: 8px 0;
+    cursor: pointer;
+
+    &.--is-playing {
+      .Tracklist-title {
+        color: #f4b980;
+      }
+    }
+  }
+
+  &-title {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+  }
+
+  &-subtitle {
+    margin: 0;
+    font-size: 12px;
+    color: rgb(160, 160, 160);
+  }
+}

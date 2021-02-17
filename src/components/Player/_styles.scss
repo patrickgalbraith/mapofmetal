@@ -3,9 +3,28 @@
   bottom: 0;
   left: 0;
   z-index: $zindex-m;
+  transition: transform 0.2s ease-out;
 
   .Player {
     background: black;
+  }
+
+  &.transition {
+    &-enter {
+      transform: translate3d(-100%, 0, 0);
+    }
+
+    &-enter-done {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &-exit {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &-exit-done {
+      transform: translate3d(-100%, 0, 0);
+    }
   }
 }
 
